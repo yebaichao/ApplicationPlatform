@@ -1,0 +1,30 @@
+****2018/12/11 10:20:04****
+###发送邮件失败。
+###System
+###Void Send(System.Net.Mail.MailMessage)
+###   在 System.Net.Mail.SmtpClient.Send(MailMessage message)
+   在 ApplicationPlatform.Site.Utilities.Email.Send() 位置 d:\项目方案\ApplicationPlatform\ApplicationPlatform.Site\ApplicationPlatform.Site\Utilities\Email.cs:行号 141
+****2018/12/11 10:27:10****
+###发送邮件失败。
+###System
+###Void Send(System.Net.Mail.MailMessage)
+###   在 System.Net.Mail.SmtpClient.Send(MailMessage message)
+   在 ApplicationPlatform.Site.Utilities.Email.Send() 位置 d:\项目方案\ApplicationPlatform\ApplicationPlatform.Site\ApplicationPlatform.Site\Utilities\Email.cs:行号 141
+****2018/12/11 10:27:21****
+###发送邮件失败。
+###System
+###Void Send(System.Net.Mail.MailMessage)
+###   在 System.Net.Mail.SmtpClient.Send(MailMessage message)
+   在 ApplicationPlatform.Site.Utilities.Email.Send() 位置 d:\项目方案\ApplicationPlatform\ApplicationPlatform.Site\ApplicationPlatform.Site\Utilities\Email.cs:行号 141
+****2018/12/11 10:27:30****
+###发送邮件失败。
+###System
+###Void Send(System.Net.Mail.MailMessage)
+###   在 System.Net.Mail.SmtpClient.Send(MailMessage message)
+   在 ApplicationPlatform.Site.Utilities.Email.Send() 位置 d:\项目方案\ApplicationPlatform\ApplicationPlatform.Site\ApplicationPlatform.Site\Utilities\Email.cs:行号 141
+****2018/12/11 10:27:52****
+###发送邮件失败。
+###System
+###Void Send(System.Net.Mail.MailMessage)
+###   在 System.Net.Mail.SmtpClient.Send(MailMessage message)
+   在 ApplicationPlatform.Site.Utilities.Email.Send() 位置 d:\项目方案\ApplicationPlatform\ApplicationPlatform.Site\ApplicationPlatform.Site\Utilities\Email.cs:行号 141

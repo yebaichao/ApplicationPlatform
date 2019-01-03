@@ -1,0 +1,12 @@
+ExportData	
+
+NO.	Product	Project	Type	Item	Subitem	Stage	Site	Quantity	TechnicalApproval	CommercialApproval	ArrangeDRI	ETD	Comment	CreatTime	UserName	
+1	Product3	Project33	Type33	Item33	SubItem33	P1	iDPBG-GL	3	Julius	Julius			test	2018-11-03 01:03:42	admin	
+2	Product55	Project21	Type21			P2	iPEG-LH	1	Julius	Julius			test	2018-11-03 01:02:29	admin	
+3	Product1	Project11	Type11	Item11	Subitem11	P1	iDPBG-GL	5	Julius	Julius			123456	2018-11-03 01:01:51	admin	
+4	Product2	Project21	Type21	Item21	SubItem21	P2	iDPBG-GL	4	Tim	Julius	admin	2018/11/15	test1102	2018-11-02 21:41:38	admin	
+5	Product1	Project11	Type11	Item11	Subitem11	P2	iDPBG-GL	1	Julius	Julius			123456	2018-11-02 21:34:14	admin	
+6	Product1	Project11	Type11	Item11	Subitem11	P1	IPEG-GL	1	Julius	Julius			123	2018-11-02 21:00:15	admin	
+7	Product1	Project11	Type11	Item11	Subitem11	P1	IPEG-GL	1	Julius	Julius			test	2018-11-02 20:57:13	admin	
+8	Product1	Project11	Type11	Item11	Subitem11	P2	IPEG-GL	1	Julius	Julius	admin	2018/11/8	test	2018-11-02 20:47:48	admin	
+9	Product1	Project11	Type11	Item11	Subitem11	P1	iDPBG-GL	1	Julius	Julius	admin	2018/11/30	123	2018-11-02 20:46:53	admin	

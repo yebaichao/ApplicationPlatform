@@ -1,0 +1,232 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<div id="edtiSelectFrameId">
+    <input id="editSelectInpId" type="text" />
+    <input  id="editSelectConId" type="button" value="Confirm" onclick="subEditSelectValue()"/>
+    <input  id="editSelectCalId" type="button" value="Cancel" onclick="closeEditSelectDialog()"/>
+
+</div>
+
+<style type="text/css">
+    #editSelectInpId {
+        margin-left:30px;
+        width:200px;
+        border-radius:8px;
+        border:1px solid #95B8E7;
+    }
+    #editSelectConId {
+        margin-left:10px;
+        margin-top:40px;
+        width:100px;
+        height:30px;
+        border:0px;
+        border-radius:5px;
+        color:#fff;
+        font-size:15px;
+        background-color:#428BCA;
+    }
+    #editSelectCalId {
+        margin-left:0px;
+        margin-top:40px;
+        width:100px;
+        height:30px;
+        border:0px;
+        border-radius:5px;
+        color:#fff;
+        font-size:15px;
+        background-color:#D9534F;
+    }
+</style>
+
+<script type="text/javascript">
+   
+    $(function () {
+        //给input赋上原来的值；
+        var productVal ='';
+        if (JudParam == "product") {
+            productVal = $("#productSel").combobox("getText");
+        }
+            //project编辑的提交
+        else if (JudParam == "project") {
+            productVal = $("#projectSel").combobox("getText");
+        }
+            //type编辑的提交
+        else if (JudParam == "type") {
+
+            productVal = $("#typeSel").combobox("getText");
+        }
+            //item编辑的提交
+        else if (JudParam == "item") {
+
+            productVal = $("#itemSel").combobox("getText");
+        }
+            //subitem编辑的提交
+        else if (JudParam == "subitem") {
+            productVal = $("#subitemId").combobox("getText");
+        }
+        $("#editSelectInpId").val(productVal);
+        
+    });
+
+   
+    
+    function subEditSelectValue() {
+
+        //获取输入框的值
+        var inputEidtVal = $("#editSelectInpId").val();
+     
+
+        if (inputEidtVal == null || inputEidtVal == "") {
+            alert("The modified value cannot be empty");
+            return;
+        } else if (inputEidtVal == "All" || inputEidtVal == "/") {
+            alert("The modified value is invalid!");
+            return;
+        }else {
+            //product编辑的提交
+            if (JudParam == "product") {
+
+                //获取需要编辑的Id值
+                var productIdVal = $("#productSel").combobox("getValues")[0];
+                
+
+                //提交数据给后台,刷新表格；
+                $.ajax({
+                    type: "POST",//方法类型
+                    dataType: "json",//预期服务器返回的数据类型
+                    url: '@Url.Action("EditCListItem", "ApplicationInfo")',//url
+                    data: { Id: productIdVal, Text: inputEidtVal },
+                    success: function (result) {
+                        if (result.code == 1) {
+                            $("#productSel").combobox("setValue", inputEidtVal);
+                            closeEditSelectDialog();
+                            alert("Edit successfully!");
+                        } else {
+                            alert("Edit failed!");
+                        }
+                    },
+                });
+            }
+                //projectt编辑的提交
+            else if (JudParam == "project") {
+                //获取需要编辑的Id值
+                var projectIdVal = $("#projectSel").combobox("getValues")[0];
+                
+
+                //提交数据给后台,刷新表格；
+                $.ajax({
+                    type: "POST",//方法类型
+                    dataType: "json",//预期服务器返回的数据类型
+                    url: '@Url.Action("EditCListItem", "ApplicationInfo")',//url
+                    data: { Id: projectIdVal, Text: inputEidtVal },
+                    success: function (result) {
+                        if (result.code == 1) {
+                            $("#projectSel").combobox("setValue", inputEidtVal);
+                            closeEditSelectDialog();
+                            alert("Edit successfully!");
+                        } else {
+                            alert("Edit failed!");
+                        }
+                    },
+                });
+                
+                
+            }
+                //type编辑的提交
+            else if (JudParam == "type") {
+                //获取需要编辑的Id值
+                var typeIdVal = $("#typeSel").combobox("getValues")[0];
+
+
+                //提交数据给后台,刷新表格；
+                $.ajax({
+                    type: "POST",//方法类型
+                    dataType: "json",//预期服务器返回的数据类型
+                    url: '@Url.Action("EditCListItem", "ApplicationInfo")',//url
+                    data: { Id: typeIdVal, Text: inputEidtVal },
+                    success: function (result) {
+                        if (result.code == 1) {
+                            $("#typeSel").combobox("setValue", inputEidtVal);
+                            closeEditSelectDialog();
+                            alert("Edit successfully!");
+                        } else {
+                            alert("Edit failed!");
+                        }
+                    },
+                });
+
+
+            }
+                //item编辑的提交
+            else if (JudParam == "item") {
+                //获取需要编辑的Id值
+                var typeIdVal = $("#itemSel").combobox("getValues")[0];
+
+
+                //提交数据给后台,刷新表格；
+                $.ajax({
+                    type: "POST",//方法类型
+                    dataType: "json",//预期服务器返回的数据类型
+                    url: '@Url.Action("EditCListItem", "ApplicationInfo")',//url
+                    data: { Id: itemIdVal, Text: inputEidtVal },
+                    success: function (result) {
+                        if (result.code == 1) {
+                            $("#itemSel").combobox("setValue", inputEidtVal);
+                            closeEditSelectDialog();
+                            alert("Edit successfully!");
+                        } else {
+                            alert("Edit failed!");
+                        }
+                    },
+                });
+
+
+            }
+                //subitem编辑的提交
+            else if (JudParam == "subitem") {
+                //获取需要编辑的Id值
+                var subitemIdVal = $("#subitemSel").combobox("getValues")[0];
+
+
+                //提交数据给后台,刷新表格；
+                $.ajax({
+                    type: "POST",//方法类型
+                    dataType: "json",//预期服务器返回的数据类型
+                    url: '@Url.Action("EditCListItem", "ApplicationInfo")',//url
+                    data: { Id: subitemIdVal, Text: inputEidtVal },
+                    success: function (result) {
+                        if (result.code == 1) {
+                            $("#subitemSel").combobox("setValue", inputEidtVal);
+                            closeEditSelectDialog();
+                            alert("Edit successfully!");
+                        } else {
+                            alert("Edit failed!");
+                        }
+                    },
+                });
+
+
+            }
+            else {
+                alert("JudParam is Undefined");
+
+            }
+            
+
+
+
+
+
+
+        }
+    }
+    
+    function closeEditSelectDialog() {
+        //关闭窗口；
+        
+        $("#editSelectDiv").dialog('close');
+    }
+</script>

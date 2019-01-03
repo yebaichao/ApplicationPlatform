@@ -1,0 +1,247 @@
+﻿@charset "utf-8";
+
+
+@media screen and (max-width:850px){
+     #roleMFrameIdG {
+        width: 600%;
+        height: 150%;
+        background-image: url("../../Images/backgroundPic.jpg");
+        background-color: #E4E4E4;
+        background-repeat: repeat;
+    }
+
+    #roleMTitleIdG {
+        width: 1200px;
+        height: 80px;
+        background-color: #fff;
+        border-radius: 10px;
+        padding-left: 20px;
+        vertical-align: middle;
+    }
+
+    #roleMPicG {
+        padding-top: 10px;
+    }
+
+    #roleMTitleText1G {
+        padding-left: 15px;
+        font-size: 38px;
+        font-weight: 700;
+    }
+
+    #roleMTitleText2G {
+        padding-left: 10px;
+        font-size: 20px;
+        color: #373939;
+    }
+
+    #roleMToolIdG {
+        width: 1200px;
+        height: 80px;
+        background-color: #fff;
+        border-radius: 10px;
+        padding-left: 20px;
+        margin-top: 20px;
+        vertical-align: middle;
+    }
+
+    #roleMTableFrameIdG {
+        width: 1200px;
+        height: 200px;
+        background-color: #fff;
+        border-radius: 10px;
+        padding-left: 20px;
+        margin-top:20px;
+    }
+
+    #roleMToolTitleG {
+        font-size: 22px;
+        line-height: 80px;
+    }
+
+    #roleMToolSaveG {
+        float: right;
+        margin-top: 24px;
+        margin-right: 20px;
+        border-radius: 5px;
+        width:130px;
+        height:30px;
+        font-weight:600;
+    }
+
+    #roleMToolSaveG {
+        background-color: #5CB85C;
+        border: 0px;
+        color: #fff;
+    }
+    #roleMToolDetailG {
+        float: right;
+        margin-top: 24px;
+        margin-right: 20px;
+        border-radius: 5px;
+        width:130px;
+        height:30px;
+        font-weight:600;
+    }
+
+    #roleMToolDetailG {
+        background-color: #428BCA;
+        border: 0px;
+        color: #fff;
+    }
+    
+    #roleMTableIdG {
+        width: 1180px;
+        border: 1px solid #DDDDDD;
+        padding-left: 5px;
+        vertical-align: middle;
+        margin-top: 20px;
+    }
+
+        #roleMTableIdG td, #roleMTableIdG th {
+            height: 60px;
+            border: 1px solid #DDDDDD;
+            padding-left: 10px;
+            vertical-align: middle;
+        }
+
+        #roleMTableIdG th {
+            font-size: 20px;
+        }
+    
+}
+
+@media screen and (min-width:851px){
+   
+   #roleMFrameIdG {
+        width: 100%;
+        height: 100%;
+        background-image: url("../../Images/backgroundPic.jpg");
+        background-color: #E4E4E4;
+        background-repeat: repeat;
+    }
+   
+    #roleMTitleIdG {
+        width: 1200px;
+        height: 80px;
+        padding-left: 20px;
+        margin-top: 40px;
+        position: absolute;
+        top: 20px;
+        right:300px;
+        display: table-cell;
+        vertical-align: middle;
+    }
+
+    #roleMPicG {
+        padding-top: 10px;
+    }
+
+    #roleMTitleText1G {
+        padding-left: 15px;
+        font-size: 38px;
+        font-weight: 700;
+    }
+
+    #roleMTitleText2G {
+        padding-left: 10px;
+        font-size: 20px;
+        color: #373939;
+    }
+
+    #roleMToolIdG {
+        width: 1200px;
+        height: 80px;
+        background-color: #fff;
+        border-radius: 10px;
+        padding-left: 20px;
+        margin-top: 0px;
+        position: absolute;
+        top: 170px;
+        right:300px;
+        display: table-cell;
+        vertical-align: middle;
+    }
+     #permissionLeftDivId {
+        width: 300px;
+        height: 400px;
+        float:left;
+        
+        border-right:2px solid #E3E3E3;
+    }
+    #permissionRightDivId {
+        width: 890px;
+        height: 400px;
+        float:left;
+        left:50px;
+    }
+    #roleMTableFrameIdG {
+        width: 1200px;
+        height: 400px;
+        background-color: #fff;
+        border-radius: 10px;
+        padding-left: 20px;
+        margin-top: 0px;
+        position: absolute;
+        top: 270px;
+        right:300px;
+    }
+
+    #roleMToolTitleG {
+        font-size: 22px;
+        line-height: 80px;
+    }
+
+    #roleMToolSaveG {
+        float: right;
+        margin-top: 24px;
+        margin-right: 20px;
+        border-radius: 5px;
+        width:130px;
+        height:30px;
+        font-weight:600;
+    }
+
+    #roleMToolSaveG {
+        background-color: #5CB85C;
+        border: 0px;
+        color: #fff;
+    }
+    #roleMToolDetalG {
+        float: right;
+        margin-top: 24px;
+        margin-right: 20px;
+        border-radius: 5px;
+        width:130px;
+        height:30px;
+        font-weight:600;
+    }
+
+    #roleMToolDetalG {
+        background-color: #428BCA;
+        border: 0px;
+        color: #fff;
+    }
+
+    #roleMTableIdG {
+        width: 1180px;
+        border: 1px solid #DDDDDD;
+        padding-left: 5px;
+        vertical-align: middle;
+        margin-top: 20px;
+    }
+
+        #roleMTableIdG td, #roleMTableIdG th {
+            height: 60px;
+            border: 1px solid #DDDDDD;
+            padding-left: 10px;
+            vertical-align: middle;
+        }
+
+        #roleMTableIdG th {
+            font-size: 20px;
+        }
+}
+
+
+  

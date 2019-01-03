@@ -1,0 +1,89 @@
+****11/21/2018 1:29:14 PM****
+###异常来自 HRESULT:0x800A03EC
+###
+###System.Object ForwardCallToInvokeMember(System.String, System.Reflection.BindingFlags, System.Object, Int32[], System.Runtime.Remoting.Proxies.MessageData ByRef)
+###   在 System.RuntimeType.ForwardCallToInvokeMember(String memberName, BindingFlags flags, Object target, Int32[] aWrapperTypes, MessageData& msgData)
+   在 Microsoft.Office.Interop.Excel.Range.get__Default(Object RowIndex, Object ColumnIndex)
+   在 ApplicationPlatform.Site.Controllers.PriceInfoController.ImportPriceExcel(String FilePath) 位置 d:\项目方案\ApplicationPlatform\ApplicationPlatform.Site\ApplicationPlatform.Site\Controllers\PriceInfoController.cs:行号 165
+****11/21/2018 1:48:07 PM****
+###异常来自 HRESULT:0x800A03EC
+###
+###System.Object ForwardCallToInvokeMember(System.String, System.Reflection.BindingFlags, System.Object, Int32[], System.Runtime.Remoting.Proxies.MessageData ByRef)
+###   在 System.RuntimeType.ForwardCallToInvokeMember(String memberName, BindingFlags flags, Object target, Int32[] aWrapperTypes, MessageData& msgData)
+   在 Microsoft.Office.Interop.Excel.Range.get__Default(Object RowIndex, Object ColumnIndex)
+   在 ApplicationPlatform.Site.Controllers.PriceInfoController.ImportPriceExcel(String FilePath) 位置 d:\项目方案\ApplicationPlatform\ApplicationPlatform.Site\ApplicationPlatform.Site\Controllers\PriceInfoController.cs:行号 165
+****11/21/2018 1:53:04 PM****
+###无法将类型“string”隐式转换为“int”
+###Anonymously Hosted DynamicMethods Assembly
+###Int32 CallSite.Target(System.Runtime.CompilerServices.Closure, System.Runtime.CompilerServices.CallSite, System.Object)
+###   在 CallSite.Target(Closure , CallSite , Object )
+   在 System.Dynamic.UpdateDelegates.UpdateAndExecute1[T0,TRet](CallSite site, T0 arg0)
+   在 ApplicationPlatform.Site.Controllers.PriceInfoController.ImportPriceExcel(String FilePath) 位置 d:\项目方案\ApplicationPlatform\ApplicationPlatform.Site\ApplicationPlatform.Site\Controllers\PriceInfoController.cs:行号 175
+****11/21/2018 1:56:48 PM****
+###无法对 null 引用执行运行时绑定
+###Anonymously Hosted DynamicMethods Assembly
+###System.Object CallSite.Target(System.Runtime.CompilerServices.Closure, System.Runtime.CompilerServices.CallSite, System.Object)
+###   在 CallSite.Target(Closure , CallSite , Object )
+   在 System.Dynamic.UpdateDelegates.UpdateAndExecute1[T0,TRet](CallSite site, T0 arg0)
+   在 CallSite.Target(Closure , CallSite , Object )
+   在 ApplicationPlatform.Site.Controllers.PriceInfoController.ImportPriceExcel(String FilePath) 位置 d:\项目方案\ApplicationPlatform\ApplicationPlatform.Site\ApplicationPlatform.Site\Controllers\PriceInfoController.cs:行号 165
+****11/21/2018 1:57:22 PM****
+###无法对 null 引用执行运行时绑定
+###Anonymously Hosted DynamicMethods Assembly
+###System.Object CallSite.Target(System.Runtime.CompilerServices.Closure, System.Runtime.CompilerServices.CallSite, System.Object)
+###   在 CallSite.Target(Closure , CallSite , Object )
+   在 System.Dynamic.UpdateDelegates.UpdateAndExecute1[T0,TRet](CallSite site, T0 arg0)
+   在 CallSite.Target(Closure , CallSite , Object )
+   在 ApplicationPlatform.Site.Controllers.PriceInfoController.ImportPriceExcel(String FilePath) 位置 d:\项目方案\ApplicationPlatform\ApplicationPlatform.Site\ApplicationPlatform.Site\Controllers\PriceInfoController.cs:行号 165
+****11/21/2018 1:59:59 PM****
+###无法对 null 引用执行运行时绑定
+###Anonymously Hosted DynamicMethods Assembly
+###System.Object CallSite.Target(System.Runtime.CompilerServices.Closure, System.Runtime.CompilerServices.CallSite, System.Object)
+###   在 CallSite.Target(Closure , CallSite , Object )
+   在 System.Dynamic.UpdateDelegates.UpdateAndExecute1[T0,TRet](CallSite site, T0 arg0)
+   在 CallSite.Target(Closure , CallSite , Object )
+   在 ApplicationPlatform.Site.Controllers.PriceInfoController.ImportPriceExcel(String FilePath) 位置 d:\项目方案\ApplicationPlatform\ApplicationPlatform.Site\ApplicationPlatform.Site\Controllers\PriceInfoController.cs:行号 165
+****11/21/2018 2:01:28 PM****
+###无法访问文件。请尝试下列方法之一:
+
+• 确认所指定的文件夹已存在。 
+• 确认文件所在的文件夹不是只读的。
+• 确认给出的文件名不包含下列字符: <  >  ?  [  ]  :  | 或 * 。
+• 确认文件/路径名长度不超过 218 个字符。
+###Microsoft Excel
+###Void SaveAs(System.Object, System.Object, System.Object, System.Object, System.Object, System.Object, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode, System.Object, System.Object, System.Object, System.Object, System.Object)
+###   在 Microsoft.Office.Interop.Excel._Workbook.SaveAs(Object Filename, Object FileFormat, Object Password, Object WriteResPassword, Object ReadOnlyRecommended, Object CreateBackup, XlSaveAsAccessMode AccessMode, Object ConflictResolution, Object AddToMru, Object TextCodepage, Object TextVisualLayout, Object Local)
+   在 ApplicationPlatform.Site.Controllers.PriceInfoController.ExportPriceExcel(String FilePath) 位置 d:\项目方案\ApplicationPlatform\ApplicationPlatform.Site\ApplicationPlatform.Site\Controllers\PriceInfoController.cs:行号 248
+****11/21/2018 2:03:09 PM****
+###无法访问文件。请尝试下列方法之一:
+
+• 确认所指定的文件夹已存在。 
+• 确认文件所在的文件夹不是只读的。
+• 确认给出的文件名不包含下列字符: <  >  ?  [  ]  :  | 或 * 。
+• 确认文件/路径名长度不超过 218 个字符。
+###Microsoft Excel
+###Void SaveAs(System.Object, System.Object, System.Object, System.Object, System.Object, System.Object, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode, System.Object, System.Object, System.Object, System.Object, System.Object)
+###   在 Microsoft.Office.Interop.Excel._Workbook.SaveAs(Object Filename, Object FileFormat, Object Password, Object WriteResPassword, Object ReadOnlyRecommended, Object CreateBackup, XlSaveAsAccessMode AccessMode, Object ConflictResolution, Object AddToMru, Object TextCodepage, Object TextVisualLayout, Object Local)
+   在 ApplicationPlatform.Site.Controllers.PriceInfoController.ExportPriceExcel(String FilePath) 位置 d:\项目方案\ApplicationPlatform\ApplicationPlatform.Site\ApplicationPlatform.Site\Controllers\PriceInfoController.cs:行号 248
+****11/21/2018 2:05:38 PM****
+###无法访问文件。请尝试下列方法之一:
+
+• 确认所指定的文件夹已存在。 
+• 确认文件所在的文件夹不是只读的。
+• 确认给出的文件名不包含下列字符: <  >  ?  [  ]  :  | 或 * 。
+• 确认文件/路径名长度不超过 218 个字符。
+###Microsoft Excel
+###Void SaveAs(System.Object, System.Object, System.Object, System.Object, System.Object, System.Object, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode, System.Object, System.Object, System.Object, System.Object, System.Object)
+###   在 Microsoft.Office.Interop.Excel._Workbook.SaveAs(Object Filename, Object FileFormat, Object Password, Object WriteResPassword, Object ReadOnlyRecommended, Object CreateBackup, XlSaveAsAccessMode AccessMode, Object ConflictResolution, Object AddToMru, Object TextCodepage, Object TextVisualLayout, Object Local)
+   在 ApplicationPlatform.Site.Controllers.PriceInfoController.ExportPriceExcel(String FilePath) 位置 d:\项目方案\ApplicationPlatform\ApplicationPlatform.Site\ApplicationPlatform.Site\Controllers\PriceInfoController.cs:行号 248
+****11/21/2018 2:06:35 PM****
+###无法访问文件。请尝试下列方法之一:
+
+• 确认所指定的文件夹已存在。 
+• 确认文件所在的文件夹不是只读的。
+• 确认给出的文件名不包含下列字符: <  >  ?  [  ]  :  | 或 * 。
+• 确认文件/路径名长度不超过 218 个字符。
+###Microsoft Excel
+###Void SaveAs(System.Object, System.Object, System.Object, System.Object, System.Object, System.Object, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode, System.Object, System.Object, System.Object, System.Object, System.Object)
+###   在 Microsoft.Office.Interop.Excel._Workbook.SaveAs(Object Filename, Object FileFormat, Object Password, Object WriteResPassword, Object ReadOnlyRecommended, Object CreateBackup, XlSaveAsAccessMode AccessMode, Object ConflictResolution, Object AddToMru, Object TextCodepage, Object TextVisualLayout, Object Local)
+   在 ApplicationPlatform.Site.Controllers.PriceInfoController.ExportPriceExcel(String FilePath) 位置 d:\项目方案\ApplicationPlatform\ApplicationPlatform.Site\ApplicationPlatform.Site\Controllers\PriceInfoController.cs:行号 248

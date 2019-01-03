@@ -1,0 +1,147 @@
+﻿@{
+    ViewBag.Title = "RoleManagement";
+    Layout = null;
+}
+@using ApplicationPlatform.Models
+@using ApplicationPlatform.Site.ViewModels.RoleInfoViewModels;
+@model RoleInfoViewModel
+<div id="roleMFrameId">
+   
+    <div id="roleMTitleId">
+        <img src="~/Images/roleMan.png" style="width:50px;height:50px;" id="roleMPic"/>
+        <span id="roleMTitleText1">Role Management</span>
+        <span id="roleMTitleText2">Access permission</span>
+    </div>
+    <!--
+        <hr style="width:1220px;height:1px;position:absolute;left:200px;top:207px;background-color:#0092A6"/>
+    -->
+    <div id="roleMToolId">
+        <span id="roleMToolTitle">
+            Current Role:
+        </span>
+        <select>
+            <option selected="selected">@Model.SelectedRole.RoleName</option>
+            @foreach (RoleInfo role in Model.RoleAll)
+            {
+                 <option onclick="javascript: RoleSelect(@role.Id);">@role.RoleName</option>
+            }
+        </select>
+        <button id="roleMToolAdd" onclick="javascript: addRoleFun();">Add Role</button>
+        <button id="roleMToolRemove" onclick="javascript: removeRoleFun(@Model.SelectedRole.Id)">Remove Role</button>
+        <button id="roleMToolSave" onclick="javascript: Save(@Model.SelectedRole.Id);">Save Access</button>
+    </div>
+
+    <div id="roleMTableFrameId">
+        @using (Html.BeginForm("Save", "RoleInfo", new { roleId = Model.SelectedRole.Id }, FormMethod.Post, null))
+        {
+            <table id="roleMTableId">
+                <thead>
+                    <tr>
+                        <th style="width:15%">Access Name</th>
+                        <th style="width:85%">Access Detail</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (string bundleSymbolicName in Model.ControllerName)
+                    {
+                        <tr>
+                            <td>@bundleSymbolicName</td>
+                            <td>
+                                @{Model.GetActionName(bundleSymbolicName, Model.SelectedRole);}
+                                @foreach (KeyValuePair<string, bool> _kvp in Model.actionName)
+                                {
+                                    if (Model.SelectedRole.RoleName == "Administrator")
+                                    {
+                                        @Html.CheckBox(_kvp.Key, true, new { @disabled = "disabled" })
+                                    }
+                                    else
+                                    {
+                                        @Html.CheckBox(_kvp.Key, _kvp.Value)
+                                    }
+                                    <span>@_kvp.Key.ToString() &nbsp;&nbsp;</span>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <button type="submit" style="display:none" name="btnSave" id="btnSave">Save</button>
+        }
+
+    </div>
+    <div id="addRoleDivId"></div>
+
+</div>
+<link href="~/Content/CSS/RoleManagement.css" rel="stylesheet" />
+
+<script type="text/javascript">
+    function removeRoleFun(Id) {
+        
+        if ($("#midShowId").tabs("exists", "Role Management")) {
+            $("#midShowId").tabs("select", "Role Management");
+            var tab = $('#midShowId').tabs('getSelected');  // 获取选择的面板
+            
+            $('#midShowId').tabs('update', {
+                tab: tab,
+                options: {
+                    title: "Role Management",
+                    href: '@Url.Content("~/RoleInfo/Delete")' + '?_RoleId=' + Id,
+                }
+            });
+        }
+
+    }
+
+    function Save(Id) {
+        var checkVal="";
+        $("table :checkbox").each(function (key, value) {
+            if ($(value).prop('checked')) {
+                var permission = $(this).context.id;
+                if (checkVal == "")
+                { checkVal = permission+':true'; }
+                else { checkVal = checkVal + ',' + permission + ':true'; }
+            } else {
+                var permission = $(this).context.id;
+                if (checkVal == "")
+                { checkVal = permission + ':false'; }
+                else { checkVal = checkVal + ',' + permission + ':false'; }
+            }
+        })
+        if ($("#midShowId").tabs("exists", "Role Management")) {
+            $("#midShowId").tabs("select", "Role Management");
+            var tab = $('#midShowId').tabs('getSelected');  // 获取选择的面板
+            $('#midShowId').tabs('update', {
+                tab: tab,
+                options: {
+                    title: "Role Management",
+                    href: '@Url.Content("~/RoleInfo/Save")' + '?roleId=' + Id + '&permissions=' + checkVal,
+                    cache: false
+                }
+            });
+        }
+    }
+
+    function RoleSelect(id) {
+        if ($("#midShowId").tabs("exists", "Role Management")) {
+            $("#midShowId").tabs("select", "Role Management");
+            var tab = $('#midShowId').tabs('getSelected');  // 获取选择的面板
+            $('#midShowId').tabs('update', {
+                tab: tab,
+                options: {
+                    title: "Role Management",
+                    href: '@Url.Content("~/RoleInfo/RoleManagement")'+'?roleId='+id,
+                }
+            });
+        }
+    }
+    function addRoleFun() {
+        $("#addRoleDivId").dialog({
+                title: 'Add Role',
+                width: 450,
+                height: 350,
+                href: '@Url.Action("AddRoleView", "RoleInfo")',
+                cache: false,
+                modal: true,
+            });
+    }
+</script>

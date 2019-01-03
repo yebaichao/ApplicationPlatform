@@ -1,0 +1,161 @@
+﻿@charset "utf-8";
+
+
+@media screen and (max-width:850px){
+     
+    #UserSetNameId,#userSettingPhone,#userSettingWeChat,#UserSetEmailId,#userOldPW ,#userNewPW1,#userNewPW2{
+        width:310px;
+        height:22px;
+    
+    }
+
+
+    #UserSexMale,#UserSexFemale,#UserSexSecrecy {
+        width:30px;
+    }
+    #UserSetPageId {
+        width: 400%;
+        height: 180%;
+        margin-top: 0px;
+        padding-top: 15px;
+        background-image: url("../../Images/backgroundPic.jpg");
+        background-color: #E4E4E4;
+        background-repeat: repeat;
+    }
+    
+    #UserSetTabFrameId {
+        width:840px;
+        border-radius:15px;
+        margin-left:20px;
+        margin-top:0px;
+        background-color:#fff;
+    }
+    #UserSetTabId,#UserPWTabId {
+        border-collapse:collapse;
+    }
+    .UserSetText {
+        text-align:left; 
+        font-size:20px;
+        font-weight:600;
+        font-family:Myriad;
+        color:#808080;
+        width:300px;
+        height:30px;
+        padding-bottom:0px;
+        padding-left:20px;
+    }
+
+    #UserSetReset, #UserSetSave ,#UserInfoSetSave,#UserInfoSetReset{
+        float:right;
+        border-radius:5px;
+        margin-right:10px;
+        width:100px;
+        height:30px;
+        padding-bottom:5px;
+        font-size:15px;
+        font-weight:600;
+    }
+
+    #UserSetReset {
+        background-color:#D9534F;
+        border:0px;
+        color:#fff;
+    }
+    #UserSetSave {
+        background-color:#428BCA;
+        border:0px;
+        color:#fff;
+    }
+    #UserInfoSetReset {
+        background-color:#D9534F;
+        border:0px;
+        color:#fff;
+    }
+    #UserInfoSetSave {
+        background-color:#428BCA;
+        border:0px;
+        color:#fff;
+    }
+    
+}
+
+@media screen and (min-width:851px){
+   
+    #UserSetNameId,#userSettingPhone,#userSettingWeChat,#UserSetEmailId,#userOldPW ,#userNewPW1,#userNewPW2{
+        width:310px;
+        height:22px;
+    
+    }
+
+
+    #UserSexMale,#UserSexFemale,#UserSexSecrecy {
+        width:30px;
+    }
+    #UserSetPageId {
+        width: 100%;
+        height: 97.5%;
+        margin-top: 0px;
+        padding-top: 15px;
+        background-image: url("../../Images/backgroundPic.jpg");
+        background-color: #E4E4E4;
+        background-repeat: repeat;
+    }
+    
+    #UserSetTabFrameId {
+        width:840px;
+        border-radius:15px;
+        margin-left:430px;
+        margin-top:100px;
+        background-color:#fff;
+    }
+    #UserSetTabId,#UserPWTabId {
+        border-collapse:collapse;
+    }
+    .UserSetText {
+        text-align:left; 
+        font-size:20px;
+        font-weight:600;
+        font-family:Myriad;
+        color:#808080;
+        width:300px;
+        height:30px;
+        padding-bottom:0px;
+        padding-left:20px;
+    }
+
+    #UserSetReset, #UserSetSave ,#UserInfoSetSave,#UserInfoSetReset{
+        float:right;
+        border-radius:5px;
+        margin-right:10px;
+        width:100px;
+        height:30px;
+        padding-bottom:5px;
+        font-size:15px;
+        font-weight:600;
+    }
+
+    #UserSetReset {
+        background-color:#D9534F;
+        border:0px;
+        color:#fff;
+    }
+    #UserSetSave {
+        background-color:#428BCA;
+        border:0px;
+        color:#fff;
+    }
+    #UserInfoSetReset {
+        background-color:#D9534F;
+        border:0px;
+        color:#fff;
+    }
+    #UserInfoSetSave {
+        background-color:#428BCA;
+        border:0px;
+        color:#fff;
+    }
+   
+}
+
+
+  

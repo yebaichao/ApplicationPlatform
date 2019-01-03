@@ -1,0 +1,186 @@
+﻿@{
+    Layout = null;
+}
+
+<div id="UserEditPageId">
+    <form action='@Url.Action("EditUser","UserInfo")' method="post" >
+        <table id="UserEditTabId">
+            <tr style="height:50px">
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td style="width:50px"></td>
+                <td class="UserEditText">
+                    UserName:
+                </td>
+                <td class="UserEditText">
+                    Sex:
+                </td>
+                <td style="width:20px"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input type="text" id="UserEditNameId" />
+                </td>
+                <td style="padding-left:10px;">
+                    <input type="radio" name="UserEditSex"  id="editUserSexMale"  value="Male"/>Male
+                    <input type="radio" name="UserEditSex"  id="editUserSexFemale" value="Female"/>Female
+                    <input type="radio" name="UserEditSex"  id="editUserSexSecrecy" value="Secrecy" checked="checked"/>Secrecy
+                </td>
+                <td></td>
+            </tr>
+            
+            <tr>
+                <td></td>
+                <td class="UserEditText">
+                    Phone:
+                </td>
+                <td class="UserEditText">
+                    WeChat:
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input type="text" id="UserEditPhoneId"/>
+                </td>
+                <td style="padding-left:10px;">
+                    <input type="text" id="UserEditWeChatId"/>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td class="UserEditText">
+                    E-mail:
+                </td>
+                <td class="UserEditText">Role:</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input type="text"  id="UserEditEmailId"/>
+                </td>
+                <td>
+                    @*<select id="UserEditRoleId" name="UserEditRoleId">
+                        <option>Administrator</option>
+                        <option>Approve-Technique</option>
+                        <option>Approve-Business</option>
+                        <option>Arrange-Hexagon</option>
+                    </select>*@
+                    @Html.DropDownList("UserEditRoleId", ViewBag.RoleInfoes as IEnumerable<SelectListItem>, new { id = "UserEditRoleId", name = "UserEditRoleId" })
+                </td>
+                <td></td>
+            </tr>
+            <tr style="display:none">
+                <td></td>
+                <td>
+                    <input type="text" id="UserId" name="UserId" />
+                </td>
+                <td>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                
+                <td colspan="3" style="height:120px;">
+                    <input type="button" id="UserEditSave" value="Save" onclick="saveEditUserDialog()"/>
+                    <input type="button" id="UserEditReset" value="Reset" onclick="resetEditUserDialog()"/>
+                    <input type="button" id="UserEditClose" value="Close" onclick="closeEditUserDialog()"/>
+                </td>
+                <td></td>
+            </tr>
+            
+        </table>
+    </form>
+</div>
+
+<link href="~/Content/CSS/EditUser.css" rel="stylesheet" />
+<script type="text/javascript">
+
+    var obj = $("#editUserDivId").dialog('options');
+    var userInfoParams = obj["queryParams"];
+    //获取当前选中值所组成的一个数组；
+    var userEditArr = userInfoParams["checksysno"][0];
+
+    var userEditOriginId = userEditArr.UserId;
+    var userEditOriginUserName = userEditArr.UserName;
+    var userEditOriginSex = userEditArr.Sex;
+    var userEditOriginEmail = userEditArr.Email;
+    var userEditOriginPhone = userEditArr.Phone;
+    var userEditOriginWeChat = userEditArr.WeChat;
+    var userEditOriginUserRole = userEditArr.UserRole;
+
+    document.getElementById("UserEditNameId").value = userEditOriginUserName;
+    document.getElementById("UserEditPhoneId").value = userEditOriginPhone;
+    document.getElementById("UserEditWeChatId").value = userEditOriginWeChat;
+    document.getElementById("UserEditEmailId").value = userEditOriginEmail;
+    document.getElementById("UserId").value = userEditOriginId;
+    //根据name和value来选中radio
+    $("input[name='UserEditSex'][value='" + userEditOriginSex + "']").prop("checked", "checked");
+
+    //遍历select，选中给定值；
+    var userRoleSelect = document.body.querySelector("#UserEditRoleId");
+    var userRoleArr = userRoleSelect.getElementsByTagName("option");
+    for (ele in userRoleArr) {
+        if (userEditOriginUserRole == userRoleArr[ele].value) {
+            userRoleArr[ele].selected = true;
+        }
+    }
+
+    $("#UserEditEmailId").validatebox({
+        required: true,
+        validType: 'email'
+    });
+
+
+    $("#UserEditNameId").validatebox({
+        required: true,
+    });
+
+	//Save按钮
+    function saveEditUserDialog() {
+		var UserEditNameVal = document.getElementById("UserEditNameId").value;
+		var UserEditPhoneVal = document.getElementById("UserEditPhoneId").value;
+		var UserEditWeChatVal = document.getElementById("UserEditWeChatId").value;
+		var UserEditEmailVal = document.getElementById("UserEditEmailId").value;
+		var UserEditRoleVal = document.getElementById("UserEditRoleId").value;
+		var UserEditSexVal = $('input[name="UserEditSex"]:checked').val();
+		var UserEditIdVal = document.getElementById("UserId").value;
+
+		$("#userListTableId").datagrid({
+			queryParams: { UserName:UserEditNameVal,Phone:UserEditPhoneVal,WeChat:UserEditWeChatVal,Email:UserEditEmailVal,UserRole:UserEditRoleVal,Sex:UserEditSexVal,UserId:UserEditIdVal },
+			url: '@Url.Action("EditUser", "UserInfo")',
+		    onLoadSuccess: function () {
+		        $("#userListTableId").datagrid('options').url = '@Url.Action("CreateUserListView", "UserInfo")';
+		        closeEditUserDialog();
+			}
+		});
+
+    }
+
+
+
+
+    //关闭窗口
+    function closeEditUserDialog() {
+        $("#editUserDivId").dialog('close',false);
+    }
+
+    //Reset按钮
+    function resetEditUserDialog() {
+        document.getElementById("UserEditNameId").value = "";
+        document.getElementById("UserEditPhoneId").value = "";
+        document.getElementById("UserEditWeChatId").value = "";
+        document.getElementById("UserEditEmailId").value = "";
+        $("input[name='UserEditSex'][value='Srcey']").prop("checked", "checked");
+        userRoleArr[0].selected = true;
+    }
+
+</script>

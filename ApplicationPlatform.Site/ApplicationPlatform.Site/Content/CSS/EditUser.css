@@ -1,0 +1,131 @@
+﻿@charset "utf-8";
+
+
+@media screen and (max-width:850px){
+     #UserEditNameId, #UserEditPhoneId, #UserEditWeChatId, #UserEditEmailId {
+        width:150px;
+        height:22px;
+    }
+    #UserEditRoleId {
+        width:160px;
+        height:32px;
+    }
+    #editUserSexMale,#editUserSexFemale,#editUserSexSecrecy {
+        width:30px;
+    }
+    #UserEditPageId {
+        width:100%;
+        height:100%;
+    }
+   
+
+    #UserEditTabId {
+        
+        border-collapse:collapse;
+        border-radius:15px;
+        margin-left:1%;
+        background-color:#fff;
+    }
+    .UserEditText {
+        text-align:left; 
+        font-size:20px;
+        font-weight:600;
+        font-family:Myriad;
+        color:#808080;
+        width:300px;
+        height:30px;
+        padding-bottom:0px;
+        padding-left:0px;
+    }
+    #UserEditRoleId {
+        margin-left:13px;
+    }
+    #UserEditReset, #UserEditSave, #UserEditClose {
+        float:right;
+        border:0px;
+        border-radius:5px;
+        color:#fff;
+        font-size:15px;
+        margin-right:10px;
+        width:100px;
+        height:30px;
+        padding-bottom:5px;
+     }
+    #UserEditSave {
+        margin-right:100px;
+        background-color:#428BCA;
+    }
+    #UserEditClose {
+        background-color:#9B30FF;
+    }
+    #UserEditReset {
+        background-color:#D9534F;
+    }
+    
+}
+
+@media screen and (min-width:851px){
+   #UserEditNameId, #UserEditPhoneId, #UserEditWeChatId, #UserEditEmailId {
+        width:150px;
+        height:22px;
+    }
+    #UserEditRoleId {
+        width:160px;
+        height:32px;
+    }
+    #editUserSexMale,#editUserSexFemale,#editUserSexSecrecy {
+        width:30px;
+    }
+    #UserEditPageId {
+        width:100%;
+        height:100%;
+    }
+   
+
+    #UserEditTabId {
+        
+        border-collapse:collapse;
+        border-radius:15px;
+        margin-left:1%;
+        background-color:#fff;
+    }
+    .UserEditText {
+        text-align:left; 
+        font-size:20px;
+        font-weight:600;
+        font-family:Myriad;
+        color:#808080;
+        width:300px;
+        height:30px;
+        padding-bottom:0px;
+        padding-left:0px;
+    }
+    #UserEditRoleId {
+        margin-left:13px;
+    }
+    #UserEditReset, #UserEditSave, #UserEditClose {
+        float:right;
+        border:0px;
+        border-radius:5px;
+        color:#fff;
+        font-size:15px;
+        margin-right:10px;
+        width:100px;
+        height:30px;
+        padding-bottom:5px;
+     }
+    #UserEditSave {
+        margin-right:100px;
+        background-color:#428BCA;
+    }
+    #UserEditClose {
+        background-color:#9B30FF;
+    }
+    #UserEditReset {
+        background-color:#D9534F;
+    }
+   
+}
+
+
+  

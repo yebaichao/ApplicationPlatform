@@ -1,0 +1,308 @@
+﻿@{
+    Layout = null;
+}
+
+<div id="proFrameIdS">
+    <div id="tableTitleS">
+        Uncompleted Requirements
+    </div>
+
+    <div id="tableSToolId">
+
+        <input class ="saveTabBtnClass" id="saveTabBtnSub" type="button"  value="Submit" onclick="saveReqSubmitFun()"/>
+         
+        <input class ="saveTabBtnClass" id="saveTabBtnAdd" type="button"  value="Add" onclick="saveReqAddFun()"/>
+        
+        <input class ="saveTabBtnClass" id="saveTabBtnEdit" type="button"  value="Edit" onclick="saveReqEditFun()"/>
+        
+        <input class ="saveTabBtnClass" id="saveTabBtnDelete" type="button"  value="Delete" onclick="saveReqDeleteFun()"/>
+        
+        <input type="text"   id="saveTabBtnInput" />
+
+        <input class="saveTabBtnClass" id="saveTabBtnSear" type="button" value="Search" onclick="saveReqSearchFun('Judge')" />
+        <input class ="saveTabBtnClass" id="saveTabBtnReset" type="button"  value="Refresh" onclick="saveReqResetFun()"/>
+
+    </div>
+
+
+    
+    <div id="tableDataDivS">
+        
+        <table id="orderinfoIdS" class=""  style="height:500px;width:1640px"> 
+            <thead> 
+              <tr>
+                <th data-options="field:'ck',checkbox:true"></th>
+                <th data-options="field:'serialNumber',align:'center',width:80,resizable:false,sortable:true" >No.</th>
+                <th data-options="field:'product',align:'center',width:100,resizable:false">Product</th>   
+                <th data-options="field:'project',align:'center',width:100,resizable:false">Project</th> 
+
+                <th data-options="field:'type',align:'center',width:100,resizable:false">Type</th>  
+                <th data-options="field:'item',align:'center',width:120,resizable:false">Item</th>      
+                <th data-options="field:'subitem',align:'center',width:100,resizable:false">Subitem</th>
+                <th data-options="field:'stage',align:'center',width:80,resizable:false">Stage</th>   
+                <th data-options="field:'site',align:'center',width:120,resizable:false">Site</th>   
+                  
+                <th id="qtyIdC" data-options="field:'quantity',align:'center',width:75,resizable:false">
+                    Quantity
+                </th>
+                 <th id="approver1IdC" data-options="field:'approver1',align:'center',width:170,resizable:false">
+                    Technical Approval
+                </th>
+                 <th id="approver2IdC" data-options="field:'approver2',align:'center',width:185,resizable:false">
+                    Commercial Approval
+                </th>
+                 
+                <th id="comIdC" data-options="field:'comment',align:'center',width:150,resizable:false">Comment</th>
+                <th data-options="field:'postuser',align:'center',width:100,resizable:false">Applicant</th>
+                <th data-options="field:'savetime',align:'center',width:120,resizable:false">Save Date</th> 
+                <th data-options="field:'requirementId',hidden:true"></th>
+            </tr> 
+           </thead> 
+        </table>
+    </div>
+    <div id="SaveReqDivId"></div>
+    
+</div>
+<link href="~/Content/CSS/SaveRequirements.css" rel="stylesheet" />
+<script type="text/javascript">
+
+
+
+    //编辑按钮
+    function saveReqEditFun() {
+        //获取当前屏幕的宽度；
+        var saveDeviceWidthVal = $(document).width();
+        var saveReqCheckedObj = $("#orderinfoIdS").datagrid("getChecked");
+        if (saveReqCheckedObj.length == 1) {
+            if (saveDeviceWidthVal >= 851) {
+                $("#SaveReqDivId").dialog({
+                    title: 'Edit Requirement Information',
+                    width: 700,
+                    height: 700,
+                    href: '@Url.Action("EditSaveReqView", "ApplicationInfo")',
+                    cache: true,
+                    modal: true,
+                    queryParams: { checksysno: saveReqCheckedObj },
+                    onClose: function () {
+                        $("#SaveReqDivId").dialog('destroy', false);
+                        var tab = $('#midShowId').tabs('getSelected');
+                        $('#midShowId').tabs('update', {
+                            tab: tab,
+                            options: {
+                                title: "Uncompleted Requirements",
+                            }
+                        });
+
+                    }
+
+                });
+            } else {
+                $("#SaveReqDivId").dialog({
+                    title: 'Edit Requirement Information',
+                    width: 300,
+                    height: 300,
+                    href: '@Url.Action("EditSaveReqView", "ApplicationInfo")',
+                    cache: true,
+                    modal: true,
+                    queryParams: { checksysno: saveReqCheckedObj },
+                    onClose: function () {
+                        $("#SaveReqDivId").dialog('destroy', false);
+                        var tab = $('#midShowId').tabs('getSelected');
+                        $('#midShowId').tabs('update', {
+                            tab: tab,
+                            options: {
+                                title: "Uncompleted Requirements",
+                            }
+                        });
+
+                    }
+
+                });
+            }
+
+        } else if (saveReqCheckedObj.length == 0) {
+            alert("Please select one row that you want to edit");
+        } else {
+            alert("Only can select one row for editing");
+        }
+    }
+
+
+    //新增按钮
+    function saveReqAddFun() {
+        if ($("#midShowId").tabs("exists", "Application Page")) {
+            $("#midShowId").tabs("select", "Application Page");
+            var tab = $('#midShowId').tabs('getSelected');  // 获取选择的面板
+            $('#midShowId').tabs('update', {
+                tab: tab,
+                options: {
+                    title: "Application Page",
+                }
+            });
+        } else {
+            $("#midShowId").tabs("add", {
+                "title": "Application Page",
+                "closable": true,
+                "href": '@Url.Action("Create","ApplicationInfo")',
+                "cache": true
+            })
+        }
+    }
+
+
+    //提交按钮
+    function saveReqSubmitFun() {
+        var saveReqCheckedObj = $("#orderinfoIdS").datagrid("getChecked");
+        var saveStrIdArr = "";
+        if (saveReqCheckedObj.length == 0) {
+            alert("Please select one row that you want to submit");
+        } else if (saveReqCheckedObj.length == 1) {
+            if (saveReqCheckedObj[0].product == "" || saveReqCheckedObj[0].project == "" || saveReqCheckedObj[0].type == "" || saveReqCheckedObj[0].stage == "" || saveReqCheckedObj[0].site == "" || saveReqCheckedObj[0].approve1 == "" || saveReqCheckedObj[0].approve2 == "") {
+                alert("Can't submit the incomplete requirement information!");
+                return;
+            }
+
+            saveStrIdArr = saveReqCheckedObj[0].requirementId;
+        } else {
+            for (ele in saveReqCheckedObj) {
+
+                if (saveReqCheckedObj[ele].product == "" || saveReqCheckedObj[ele].project == "" || saveReqCheckedObj[ele].type == "" || saveReqCheckedObj[ele].stage == "" || saveReqCheckedObj[ele].site == "" || saveReqCheckedObj[ele].approve1 == "" || saveReqCheckedObj[ele].approve2 == "") {
+                    alert("Can't submit the incomplete requirement information!");
+                    return;
+                }
+
+                if (ele < saveReqCheckedObj.length - 1) {
+                    saveStrIdArr = saveStrIdArr + saveReqCheckedObj[ele].requirementId + ",";
+                } else {
+                    saveStrIdArr = saveStrIdArr + saveReqCheckedObj[ele].requirementId;
+                }
+            }
+        }
+       
+        $("#orderinfoIdS").datagrid({
+            queryParams: { RequirementIds: saveStrIdArr },
+            url: '@Url.Action("SubmitSave", "ApplicationInfo")',
+            onLoadSuccess: function (data) {
+                currentTaskFun();
+                if (window.confirm("Do you want jump to Processing Requirement Page ? ")) {
+                    if ($("#midShowId").tabs("exists", "Processing Requirements")) {
+                        $("#midShowId").tabs("select", "Processing Requirements");
+                        // 获取选择的面板
+                        var tab = $('#midShowId').tabs('getSelected');
+                        //刷新选择的面板；
+                        $('#midShowId').tabs('update', {
+                            tab: tab,
+                            options: {
+                                title: "Processing Requirements",
+                            }
+                        });
+                    } else {
+                        $("#midShowId").tabs("add", {
+                            "title": "Processing Requirements",
+                            "closable": true,
+                            "href": '@Url.Action("ProcessingView", "ApplicationInfo")',
+                            "cache": true
+                        })
+                    }
+                } else {
+                    var tab = $('#midShowId').tabs('getSelected');
+                    //刷新选择的面板；
+                    $('#midShowId').tabs('update', {
+                        tab: tab,
+                        options: {
+                            title: "Save Requirements",
+                        }
+                    });
+                }
+                $("#orderinfoIdS").datagrid('options').url = '@Url.Action("CreateSavedView", "ApplicationInfo")';
+            }
+        })
+    }
+
+    //搜索按钮
+    function saveReqSearchFun() {
+        var searchValue = document.getElementById('saveTabBtnInput').value;
+        $("#orderinfoIdS").datagrid({
+            queryParams: { searchValue: searchValue },
+            url: '@Url.Action("CreateSavedViewSearch", "ApplicationInfo")',
+        })
+
+    };
+
+    //Reset按钮
+    function saveReqResetFun() {
+        @*
+        $("#projectQueryIdC").val("Project");
+        $("#itemQueryIdC").val("Item");
+        $("#typeQueryIdC").val("Type");
+        $("#stageQueryIdC").val("Stage");
+        $("#siteQueryIdC").val("Site");
+        $("#progressQueryIdC").val("Progress");
+        *@
+        document.getElementById("saveTabBtnInput").value = "";
+
+        var tab = $('#midShowId').tabs('getSelected');  // 获取选择的面板
+        $('#midShowId').tabs('update', {
+            tab: tab,
+            options: {
+                title: "Save Requirements",
+            }
+        });
+
+    }
+
+    //Delete按钮
+
+    function saveReqDeleteFun() {
+        if (window.confirm("Are you sure to delete the selected requirement?")) {
+            var deleteStrIdArr = "";
+            var selectedItemArr = $("#orderinfoIdS").datagrid('getChecked');
+            if (selectedItemArr.length == 0) {
+                alert("Please select one row that you want to delete");
+            } else if (selectedItemArr.length == 1) {
+                deleteStrIdArr = selectedItemArr[0].requirementId;
+            } else {
+                for (ele in selectedItemArr) {
+
+                    if (ele < selectedItemArr.length - 1) {
+                        deleteStrIdArr = deleteStrIdArr + selectedItemArr[ele].requirementId + ",";
+                    } else {
+                        deleteStrIdArr = deleteStrIdArr + selectedItemArr[ele].requirementId;
+                    }
+                }
+            }
+            //deleteStrIdArr为选中的UserId数组；
+            $("#orderinfoIdS").datagrid({
+                queryParams: { RequirementIds: deleteStrIdArr },
+                url: '@Url.Action("DeleteSave", "ApplicationInfo")',
+                onLoadSuccess: function (data) {
+                    alert("Requirement deleted successfully!");
+                    //删除完成后，取消勾选
+                    $("#orderinfoIdS").datagrid('uncheckAll');
+                    $("#orderinfoIdS").datagrid('options').url = '@Url.Action("CreateSavedView", "ApplicationInfo")';
+                }
+            })
+        }
+    }
+
+
+
+    //加载表格
+    $("#orderinfoIdS").datagrid({
+        pageNumber: 1,
+        pageList: [10],
+        pageSize: 10,
+
+        url: '@Url.Action("CreateSavedView", "ApplicationInfo")',
+        singleSelect: false,
+
+        idField: 'requirementId',
+        pagination: true,
+        autoRowHeight: true,
+        striped: true,
+    })
+
+
+
+
+</script>

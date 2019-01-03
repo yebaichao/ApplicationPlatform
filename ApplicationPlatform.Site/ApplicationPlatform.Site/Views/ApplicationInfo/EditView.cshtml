@@ -1,0 +1,537 @@
+﻿@{
+    Layout = null;
+}
+ 
+   <form action="@Url.Action("EditView","ApplicationInfo")" method="post">
+    <table id="applyTableE">
+        <tr>
+                <td style="width:50px;"></td>
+                <td class="textClassE" style="width:130px;">Product:</td>
+                <td style="width:120px;"></td>
+                <td class="textClassE" style="width:200px;">Stage:</td>
+            </tr>
+            <tr>
+                <td style="width:50px;"></td>
+                <td class="inputClassE">
+                    <select id="productSelE" class="easyui-combobox" style="width:150px;height:35px;" onchange="changeProduct(this.value)" name="Product">
+                        <option>/</option>
+                    </select>
+                </td>
+                <td>
+                    
+                </td>
+                <td class="inputClassE">
+                    <select id="stageSelE" data-options="editable:false" style="width:150px;height:35px;" name="Stage">
+                        <option>/</option>
+                        <option>Drop1</option>
+                        <option>Drop2</option>
+                        <option>P1</option>
+                        <option>P2</option>
+                        <option>EVT</option>
+                        <option>DVT</option>
+                        <option>CB</option>
+                        <option>MP</option>
+                    </select>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td style="width:50px;"></td>
+                <td class="textClassE">Project:</td>
+                <td></td>
+                <td class="textClassE">Quantity:</td>
+            </tr>
+            <tr>
+
+                <td style="width:50px;"></td>
+                <td class="inputClassE">
+                    <select id="projectSelE" class="easyui-combobox" style="width:150px;height:35px;" onchange="changeFirst(this.value)" name="Project">
+                        <option>/</option>
+                    </select>
+                </td>
+                <td>
+                    
+                </td>
+
+                <td class="inputClassE">
+                    <input id="quantityIdE" class="easyui-numberspinner" style="width:150px;height:35px" required="required" data-options="min:1,max:20,editable:true,value:1" name="Num" />
+                </td>
+            </tr>
+            <tr>
+                <td style="width:50px;"></td>
+                <td class="textClassE">Type:</td>
+                <td></td>
+                <td class="textClassE">Site for Use:</td>
+            </tr>
+            <tr>
+                <td style="width:50px;"></td>
+                <td class="inputClassE">
+                    <select id="typeSelE" class="easyui-combobox" style="width:150px; height:35px;" name="Type">
+                        <option>/</option>
+                    </select>
+                </td>
+                <td>
+                    
+                </td>
+                <td class="inputClassE">
+                    <input id="siteIdE" class="easyui-combobox" style="width:150px;height:30px" name="Site" />
+                </td>
+            </tr>
+            <tr>
+                <td style="width:50px;"></td>
+                <td class="textClassE">Item:</td>
+                <td></td>
+                <td class="textClassE">Technical Approval:</td>
+            </tr>
+            <tr>
+                <td style="width:50px;"></td>
+                <td class="inputClassE">
+                    <select id="itemSelE" class="easyui-combobox" style="width:150px;height:35px;" onchange="changeSecond(this.value);" name="Item">
+                        <option>/</option>
+                    </select>
+                </td>
+                <td>
+                    
+                </td>
+                <td class="inputClassE">
+                    @Html.DropDownList("TechApprovedUser", ViewBag.Approver1 as IEnumerable<SelectListItem>, new { style = "width:150px;height:35px;", id = "approve1E", name = "TechApprovedUser" })
+                </td>
+            </tr>
+            <tr>
+                <td style="width:50px;"></td>
+                <td class="textClassE">SubItem:</td>
+                <td></td>
+                <td class="textClassE">Commercial Approval:</td>
+            </tr>
+            <tr>
+                <td style="width:50px;"></td>
+                <td class="inputClassE">
+                    <select id="subitemSelE" class="easyui-combobox" style="width:150px;height:35px;" name="subitem">
+                        <option>/</option>
+                    </select>
+                </td>
+                <td>
+                    
+                </td>
+                <td class="inputClassE">
+                    @Html.DropDownList("ComApprovedUser", ViewBag.Approver2 as IEnumerable<SelectListItem>, new { style = "width:150px;height:35px;", id = "approve2E", name = "ComApprovedUser" })
+                </td>
+            </tr>
+            <tr>
+                <td style="width:50px;"></td>
+
+                <td class="textClassE" colspan="3">
+                    Description:
+                </td>
+            </tr>
+            <tr>
+                <td style="width:50px;"></td>
+                <td class="commentClassE" colspan="3">
+                    <input type="text" id="commentIdE" name="Description" />
+                </td>
+
+            </tr>
+        <tr style="display:none">
+            <td ></td>
+            <td colspan="2">
+                <input type="text" id="requirementIdE" name="RequirementId" />
+            </td>
+        </tr>
+        <tr>
+            <td style="height:100px;"></td>
+            <td colspan="3" style="height:40px">
+                <input  id="submitBtnE" type="button" value="Submit" style="width:100px;height:30px;" onclick="submitEditView()"/>
+                <input id="resetBtnE" type="button" value="Reset" style="width:100px;height:30px;" onclick="resetFunE()" />
+				<input  id="closeBtnE" type="button" value="Close" style="width:100px;height:30px;" onclick="closeFunE()"/>
+            </td>
+        </tr>
+    </table>
+</form>
+    <style type="text/css">
+       
+        #applyTableE {
+            border-collapse:collapse;
+            border-radius:15px;
+            margin-left:30px;
+            margin-top:20px;
+            background-color:#fff;
+        }
+       
+        .textClassE {
+           text-align:left; 
+            font-size:20px;
+            font-weight:600;
+            font-family:Myriad;
+            color:#808080;
+            width:300px;
+            height:30px;
+            padding-bottom:0px;
+        }
+
+        .inputClassE {
+            text-align:left ;
+            height:50px;
+            vertical-align:central;
+        }
+        
+        #siteIdE{
+            border:1px solid #95B8E7;
+            border-radius:5px;
+        }
+
+        #commentIdE {
+            border:1px solid #95B8E7;
+            border-radius:5px;
+            height:45px;
+            width:535px; 
+        }
+
+        #resetBtnE, #closeBtnE, #submitBtnE {
+            float:right;
+             border:0px;
+            border-radius:5px;
+            color:#fff;
+            font-size:15px;
+            margin-right:10px;
+        }
+
+        #submitBtnE {
+            margin-right:20px;
+            background-color:#428BCA;
+        }
+        #closeBtnE {
+            background-color:#9B30FF;
+        }
+        #resetBtnE {
+            background-color:#D9534F;
+        }
+    </style>
+    
+    <script type="text/javascript" >
+
+    var obj = $("#editDialog").dialog('options');
+    var qParams = obj["queryParams"];
+    //获取当前选中值所组成的一个数组；
+    var arrSelect = qParams["checksysno"][0];
+
+        //分别取出每个属性的值；
+
+    var serialNumberVal = arrSelect.serialNumber;
+    var productVal = arrSelect.product;
+    var projectVal = arrSelect.project;
+    var itemVal = arrSelect.item;
+    var typeVal = arrSelect.type;
+    var subitemVal = arrSelect.subitem;
+    var stageVal = arrSelect.stage;
+    var siteVal = arrSelect.site;
+    var progressVal = arrSelect.progress;
+    var commentVal = arrSelect.comment;
+    var quantityVal = arrSelect.quantity;
+    var approver1Val = arrSelect.approver1;
+    var approver2Val = arrSelect.approver2;
+    var requirementIdVal = arrSelect.requirementId;
+    //初始化requirementId
+    document.getElementById("requirementIdE").value = requirementIdVal;
+    //初始化comment；
+    var commentObj = document.getElementById("commentIdE");
+    var commentText = "";
+    commentText = commentVal.substring(commentVal.indexOf('>') + 1, commentVal.lastIndexOf('<'));
+    commentObj.value = commentText;
+
+    //初始化Stage；
+    var stagSelect = document.body.querySelector("#stageSelE");
+    var arr = stagSelect.getElementsByTagName("option");
+    for (ele in arr) {
+        if (stageVal == arr[ele].value) {
+            arr[ele].selected = true;
+        }
+    }
+
+    //初始化quantity;
+    $('#quantityIdE').numberspinner({
+        value: quantityVal
+    });
+
+
+    //动态加载site下拉框
+    $(function () {
+        
+        BindProduct();
+        $("#siteIdE").combobox({
+            valueField: 'id',
+            textField: 'site',
+            //data: [{ id: 1, site: 'IPEG-GL' }, { id: 2, site: 'iDPBG-GL' }, { id: 3, site: 'iPEG-LH' }, { id: 4, site: 'LF-DG' }],
+            url: "@Url.Content("~/ApplicationInfo/CreateSite")",
+            selectOnNavigation: true,
+        });
+        //初始化Site；
+        if (siteVal != null) {
+            $("#siteIdE").combobox({
+                value: siteVal
+            });
+        }
+
+        $("#productSelE").combobox({
+            value: productVal
+        });
+        $("#projectSelE").combobox({
+            value: projectVal
+        });
+        $("#typeSelE").combobox({
+            value: typeVal
+        });
+        $("#itemSelE").combobox({
+            value: itemVal
+        });
+        $("#subitemSelE").combobox({
+            value: subitemVal
+        });
+    });
+    //动态加载Approver
+    var approverObj1 = document.body.querySelector("#approve1E").options;
+    var approverObj2 = document.body.querySelector("#approve2E").options;
+
+    for (ele in approverObj1) {
+        if (approverObj1[ele].text == approver1Val) {
+            approverObj1[ele].selected = true;
+            break;
+        }
+    }
+    for (ele in approverObj2) {
+        if (approverObj2[ele].text == approver2Val) {
+            approverObj2[ele].selected = true;
+            break;
+        }
+    }
+
+
+    //提交按钮
+    function submitEditView() {
+        //获取每个控件的值；
+        var productVal = $("#productSelE").combobox('getText');
+        var projectVal = $("#projectSelE").combobox('getText');
+        var typeVal = $("#typeSelE").combobox('getText');
+        var itemVal = $("#itemSelE").combobox('getText');
+        var subitemVal = $("#subitemSelE").combobox('getText');
+
+        var stageVal = document.getElementById("stageSelE").value;
+
+        var quantityVal = document.getElementById("quantityIdE").value;
+
+        var siteVal = $("#siteIdE").combobox('getText');
+        var approve1Val = document.getElementById("approve1E").value;
+        var approve2Val = document.getElementById("approve2E").value;
+        var commentVal = document.getElementById("commentIdE").value;
+        var requirementIdVal = document.getElementById("requirementIdE").value;
+
+
+        //将“/”转化为 “”
+        if (productVal == "/") {
+            productVal = "";
+        } else if (projectVal == "/") {
+            projectVal = "";
+        } else if (typeVal == "/") {
+            typeVal = "";
+        } else if (itemVal == "/") {
+            itemVal = "";
+        } else if (subitemVal == "/") {
+            subitemVal = "";
+        }
+
+        var editFormData = {};
+        editFormData.product = productVal;
+        editFormData.project = projectVal;
+        editFormData.type = typeVal;
+        editFormData.item = itemVal;
+        editFormData.subitem = subitemVal;
+        editFormData.stage = stageVal;
+        editFormData.site = siteVal;
+        editFormData.quantity = quantityVal;
+        editFormData.comment = commentVal;
+        editFormData.approver1 = approve1Val;
+        editFormData.approver2 = approve2Val;
+        editFormData.requirementId = requirementIdVal;
+
+        editFormData = JSON.stringify(editFormData);
+
+        $("#orderinfoId").datagrid({
+            queryParams: { editFormData: editFormData },
+            url: '@Url.Action("EditView", "ApplicationInfo")',
+			onLoadSuccess: function () {
+			    $("#orderinfoId").datagrid('options').url = '@Url.Action("CreateProcessingView", "ApplicationInfo")';
+			    $("#editDialog").dialog('close');
+			   }
+			})
+		}
+
+        //重置按钮
+        function resetFunE() {
+            //重置所有的select
+            $("#productSelE").combobox('clear');
+            $("#projectSelE").combobox('clear');
+            $("#typeSelE").combobox('clear');
+            $("#itemSelE").combobox('clear');
+            $("#subitemSelE").combobox('clear');
+
+            stagSelect.options[0].selected = true;
+            approverObj1.options[0].selected = true;
+            approverObj2.options[0].selected = true;
+            //重置两个输入框；
+            $("#siteIdE").combobox("clear");
+            var commentObjE = document.getElementById("commentIdE");
+            commentObjE.value = null;
+            //重置数量为1
+            $('#quantityIdE').numberspinner('setValue', 1);
+        }
+        //绑定Product、Project、Type、Item、SubItem项目
+        function BindProduct() {
+            var product = $('#productSelE').combobox({
+                valueField: 'Id', //值字段
+                textField: 'Text', //显示的字段
+                url: '@Url.Action("GetAllCList", "ApplicationInfo")',
+                editable: true,
+                onChange: function (newValue, oldValue) {
+                    if (newValue == '/' || newValue == 'All') {
+                        project.combobox("clear").combobox('loadData', {});
+                        type.combobox("clear").combobox('loadData', {});
+                        item.combobox("clear").combobox('loadData', {});
+                        subitem.combobox("clear").combobox('loadData', {});
+                        return;
+                    }
+                    $.get('@Url.Action("GetCListItemsById", "ApplicationInfo")', { Id: newValue }, function (data) {
+                        project.combobox("clear").combobox('loadData', data);
+                        type.combobox("clear").combobox('loadData', {});
+                        item.combobox("clear").combobox('loadData', {});
+                        subitem.combobox("clear").combobox('loadData', {});
+                    }, 'json');
+                },
+                onLoadSuccess: function () {
+                    var data = $('#productSelE').combobox('getData');
+                    for (var i = 0; i < data.length; i++) {
+                        if (data[i].Text == productVal) {
+                            $("#productSelE").combobox(
+                            'select', data[i].Id
+                        );
+                        }
+                    }
+                }
+            });
+
+            var project = $('#projectSelE').combobox({
+                valueField: 'Id', //值字段
+                textField: 'Text', //显示的字段
+                editable: true,
+                onChange: function (newValue, oldValue) {
+                    if (newValue == '/' || newValue == 'All') {
+                        type.combobox("clear").combobox('loadData', {});
+                        item.combobox("clear").combobox('loadData', {});
+                        subitem.combobox("clear").combobox('loadData', {});
+                        return;
+                    }
+                    $.get('@Url.Action("GetCListItemsById", "ApplicationInfo")', { Id: newValue }, function (data) {
+                        type.combobox("clear").combobox('loadData', data);
+                        item.combobox("clear").combobox('loadData', {});
+                        subitem.combobox("clear").combobox('loadData', {});
+                    }, 'json');
+                },
+                onLoadSuccess: function () {
+                    var data = $('#projectSelE').combobox('getData');
+                    for (var i = 0; i < data.length; i++) {
+                        if (data[i].Text == projectVal)
+                        {
+                            $("#projectSelE").combobox(
+                            'select', data[i].Id
+                        );
+                        }
+                    }
+                }
+            });
+
+            var type = $('#typeSelE').combobox({
+                valueField: 'Id', //值字段
+                textField: 'Text', //显示的字段
+                editable: true,
+                onChange: function (newValue, oldValue) {
+                    if (newValue == '/' || newValue == 'All') {
+                        item.combobox("clear").combobox('loadData', {});
+                        subitem.combobox("clear").combobox('loadData', {});
+                        return;
+                    }
+                    $.get('@Url.Action("GetCListItemsById", "ApplicationInfo")', { Id: newValue }, function (data) {
+                        item.combobox("clear").combobox('loadData', data);
+                        subitem.combobox("clear").combobox('loadData', {});
+                    }, 'json');
+                },
+                onLoadSuccess: function () {
+                    var data = $('#typeSelE').combobox('getData');
+                    for (var i = 0; i < data.length; i++) {
+                        if (data[i].Text == typeVal) {
+                            $("#typeSelE").combobox(
+                            'select', data[i].Id
+                        );
+                        }
+                    }
+                }
+            });
+            var item = $('#itemSelE').combobox({
+                valueField: 'Id', //值字段
+                textField: 'Text', //显示的字段
+                editable: true,
+                onChange: function (newValue, oldValue) {
+                    if (newValue == '/' || newValue == 'All') {
+                        subitem.combobox("clear").combobox('loadData', {});
+                        return;
+                    }
+                    $.get('@Url.Action("GetCListItemsById", "ApplicationInfo")', { Id: newValue }, function (data) {
+                        subitem.combobox("clear").combobox('loadData', data);
+                    }, 'json');
+                },
+                onLoadSuccess: function () {
+                    var data = $('#itemSelE').combobox('getData');
+                    for (var i = 0; i < data.length; i++) {
+                        if (data[i].Text == itemVal) {
+                            $("#itemSelE").combobox(
+                            'select', data[i].Id
+                        );
+                        }
+                    }
+                }
+            });
+            var subitem = $('#subitemSelE').combobox({
+                valueField: 'Id', //值字段
+                textField: 'Text', //显示的字段
+                editable: true,
+                onLoadSuccess: function () {
+                    var data = $('#subitemSelE').combobox('getData');
+                    for (var i = 0; i < data.length; i++) {
+                        if (data[i].Text == subitemVal) {
+                            $("#subitemSelE").combobox(
+                            'select', data[i].Id
+                        );
+                        }
+                    }
+                }
+            });
+        }
+		//关闭按钮
+        function closeFunE() {
+            if (window.confirm("Are you sure to close the Edit Page?")) {
+                $("#editDialog").dialog('close');
+                
+            }
+
+        }
+
+        
+        
+
+        
+
+    </script> 
+  
+
+    
+
+     
+

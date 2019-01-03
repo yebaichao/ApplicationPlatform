@@ -1,0 +1,268 @@
+﻿@{
+    Layout = null;
+}
+@using ApplicationPlatform.Site.ViewModels.UserInfoViewModels
+@model UserInfoViewModel
+<div id="UserSetPageId">
+    
+    <div id="UserSetTabFrameId">
+    <form>
+        <table id="UserSetTabId"  style="padding-top:20px;width:837px;" >
+            <tr style="height:15px">
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr style="height:50px">
+                <td colspan="4" >
+                    <span style="margin-left:20px;font-family:Tahoma;font-size:15px;font-weight:600;">User Information:</span>
+                    <hr style="margin-left:20px;"/>
+                </td>
+            </tr>
+            <tr>
+                <td style="width:50px"></td>
+                <td class="UserSetText">
+                    UserName:
+                </td>
+                <td class="UserSetText">
+                    Sex:
+                </td>
+                <td style="width:20px"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input type="text" id="UserSetNameId"  readonly="readonly" value="@Model.UserInfo.UserName"/>
+                </td>
+                <td style="padding-left:10px;">
+                    <input type="radio" name="UserSettingSex"  id="UserSexMale" checked="@Model.Male" value="Male"/>Male
+                    <input type="radio" name="UserSettingSex"  id="UserSexFemale" checked="@Model.Female" value="Female"/>Female
+                    <input type="radio" name="UserSettingSex"  id="UserSexSecrecy" checked="@Model.Secrecy" value="Secrecy"/>Secrecy
+                </td>
+                <td></td>
+            </tr>
+            
+            <tr>
+                <td></td>
+                <td class="UserSetText">
+                    Phone:
+                </td>
+                <td class="UserSetText">
+                    WeChat:
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input id="userSettingPhone" value="@Model.UserInfo.PhoneNumber" type="text" placeholder="Please enter your Phone Number" onfocus="this.placeholder=''" onblur="this.placeholder='Please enter your Phone Number'"/>
+                </td>
+                <td style="padding-left:10px;">
+                    <input id="userSettingWeChat" value="@Model.UserInfo.WeChat" type="text" placeholder="Please enter your WeChat Account" onfocus="this.placeholder=''" onblur="this.placeholder='Please enter your WeChat Account'"/>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td colspan="2" class="UserSetText">
+                    E-mail:
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td colspan="1">
+                    <input type="text" value="@Model.UserInfo.Email"  id="UserSetEmailId"  placeholder="Please enter your E-mail" onfocus="this.placeholder=''" onblur="this.placeholder='Please enter your E-mail'"/>
+                </td>
+                <td>
+					<input hidden="hidden" id="UserSettingUserId" value="@Model.UserInfo.Id"/>
+				</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td colspan="4" style="height:40px;">
+                    <input type="button" id="UserInfoSetSave" value="Save" onclick="submitUserInfo()"/>
+                    <input type="button" id="UserInfoSetReset" value="Reset" onclick="resetUserInfo()"/>
+                </td>
+            </tr>
+       </table>
+   </form>
+   
+   
+    <form>
+        <table id="UserPWTabId" style="width:837px;">
+            <tr >
+                <td colspan="4" style="height:70px">
+                    <span style="margin-left:20px;font-family:Tahoma;font-size:15px;font-weight:600;">Change Password:</span>
+                    <hr style="margin-left:20px;"/>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4" style="padding-left:70px;" >
+                    <span class="UserSetText">Old Password:</span>
+                    <input type="password" id="userOldPW" style="margin-left:65px;" placeholder="Please enter your old password" onfocus="this.placeholder=''" onblur="this.placeholder='Please enter your old password'"/>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4"  style="padding-left:70px;" >
+                    <span class="UserSetText">New Password:</span>
+                    <input type="password"  id="userNewPW1" class="easyui-validatebox" style="margin-left:59px;"placeholder="Please enter your new password" onfocus="this.placeholder=''" onblur="this.placeholder='Please enter your new password'"/>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4"  style="padding-left:70px;" >
+                    <span class="UserSetText">Confirm Password:</span>
+                    <input type="password" id="userNewPW2" class="easyui-validatebox" style="margin-left:24px;" placeholder="Please enter your new password again" onfocus="this.placeholder=''" onblur="this.placeholder='Please enter your new password again'" />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4" style="height:40px;">
+                    <input type="button" id="UserSetSave" value="Save" onclick="changePWFun()"/>
+                    <input type="button" id="UserSetReset" value="Reset" onclick="resetUserPW()"/>
+					<input hidden="hidden" id="UserPWUserId" value="@Model.UserInfo.Id"/>
+                </td>
+            </tr>
+            
+        </table>
+    </form>
+    </div>
+</div>
+
+<link href="~/Content/CSS/UserSetting.css" rel="stylesheet" />
+
+<script type="text/javascript">
+    //阻止backspace的默认事件
+    $("input[readonly]").keydown(function (e) {
+        e.preventDefault();
+    });
+
+	//重置用户密码；
+	function resetUserPW(){
+        document.getElementById("userOldPW").value = "";
+        document.getElementById("userNewPW1").value = "";
+        document.getElementById("userNewPW2").value = "";
+
+	}
+
+
+	//修改用户密码；
+	function changePWFun() {
+	    if (window.confirm("Are you sure to change password ?")) {
+	        var oldPWValue = document.getElementById("userOldPW").value;
+	        var newPWValue1 = document.getElementById("userNewPW1").value;
+	        var newPWValue2 = document.getElementById("userNewPW2").value;
+	        var userIdPWVal = document.getElementById("UserPWUserId").value;
+	        var userSettingPWData = {};
+	        userSettingPWData.currentPW = oldPWValue;
+	        userSettingPWData.newPW = newPWValue1;
+	        userSettingPWData.UserId = userIdPWVal;
+	        userSettingPWData = JSON.stringify(userSettingPWData);
+	        if (oldPWValue == newPWValue1) {
+	            alert("The new password is the same as the old one.");
+	            return;
+	        } else if (newPWValue1 != newPWValue2) {
+	            alert("Two input password must be consistent.");
+	            return;
+	        } else {
+	            $.ajax({
+	                type: "POST",
+	                dataType: "json",
+	                url: '@Url.Action("UserSettingChangePW","Account")',
+	                data: { data: userSettingPWData },
+	                success: function (result) {
+
+	                    var resultStr = JSON.parse(result);
+
+	                    if (resultStr.code == "1") {
+	                        alert("Successful to Change Password");
+	                        //打开User Settings页面；
+	                        var tab = $('#midShowId').tabs('getSelected');
+                                $('#midShowId').tabs('update', {
+                                    tab: tab,
+                                    options: {
+                                        title: "User Settings",
+                                    }
+                                });
+	                    } else {
+	                        alert("Failed to change Password");
+	                    };
+	                },
+
+	                error: function () {
+	                    alert("error");
+	                }
+	            })
+	        }
+	    }
+	}
+
+	//重置用户信息；
+	function resetUserInfo(){
+        document.getElementById("userSettingPhone").value = "";
+        document.getElementById("userSettingWeChat").value = "";
+        document.getElementById("UserSetEmailId").value = "";
+        $("input[name='UserSettingSex'][value='Srcey']").prop("checked", "checked");
+
+	}
+
+
+	//提交用户信息；
+	function submitUserInfo() {
+	    if (window.confirm("Are you sure to submit your information ?")) {
+	        var userNameVal = document.getElementById("UserSetNameId").value;
+	        var userPhoneVal = document.getElementById("userSettingPhone").value;
+	        var userWeChatVal = document.getElementById("userSettingWeChat").value;
+	        var userEmailVal = document.getElementById("UserSetEmailId").value;
+	        var userIdVal = document.getElementById("UserSettingUserId").value;
+	        var userSexVal = $('input[name="UserSettingSex"]:checked').val();
+	        
+	        //邮箱格式验证通过，再提交
+	        if ($('#UserSetEmailId').validatebox('isValid')) {
+	            var userSettingFormData = {};
+	            userSettingFormData.UserName = userNameVal;
+	            userSettingFormData.Phone = userPhoneVal;
+	            userSettingFormData.WeChat = userWeChatVal;
+	            userSettingFormData.Email = userEmailVal;
+	            userSettingFormData.UserId = userIdVal;
+	            userSettingFormData.Sex = userSexVal;
+
+	            //userSettingFormData = JSON.stringify(userSettingFormData);
+	            $.ajax({
+	                type: "POST",
+	                dataType: "json",
+	                url: '@Url.Action("EditMyProfile", "UserInfo")',
+	                data: userSettingFormData,
+	                success: function (result) {
+	                    //var resultStr = JSON.parse(result);
+	                    if (result.code == 1) {
+	                        alert("Successful to modify the User Information");
+	                        
+	                    } else {
+
+	                        alert("Failed to modify the User Information");
+	                    };
+	                },
+
+	                error: function () {
+	                    alert("Failed to modify the User Information");
+	                }
+	            });
+
+	        } else {
+	            alert("Please input the correct Email");
+	            return;
+	        }
+
+	    }
+	}
+
+
+
+    $("#UserSetEmailId").validatebox({
+        required: true,
+        validType: 'email'
+    });
+
+
+</script>

@@ -1,0 +1,123 @@
+﻿@{
+    Layout = null;
+    ViewBag.Title = "登录";
+}
+@model ApplicationPlatform.Models.LoginModel
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width" />
+
+    <link href="~/Content/css3Signin/css/style.css" rel="stylesheet" />
+    <link href="~/Content/css3Signin/css/reset.css" rel="stylesheet" />
+    <title>LoginView</title>
+</head>
+<body>
+
+    <div id="particles-js">
+        <div id="loginTopicDiv" style="">
+            Hexagon Customer Requirement Management System
+        </div>
+        <div class="login">
+            <form action="@Url.Action("LoginView","Account")" method="post" id="LoginId">
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+                <div class="login-top">
+                    Login
+                </div>
+                <div class="login-center clearfix">
+                    <div class="login-center-img"><img src="~/Content/css3Signin/img/name.png" /></div>
+                    <div class="login-center-input">
+                        @Html.TextBoxFor(m => m.UserName, new { placeholder = "Please enter your account number", onfocus = "this.placeholder=''", onblur = "this.placeholder='Please enter your account number'" })
+                        @Html.ValidationMessageFor(m => m.UserName)
+                        <div class="login-center-input-text">UserName</div>
+                    </div>
+                </div>
+                <div class="login-center clearfix">
+                    <div class="login-center-img"><img src="~/Content/css3Signin/img/password.png" /></div>
+                    <div class="login-center-input">
+                        @Html.PasswordFor(m => m.Password, new { placeholder = "Please enter your password", onfocus = "this.placeholder=''", onblur = "this.placeholder='Please enter your password'" })
+                        @Html.ValidationMessageFor(m => m.Password)
+                        <div class="login-center-input-text">Password</div>
+                    </div>
+                </div>
+                <div class="login-button">
+                    Login
+                </div>
+                <div style="display:none">
+                    @Html.ActionLink("注册", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })
+                </div>
+            </form>
+        </div>
+        <div class="sk-rotating-plane"></div>
+
+    </div>
+    <link href="~/Content/CSS/LoginView.css" rel="stylesheet" />
+    <!-- scripts -->
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+    <script src="~/Content/jquery-easyui-1.4.1/jquery-1.8.2.js"></script>
+    <script src="~/Content/css3Signin/js/particles.min.js"></script>
+    <script src="~/Content/css3Signin/js/app.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            document.onkeydown = function (e) {
+                var ev = document.all ? window.event : e;
+                if (ev.keyCode == 13) {
+                    document.querySelector(".login-button").click();
+                };
+            }
+        })
+        function hasClass(elem, cls) {
+            cls = cls || '';
+            if (cls.replace(/\s/g, '').length == 0) return false; //当cls没有参数时，返回false
+            return new RegExp(' ' + cls + ' ').test(' ' + elem.className + ' ');
+        }
+
+        function addClass(ele, cls) {
+            if (!hasClass(ele, cls)) {
+                ele.className = ele.className == '' ? cls : ele.className + ' ' + cls;
+            }
+        }
+
+        function removeClass(ele, cls) {
+            if (hasClass(ele, cls)) {
+                var newClass = ' ' + ele.className.replace(/[\t\r\n]/g, '') + ' ';
+                while (newClass.indexOf(' ' + cls + ' ') >= 0) {
+                    newClass = newClass.replace(' ' + cls + ' ', ' ');
+                }
+                ele.className = newClass.replace(/^\s+|\s+$/g, '');
+            }
+        }
+        document.querySelector(".login-button").onclick = function () {
+            addClass(document.querySelector(".login"), "active")
+            setTimeout(function () {
+                addClass(document.querySelector(".sk-rotating-plane"), "active")
+                document.querySelector(".login").style.display = "none"
+            }, 800)
+            setTimeout(function () {
+                removeClass(document.querySelector(".login"), "active")
+                removeClass(document.querySelector(".sk-rotating-plane"), "active")
+                //document.querySelector(".login").style.display = "block"
+                document.getElementById('LoginId').submit();
+            }, 2000)
+        }
+    </script>
+    <style type="text/css">
+        #LoginId ul {
+            padding-left: 40px;
+            padding-top: 30px;
+            color: red;
+            font-size: medium;
+            font-weight: bold;
+            box-sizing: border-box;
+        }
+        span {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</body>
+</html>

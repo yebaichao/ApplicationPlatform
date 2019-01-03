@@ -1,0 +1,208 @@
+﻿@{
+    Layout = null;
+}
+
+        <form action="#" style="background-color:#EDEDED">
+            <table id="applyTableD">
+                <tr>
+                    <td style="width:50px;"></td>
+                    <td class="textClassD">Project:</td>
+                    <td class="textClassD">Stage:</td>
+                </tr>
+                <tr>
+                    <td style="width:50px;"></td>
+                    <td class="inputClassD">
+                        <input id="firstSelD"  style="width:150px;height:35px;"  readonly="readonly" />
+                    </td>
+                    <td  class="inputClassD">
+                        <input id="stageSelD"  style="width:150px;height:35px;" readonly="readonly" />
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width:50px;"></td>
+                    <td class="textClassD">Item:</td>
+                    <td class="textClassD">Quantity:</td> 
+                </tr>
+                <tr>
+                    <td style="width:50px;"></td>
+                    <td  class="inputClassD">
+                        <input id="secondSelD"  style="width:150px;height:35px;"  readonly="readonly"  />
+                    </td>
+                    <td  class="inputClassD">
+                        <input id="quantityIdD"  style="width:150px;height:35px" readonly="readonly" />  
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width:50px;"></td>
+                    <td class="textClassD">Type:</td>
+                    <td class="textClassD">Site for Use:</td>
+                </tr>
+                <tr>
+                    <td style="width:50px;"></td>
+                    <td class="inputClassD">
+                        <input  id="thirdSelD" style="width:150px; height:35px;" readonly="readonly" />
+                    </td>
+                    <td class="inputClassD">
+                        <input  id="siteIdD" style="width:150px;height:30px" readonly="readonly"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width:50px;"></td>
+                    <td class="textClassD">Technique Approval:</td>
+                    <td class="textClassD">Business Approval:</td>
+                </tr>
+                <tr>
+                    <td style="width:50px;"></td>
+                    <td class="inputClassD">
+                        <input id="approve1D"  style="width:150px;height:35px;"  readonly="readonly"/>
+                    </td>
+                    <td class="inputClass">
+                        <input id="approve2D" style="width:150px;height:35px;"  readonly="readonly"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width:50px;"></td>
+                    <td class="textClassD" colspan="2">
+                        Discriptioin:
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width:50px;"></td>
+                    <td class="commentClassD" colspan="2">
+                        <input type="text" id="commentIdD" readonly="readonly"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width:50px;"></td>
+                    <td class="textClassD" colspan="2">
+                        Approver1-Technique Comment:
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width:50px;"></td>
+                    <td class="commentClassD" colspan="2">
+                        <input type="text" id="approve1IdD" readonly="readonly"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width:50px;"></td>
+                    <td class="textClassD" colspan="2">
+                        Approver1-Business Comment:
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width:50px;"></td>
+                    <td class="commentClassD" colspan="2">
+                        <input type="text" id="approve2IdD" readonly="readonly"/>
+                    </td>
+                </tr>
+            </table>
+        </form>
+     
+    <style type="text/css">
+       
+        #applyTableD {
+            border-collapse:collapse;
+            border-radius:15px;
+            margin-left:30px;
+            background-color:#fff;
+        }
+       
+        .textClassD {
+           text-align:left; 
+            font-size:20px;
+            font-weight:600;
+            font-family:Myriad;
+            color:#808080;
+            width:300px;
+            height:30px;
+            padding-bottom:0px;
+        }
+
+        .inputClassD {
+            text-align:left ;
+            height:50px;
+            vertical-align:central;
+        }
+
+        
+        #siteIdD ,#firstSelD ,#stageSelD ,#secondSelD ,#quantityIdD ,#thirdSelD ,#siteIdD ,#approve1D ,#approve2D {
+            border:1px solid #95B8E7;
+            border-radius:5px;
+        }
+
+        #commentIdD {
+            border:1px solid #95B8E7;
+            border-radius:5px;
+            height:45px;
+            width:535px; 
+        }
+
+    </style>
+    
+    <script type="text/javascript" >
+
+        var objD = $("#detailDialog").dialog('options');
+        var qParamsD = objD["queryParams"];
+
+            //获取当前选中值所组成的一个数组；
+        var arrSelectD = qParamsD["checksysno"];
+
+        //分别取出每个属性的值；
+        var serialNumberValD = arrSelectD.serialNumber;
+        var projectValD = arrSelectD.project;
+        var itemValD = arrSelectD.item;
+        var typeValD = arrSelectD.type;
+        var stageValD = arrSelectD.stage;
+        var siteValD = arrSelectD.site;
+        var progressValD = arrSelectD.progress;
+        var commentValD = arrSelectD.comment;
+        var quantityValD = arrSelectD.quantity;
+        var approver1ValD = arrSelectD.approver1;
+        var approver2ValD = arrSelectD.approver2;
+        
+        //初始化comment；
+        var commentObjD = document.getElementById("commentIdD");
+        var commentTextD = "";
+        commentTextD = commentValD.substring(commentValD.indexOf('>') + 1, commentValD.lastIndexOf('<'));
+        commentObjD.value = commentTextD;
+
+
+        //初始化Stage；
+        var stageSelectD = document.getElementById("stageSelD");
+
+        stageSelectD.value = stageValD;
+
+        //初始化quantity;
+        var quantityObjD = document.getElementById("quantityIdD");
+        quantityObjD.value = quantityValD;
+
+
+        //初始化Approver
+        var approverObj1D = document.getElementById("approve1D");
+        var approverObj2D = document.getElementById("approve2D");
+        approverObj1D.value = approver1ValD;
+        approverObj2D.value = approver2ValD;
+
+        //初始化site
+        var siteObj1D = document.getElementById("siteIdD");
+        siteObj1D.value = siteValD;
+        
+        
+        //初始化project,item,type
+        var projectObjD = document.getElementById("firstSelD");
+        projectObjD.value = projectValD;
+
+        var itemObjD = document.getElementById("secondSelD");
+        itemObjD.value = projectValD;
+
+        var typeObjD = document.getElementById("thirdSelD");
+        typeObjD.value = projectValD;
+        
+    </script> 
+  
+
+    
+
+     
+

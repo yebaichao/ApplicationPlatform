@@ -1,0 +1,40 @@
+****12/14/2018 3:49:19 PM****
+###无法对 null 引用执行运行时绑定
+###Anonymously Hosted DynamicMethods Assembly
+###System.Object CallSite.Target(System.Runtime.CompilerServices.Closure, System.Runtime.CompilerServices.CallSite, System.Object)
+###   在 CallSite.Target(Closure , CallSite , Object )
+   在 System.Dynamic.UpdateDelegates.UpdateAndExecute1[T0,TRet](CallSite site, T0 arg0)
+   在 CallSite.Target(Closure , CallSite , Object )
+   在 ApplicationPlatform.Site.Controllers.ApplicationInfoController.ImportEmailUserExcel(String FilePath) 位置 d:\项目方案\ApplicationPlatform\ApplicationPlatform.Site\ApplicationPlatform.Site\Controllers\ApplicationInfoController.cs:行号 2986
+****12/14/2018 3:53:05 PM****
+###无法对 null 引用执行运行时绑定
+###Anonymously Hosted DynamicMethods Assembly
+###System.Object CallSite.Target(System.Runtime.CompilerServices.Closure, System.Runtime.CompilerServices.CallSite, System.Object)
+###   在 CallSite.Target(Closure , CallSite , Object )
+   在 System.Dynamic.UpdateDelegates.UpdateAndExecute1[T0,TRet](CallSite site, T0 arg0)
+   在 CallSite.Target(Closure , CallSite , Object )
+   在 ApplicationPlatform.Site.Controllers.PriceInfoController.ImportPriceExcel(String FilePath) 位置 d:\项目方案\ApplicationPlatform\ApplicationPlatform.Site\ApplicationPlatform.Site\Controllers\PriceInfoController.cs:行号 215
+****12/14/2018 3:53:28 PM****
+###无法对 null 引用执行运行时绑定
+###Anonymously Hosted DynamicMethods Assembly
+###System.Object CallSite.Target(System.Runtime.CompilerServices.Closure, System.Runtime.CompilerServices.CallSite, System.Object)
+###   在 CallSite.Target(Closure , CallSite , Object )
+   在 System.Dynamic.UpdateDelegates.UpdateAndExecute1[T0,TRet](CallSite site, T0 arg0)
+   在 CallSite.Target(Closure , CallSite , Object )
+   在 ApplicationPlatform.Site.Controllers.PriceInfoController.ImportPriceExcel(String FilePath) 位置 d:\项目方案\ApplicationPlatform\ApplicationPlatform.Site\ApplicationPlatform.Site\Controllers\PriceInfoController.cs:行号 215
+****12/14/2018 4:25:10 PM****
+###无法对 null 引用执行运行时绑定
+###Anonymously Hosted DynamicMethods Assembly
+###System.Object CallSite.Target(System.Runtime.CompilerServices.Closure, System.Runtime.CompilerServices.CallSite, System.Object)
+###   在 CallSite.Target(Closure , CallSite , Object )
+   在 System.Dynamic.UpdateDelegates.UpdateAndExecute1[T0,TRet](CallSite site, T0 arg0)
+   在 CallSite.Target(Closure , CallSite , Object )
+   在 ApplicationPlatform.Site.Controllers.PriceInfoController.ImportPriceExcel(String FilePath) 位置 d:\项目方案\ApplicationPlatform\ApplicationPlatform.Site\ApplicationPlatform.Site\Controllers\PriceInfoController.cs:行号 215
+****12/14/2018 4:27:11 PM****
+###无法对 null 引用执行运行时绑定
+###Anonymously Hosted DynamicMethods Assembly
+###System.Object CallSite.Target(System.Runtime.CompilerServices.Closure, System.Runtime.CompilerServices.CallSite, System.Object)
+###   在 CallSite.Target(Closure , CallSite , Object )
+   在 System.Dynamic.UpdateDelegates.UpdateAndExecute1[T0,TRet](CallSite site, T0 arg0)
+   在 CallSite.Target(Closure , CallSite , Object )
+   在 ApplicationPlatform.Site.Controllers.PriceInfoController.ImportPriceExcel(String FilePath) 位置 d:\项目方案\ApplicationPlatform\ApplicationPlatform.Site\ApplicationPlatform.Site\Controllers\PriceInfoController.cs:行号 215

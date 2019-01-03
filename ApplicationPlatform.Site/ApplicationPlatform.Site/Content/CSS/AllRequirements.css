@@ -1,0 +1,308 @@
+﻿@charset "utf-8";
+
+
+@media screen and (max-width:850px){
+    #tableSearchInputA {
+        border:0px;
+        border-radius:5px;
+        font-size:15px;
+        width:300px;
+        height:26px;
+    }
+     #exportDivA {
+        position:relative;
+        top:100px;
+        font-weight:600;
+    }
+	#deliveryBtnA {
+        width:180px;
+        height:30px;
+        border:0px solid #0092A6;
+        border-radius:5px;
+        color:#fff;
+        font-size:15px;
+        background-color:#428BCA;
+        font-weight:600;
+    }
+    #priceBtnA, #setEmialUsersBtnA {
+        width: 180px;
+        height: 30px;
+        border: 0px solid #0092A6;
+        border-radius: 5px;
+        color: #fff;
+        font-size: 15px;
+        background-color: #6A5ACD;
+        font-weight:600;
+    }
+    #exportBtnA {
+        width: 180px;
+        height: 30px;
+        border: 0px solid #0092A6;
+        border-radius: 5px;
+        color: #fff;
+        font-size: 15px;
+        background-color: #5CB85C;
+        font-weight:600;
+        margin-left:50px;
+    }
+    #getEmialUsersBtnA {
+        width: 180px;
+        height: 30px;
+        border: 0px solid #0092A6;
+        border-radius: 5px;
+        color: #fff;
+        font-size: 15px;
+        background-color: #5CB85C;
+        font-weight:600;
+    }
+    #allReTabSearBtn{
+        width:100px;
+        height:30px;
+        border:0px solid #0092A6;
+        border-radius:5px;
+        color:#fff;
+        font-size:15px;
+        background-color:#0092A6;
+        font-weight:600;
+    }
+    #allReTabResBtn{
+        width:100px;
+        height:30px;
+        border:0px solid #0092A6;
+        border-radius:5px;
+        color:#fff;
+        font-size:15px;
+        background-color:#636363;
+        font-weight:600;
+    }
+    .tableAToolTitleClass {
+        font-size:15px;
+        font-weight:700;
+        font-family:Trebuchet;
+    }
+
+    #tableAToolId {
+        margin-left:100px;
+        padding-top:0px;
+    }
+
+    #proFrameIdA {
+        width: 750%;
+        height: 220%;
+        margin-top: 0px;
+        background-image: url("../../Images/backgroundPic.jpg");
+        background-color: #E4E4E4;
+        background-repeat: repeat;
+    }
+    #tableTitleA {
+        font-size:45px;
+        font-weight:bolder;
+        color:#0092A6;
+        margin-left:50px;
+        margin-bottom:3px;
+        padding-top:3px;
+        }
+
+    #picsDivA {
+        height:150px;
+        width:1500px;
+        margin-left:80px;
+        background-color:#fff;
+        border-radius:15px;
+    }
+    #tableDataDivA {
+        height:420px;
+        width:1620px;
+        margin-top:5px;
+        margin-left:25px;
+        background-color:#fff;
+        border-radius:15px;
+        clear:both;
+    }
+
+  #changeViewBtnA1 {
+        width:150px;
+        height:30px;
+        border:2px solid #0092A6;
+        background:#D3DCE0;
+        color:#ffffff;
+        font-size:16px;
+        font-weight:600;
+        border-radius:5px;
+    }
+     #changeViewBtnA2 {
+        width:150px;
+        height:30px;
+        border:2px solid #0092A6;
+        color:#ffffff;
+        background:#0092A6;
+        font-size:16px;
+        font-weight:600;
+        border-radius:5px;
+        margin-right:260px;
+    }
+    
+}
+
+.clearDateboxClassA {
+        height:20px;
+        width:40px;
+        color:#fff;
+        font-size:1.0em;
+        font-weight:700;
+        background:#FFDB5C;
+        border:0px;
+        border-radius:4px;
+        margin-left:4px;
+        position:relative;
+        top:6px;
+        cursor:pointer;
+        padding-top:3px;
+    }
+
+
+
+@media screen and (min-width:851px){
+    #changeViewBtnA1 {
+        width:150px;
+        height:30px;
+        border:2px solid #0092A6;
+        background:#D3DCE0;
+        color:#ffffff;
+        font-size:16px;
+        font-weight:600;
+        border-radius:5px;
+    }
+     #changeViewBtnA2 {
+        width:150px;
+        height:30px;
+        border:2px solid #0092A6;
+        color:#ffffff;
+        background:#0092A6;
+        font-size:16px;
+        font-weight:600;
+        border-radius:5px;
+        margin-right:260px;
+    }   
+    #tableSearchInputA {
+        border:1px solid #636363;
+        border-radius:5px;
+        font-size:15px;
+        width:300px;
+        height:26px;
+    }
+   #exportDivA {
+        position:relative;
+        top:100px;
+        font-weight:600;
+    }
+	#deliveryBtnA {
+        width:180px;
+        height:30px;
+        border:0px solid #0092A6;
+        border-radius:5px;
+        color:#fff;
+        font-size:15px;
+        background-color:#428BCA;
+        font-weight:600;
+    }
+    #priceBtnA, #setEmialUsersBtnA {
+        width: 180px;
+        height: 30px;
+        border: 0px solid #0092A6;
+        border-radius: 5px;
+        color: #fff;
+        font-size: 15px;
+        background-color: #6A5ACD;
+        font-weight:600;
+    }
+    #exportBtnA {
+        width: 180px;
+        height: 30px;
+        border: 0px solid #0092A6;
+        border-radius: 5px;
+        color: #fff;
+        font-size: 15px;
+        background-color: #5CB85C;
+        font-weight:600;
+        margin-left:50px;
+    }
+    #getEmialUsersBtnA {
+        width: 180px;
+        height: 30px;
+        border: 0px solid #0092A6;
+        border-radius: 5px;
+        color: #fff;
+        font-size: 15px;
+        background-color: #5CB85C;
+        font-weight:600;
+    }
+    #allReTabSearBtn{
+        width:100px;
+        height:30px;
+        border:0px solid #0092A6;
+        border-radius:5px;
+        color:#fff;
+        font-size:15px;
+        background-color:#0092A6;
+        font-weight:600;
+    }
+    #allReTabResBtn{
+        width:100px;
+        height:30px;
+        border:0px solid #0092A6;
+        border-radius:5px;
+        color:#fff;
+        font-size:15px;
+        background-color:#636363;
+        font-weight:600;
+    }
+    .tableAToolTitleClass {
+        font-size:15px;
+        font-weight:700;
+        font-family:Trebuchet;
+    }
+
+    #tableAToolId {
+        margin-left:100px;
+        padding-top:0px;
+    }
+
+    #proFrameIdA {
+        width: 100%;
+        height: 100%;
+        margin-top: 0px;
+        background-repeat: repeat;
+    }
+    #tableTitleA {
+        font-size:45px;
+        font-weight:bolder;
+        color:#0092A6;
+        margin-left:50px;
+        margin-bottom:3px;
+        padding-top:3px;
+        }
+
+    #picsDivA {
+        height:150px;
+        width:1500px;
+        margin-left:80px;
+        background-color:#fff;
+        border-radius:15px;
+    }
+    #tableDataDivA {
+        height:420px;
+        width:1620px;
+        margin-top:5px;
+        margin-left:25px;
+        background-color:#fff;
+        border-radius:15px;
+        clear:both;
+    }
+
+    
+   
+}
+
+
+  

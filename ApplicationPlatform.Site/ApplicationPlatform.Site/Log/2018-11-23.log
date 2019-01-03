@@ -1,0 +1,12 @@
+****11/23/2018 12:48:51 PM****
+###无法将类型为“System.Xml.XmlElement”的对象强制转换为类型“System.Xml.XmlDocument”。
+###ApplicationPlatform.Utilities
+###Void SetEmailDeliveryVariables(System.Collections.Generic.List`1[ApplicationPlatform.Utilities.NodeModels.EmailDelivery])
+###   在 ApplicationPlatform.Utilities.XmlHelp.SetEmailDeliveryVariables(List`1 Variables) 位置 d:\项目方案\ApplicationPlatform\ApplicationPlatform.Utilities\XmlHelp.cs:行号 133
+   在 ApplicationPlatform.Site.Controllers.ApplicationInfoController.ImportEmailUserExcel(String FilePath) 位置 d:\项目方案\ApplicationPlatform\ApplicationPlatform.Site\ApplicationPlatform.Site\Controllers\ApplicationInfoController.cs:行号 2799
+****11/23/2018 12:54:55 PM****
+###无法将类型为“System.Xml.XmlElement”的对象强制转换为类型“System.Xml.XmlDocument”。
+###ApplicationPlatform.Utilities
+###Void SetEmailDeliveryVariables(System.Collections.Generic.List`1[ApplicationPlatform.Utilities.NodeModels.EmailDelivery])
+###   在 ApplicationPlatform.Utilities.XmlHelp.SetEmailDeliveryVariables(List`1 Variables) 位置 d:\项目方案\ApplicationPlatform\ApplicationPlatform.Utilities\XmlHelp.cs:行号 133
+   在 ApplicationPlatform.Site.Controllers.ApplicationInfoController.ImportEmailUserExcel(String FilePath) 位置 d:\项目方案\ApplicationPlatform\ApplicationPlatform.Site\ApplicationPlatform.Site\Controllers\ApplicationInfoController.cs:行号 2799

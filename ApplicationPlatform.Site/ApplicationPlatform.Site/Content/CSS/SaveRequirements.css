@@ -1,0 +1,209 @@
+﻿@charset "utf-8";
+
+
+@media screen and (max-width:850px){
+     #saveTabBtnInput {
+        margin-left:480px;
+        margin-right:10px;
+        border:0px;
+        border-radius:5px;
+        font-size:15px;
+        width:300px;
+        height:26px;
+    }
+    #saveTabBtnSub {
+        width:100px;
+        background-color:#428BCA;
+    }
+    #saveTabBtnAdd {
+        width:100px;
+        background-color:#5CB85C;
+    }
+    #saveTabBtnEdit {
+        width:100px;
+        background-color:#6A5ACD;
+    }
+    #saveTabBtnDelete {
+        width:100px;
+        background-color:#D9534F;
+    }
+    #saveTabBtnSear {
+        width:100px;
+        background-color:#D9534F;
+    }
+    #saveTabBtnReset {
+        width:100px;
+        background-color:#D9534F;
+    }
+    .saveTabBtnClass {
+        height:30px;
+        border:0px;
+        border-radius:5px;
+        color:#fff;
+        font-size:15px;
+        font-weight:600;
+    }
+   
+    #saveTabBtnSear{
+        width:100px;
+        height:30px;
+        border:0px solid #0092A6;
+        border-radius:5px;
+        color:#fff;
+        font-size:15px;
+        background-color:#0092A6;
+        font-weight:600;
+    }
+
+    #saveTabBtnReset{
+        width:100px;
+        height:30px;
+        border:0px solid #0092A6;
+        border-radius:5px;
+        color:#fff;
+        font-size:15px;
+        background-color:#636363;
+        font-weight:600;
+    }
+
+    #tableSToolId {
+        margin-left:100px;
+        padding-top:7px;
+    }
+
+    #proFrameIdS {
+        width: 800%;
+        height: 200%;
+        margin-top: 0px;
+        background-image: url("../../Images/backgroundPic.jpg");
+        background-color: #E4E4E4;
+        background-repeat: repeat;
+    }
+    #tableTitleS {
+        font-size:45px;
+        font-weight:bolder;
+        color:#0092A6;
+        margin-left:580px;
+        margin-bottom:15px;
+        padding-top:5px;
+        }
+
+    
+    #tableDataDivS {
+        height:420px;
+        width:1640px;
+        margin-top:5px;
+        margin-left:15px;
+        background-color:#fff;
+        border-radius:10px;
+        clear:both;
+    }
+
+   
+    
+}
+
+@media screen and (min-width:851px){
+    #saveTabBtnInput {
+        margin-left:480px;
+        margin-right:10px;
+        border:0px;
+        border-radius:5px;
+        font-size:15px;
+        width:300px;
+        height:26px;
+    }
+    #saveTabBtnSub {
+        width:100px;
+        background-color:#428BCA;
+    }
+    #saveTabBtnAdd {
+        width:100px;
+        background-color:#5CB85C;
+    }
+    #saveTabBtnEdit {
+        width:100px;
+        background-color:#6A5ACD;
+    }
+    #saveTabBtnDelete {
+        width:100px;
+        background-color:#D9534F;
+    }
+    #saveTabBtnSear {
+        width:100px;
+        background-color:#D9534F;
+    }
+    #saveTabBtnReset {
+        width:100px;
+        background-color:#D9534F;
+    }
+    .saveTabBtnClass {
+        height:30px;
+        border:0px;
+        border-radius:5px;
+        color:#fff;
+        font-size:15px;
+        font-weight:600;
+    }
+   
+    #saveTabBtnSear{
+        width:100px;
+        height:30px;
+        border:0px solid #0092A6;
+        border-radius:5px;
+        color:#fff;
+        font-size:15px;
+        background-color:#0092A6;
+        font-weight:600;
+    }
+
+    #saveTabBtnReset{
+        width:100px;
+        height:30px;
+        border:0px solid #0092A6;
+        border-radius:5px;
+        color:#fff;
+        font-size:15px;
+        background-color:#636363;
+        font-weight:600;
+    }
+
+    #tableSToolId {
+        margin-left:100px;
+        padding-top:7px;
+    }
+
+    #proFrameIdS {
+        width: 100%;
+        height: 100%;
+        margin-top: 0px;
+        background-image: url("../../Images/backgroundPic.jpg");
+        background-color: #E4E4E4;
+        background-repeat: repeat;
+    }
+    #tableTitleS {
+        font-size:45px;
+        font-weight:bolder;
+        color:#0092A6;
+        margin-left:580px;
+        margin-bottom:15px;
+        padding-top:5px;
+        }
+
+    
+    #tableDataDivS {
+        height:420px;
+        width:1640px;
+        margin-top:5px;
+        margin-left:15px;
+        background-color:#fff;
+        border-radius:10px;
+        clear:both;
+    }
+
+
+   
+}
+
+
+  

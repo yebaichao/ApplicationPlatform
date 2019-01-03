@@ -1,0 +1,657 @@
+﻿@{
+    Layout = null;
+}
+<script src="~/Scripts/jquery.form.js"></script>
+<script src="~/Content/echarts.common.min.js"></script>
+<div id="frameARS" >
+    
+    <div id="titleARS">
+        <button id="changeViewBtnARS1" onclick="changeViewToSummary()">Summary</button>
+        <button id="changeViewBtnARS2" onclick="changeViewToDetail()">Detail</button>
+
+        View All Requirements
+    </div>
+</div>	
+<hr class="hrDivClass" style="color:#0092A6;border:0.5px solid #0092A6;margin-left:3%;margin-right:3%;" />
+<div id="tableAToolIdS">
+
+    <span id="ARSToolIdTem" class="tableAToolTitleClassS" style="">
+        Time Interval:
+    </span>
+    <select id="timeIntervalIdAS" style="height:26px;margin-left:3px;" onchange="timeIntervaFunAS()">
+        <option>/</option>
+        <option>1 Month</option>
+        <option>3 Months</option>
+        <option>6 Months</option>
+        <option>1 Year</option>
+    </select>
+    <span style="padding-left:30px;" class="tableAToolTitleClassS">From:</span>
+    <input id="dateboxStartIdAS" style="width:100px;height:20px;" /><button class="clearDateboxClass" onclick="clearDateboxFun1()" >Clear</button>
+    <span class="tableAToolTitleClassS">To:</span>
+    <input id="dateboxEndIdAS" style="width:100px;height:20px;"/><button class="clearDateboxClass" onclick="clearDateboxFun2()" >Clear</button>
+    <br />
+    <br />
+        <!--级联搜索-->
+    <span style="" class="tableAToolTitleClassS">Product:</span>
+    <select id="productSelARS" class="easyui-combobox" style="width:120px;height:35px;" onchange="changeProductARS(this.value)">
+        <option>/</option>
+    </select>
+
+    <span style="padding-left:30px;" class="tableAToolTitleClassS">Project:</span>
+    <select id="projectSelARS" class="easyui-combobox" style="width:120px;height:35px;" onchange="changeProjectARS(this.value)">
+        <option>/</option>
+    </select>
+
+    <span style="padding-left:30px;" class="tableAToolTitleClassS">Type:</span>
+    <select id="typeSelARS" class="easyui-combobox" style="width:120px;height:35px;" onchange="changeTypeARS(this.value)">
+        <option>/</option>
+    </select>
+
+    <span style="padding-left:30px;" class="tableAToolTitleClassS">Item:</span>
+    <select id="itemSelARS" class="easyui-combobox" style="width:120px;height:35px;" onchange="changeItemARS(this.value)">
+        <option>/</option>
+    </select>
+
+    <span style="padding-left:30px;" class="tableAToolTitleClassS">Subitem:</span>
+    <select id="subitemSelARS" class="easyui-combobox" style="width:120px;height:35px;" onchange="changeSubitemARS(this.value)">
+        <option>/</option>
+    </select>
+
+    <input type="button" value="Search" id="allReTabSearBtnS" onclick="searchBtnAFunS()" />
+    <input type="button" value="Refresh" id="allReTabResBtnS" onclick="resetBtnAFunS()" />
+    
+</div>
+<hr  class="hrDivClass" style="color:#0092A6;border:0.5px solid #0092A6;margin-left:3%;margin-right:3%;"/>
+<div id="containerDiv" style="height: 78%;width:90%;margin-left:30px;margin-top:30px;">
+    <div id="container1" style="height: 85%;width:49%;margin-left:30px;"></div>
+    <div id="container2" style="height: 85%;width:48%;"></div>	
+
+</div>
+
+<link href="~/Content/CSS/AllRequirementsSummary.css" rel="stylesheet" />
+
+<script type="text/javascript">
+
+    //级联搜索
+    function searchBtnAFunS() {
+        //获取每个控件的值；
+        var productVal = $("#productSelARS").combobox("getText");
+        var projectVal = $("#projectSelARS").combobox("getText");
+        var typeVal = $("#typeSelARS").combobox("getText");
+        var itemVal = $("#itemSelARS").combobox("getText");
+        var subitemVal = $("#subitemSelARS").combobox("getText");
+        //获取时间的值；
+        var startVal = document.getElementById("dateboxStartIdAS").value;
+        var endVal = document.getElementById("dateboxEndIdAS").value;
+        var timeInVal = document.getElementById("timeIntervalIdAS").value;
+
+        var searchValARS = {};
+        searchValARS.project = projectVal;
+        searchValARS.item = itemVal;
+        searchValARS.type = typeVal;
+        searchValARS.product = productVal;
+        searchValARS.subitem = subitemVal;
+        searchValARS.startVal = startVal;
+        searchValARS.endVal = endVal;
+        searchValARS.timeInVal = timeInVal;
+
+        searchValARS = JSON.stringify(searchValARS);
+
+
+        $.get("@Url.Action("CreateSector", "ApplicationInfo")", { searchValARS: searchValARS }).done(function (data) {
+            var jsondata = JSON.parse(data);
+            // 填入数据
+            myChart1.setOption({
+                series: [{
+                    // 根据名字对应到相应的系列
+                    name: 'Requirement Count',
+                    data: jsondata
+                }]
+            });
+        });
+
+
+        $.get("@Url.Action("CreateBar", "ApplicationInfo")", { searchValARS: searchValARS }).done(function (data) {
+            var jsondata = JSON.parse(data);
+            // 填入数据
+            myChart2.setOption({
+                xAxis: [
+                {
+                    type: 'category',
+                    data: jsondata.names
+                }
+                ],
+                series: [{
+                    // 根据名字对应到相应的系列
+                    name: 'Quantity',
+                    type: 'bar',
+                    data: jsondata.values
+                }]
+            });
+        });
+
+    }
+
+
+
+    //级联
+    //绑定Product、Project、Type、Item、SubItem项目
+    function BindProduct() {
+        var product = $('#productSelARS').combobox({
+            valueField: 'Id', //值字段
+            textField: 'Text', //显示的字段
+            url: '@Url.Action("GetAllCList", "ApplicationInfo")',
+            editable: true,
+            onChange: function (newValue, oldValue) {
+                if (newValue == '/' || newValue == 'All') {
+                    project.combobox("clear").combobox('loadData', {});
+                    type.combobox("clear").combobox('loadData', {});
+                    item.combobox("clear").combobox('loadData', {});
+                    subitem.combobox("clear").combobox('loadData', {});
+                    return;
+                }
+                $.get('@Url.Action("GetCListItemsById", "ApplicationInfo")', { Id: newValue }, function (data) {
+                    project.combobox("clear").combobox('loadData', data);
+                    type.combobox("clear").combobox('loadData', {});
+                    item.combobox("clear").combobox('loadData', {});
+                    subitem.combobox("clear").combobox('loadData', {});
+                }, 'json');
+
+            }
+        });
+
+        var project = $('#projectSelARS').combobox({
+            valueField: 'Id', //值字段
+            textField: 'Text', //显示的字段
+            editable: true,
+            onChange: function (newValue, oldValue) {
+                if (newValue == '/' || newValue == 'All') {
+                    type.combobox("clear").combobox('loadData', {});
+                    item.combobox("clear").combobox('loadData', {});
+                    subitem.combobox("clear").combobox('loadData', {});
+                    return;
+                };
+                $.get('@Url.Action("GetCListItemsById", "ApplicationInfo")', { Id: newValue }, function (data) {
+                    type.combobox("clear").combobox('loadData', data);
+                    item.combobox("clear").combobox('loadData', {});
+                    subitem.combobox("clear").combobox('loadData', {});
+                }, 'json');
+            }
+        });
+
+        var type = $('#typeSelARS').combobox({
+            valueField: 'Id', //值字段
+            textField: 'Text', //显示的字段
+            editable: true,
+            onChange: function (newValue, oldValue) {
+                if (newValue == '/' || newValue == 'All') {
+                    item.combobox("clear").combobox('loadData', {});
+                    subitem.combobox("clear").combobox('loadData', {});
+                    return;
+                }
+                $.get('@Url.Action("GetCListItemsById", "ApplicationInfo")', { Id: newValue }, function (data) {
+                    item.combobox("clear").combobox('loadData', data);
+                    subitem.combobox("clear").combobox('loadData', {});
+                }, 'json');
+            }
+        });
+        var item = $('#itemSelARS').combobox({
+            valueField: 'Id', //值字段
+            textField: 'Text', //显示的字段
+            editable: true,
+            onChange: function (newValue, oldValue) {
+                if (newValue == '/' || newValue == 'All') {
+                    subitem.combobox("clear").combobox('loadData', {});
+                    return;
+                }
+                $.get('@Url.Action("GetCListItemsById", "ApplicationInfo")', { Id: newValue }, function (data) {
+                    subitem.combobox("clear").combobox('loadData', data);
+                }, 'json');
+            }
+        });
+        var subitem = $('#subitemSelARS').combobox({
+            valueField: 'Id', //值字段
+            textField: 'Text', //显示的字段
+            editable: true,
+        });
+    }
+
+    $(function () {
+
+        BindProduct();
+    });
+
+    //手机样式；
+    var deviceWidthValARS = $(document).width();
+
+    if (deviceWidthValARS < 850) {
+        $("#container1").css("width", "650px");
+        $("#container1").css("height", "420px");
+        $("#container2").css("width", "650px");
+        $("#container2").css("height", "400px");
+    }
+
+
+    function clearDateboxFun1() {
+        document.getElementById("dateboxStartIdAS").value = "";
+    }
+    function clearDateboxFun2() {
+        document.getElementById("dateboxEndIdAS").value = "";
+    }
+
+    //初始化日期控件
+    document.getElementById("dateboxStartIdAS").flatpickr({
+        //设置日期的格式；
+        dateFormat: "Y/m/d",
+        onClose: function (dateObject, dateString) {
+            submitARSDateFun();
+        },
+        onChange: function (dateObject, dateString) {
+            //获取时间日期输入框的值
+            var startDateA = document.getElementById("dateboxStartIdAS").value;
+            var endDateA = document.getElementById("dateboxEndIdAS").value;
+            if (endDateA != "") {
+                var begin = new Date($("#dateboxStartIdAS").val().replace(/-/g, "/"));
+                var end = new Date($("#dateboxEndIdAS").val().replace(/-/g, "/"));
+                //js判断日期
+                if(begin-end>0){
+                    alert("Please enter the correct start date!");
+                    clearDateboxFun1();
+                }
+
+            }
+        }
+
+    });
+
+    document.getElementById("dateboxEndIdAS").flatpickr({
+        //设置日期的格式；
+        dateFormat: "Y/m/d",
+        onClose: function (dateObject, dateString) {
+            submitARSDateFun();
+        },
+        onChange: function (dateObject, dateString) {
+            //获取时间日期输入框的值
+            var startDateA = document.getElementById("dateboxStartIdAS").value;
+            var endDateA = document.getElementById("dateboxEndIdAS").value;
+            if (startDateA != "") {
+                var begin = new Date($("#dateboxStartIdAS").val().replace(/-/g, "/"));
+                var end = new Date($("#dateboxEndIdAS").val().replace(/-/g, "/"));
+                //js判断日期
+                if (begin - end > 0) {
+                    alert("Please enter the correct end date!");
+                    clearDateboxFun2();
+                }
+
+            }
+        }
+    });
+
+    //提交的方法；
+    function submitARSDateFun() {
+
+        //获取时间日期输入框的值
+        var startDateA = document.getElementById("dateboxStartIdAS").value;
+        var endDateA = document.getElementById("dateboxEndIdAS").value;
+
+        //重置时间段下拉框
+        document.getElementById("timeIntervalIdAS").selectedIndex = 0;
+        //如果两个值都不为空，则进行提交
+        @*
+        if (startDateA != "" && endDateA != "") {
+            $.get("@Url.Action("CreateSector", "ApplicationInfo")", { startDateARS: startDateA, endDateARS: endDateA }).done(function (data) {
+                var jsondata = JSON.parse(data);
+                // 填入数据
+                myChart1.setOption({
+                    series: [{
+                        // 根据名字对应到相应的系列
+                        name: 'Requirement Count',
+                        data: jsondata
+                    }]
+                });
+            });
+
+            $.get("@Url.Action("CreateBar", "ApplicationInfo")", { startDateARS: startDateA, endDateARS: endDateA }).done(function (data) {
+                var jsondata = JSON.parse(data);
+                // 填入数据
+                myChart2.setOption({
+                    xAxis: [
+                    {
+                        type: 'category',
+                        data: jsondata.names
+                    }
+                    ],
+                    series: [{
+                        // 根据名字对应到相应的系列
+                        name: 'Quantity',
+                        type:'bar',
+                        data: jsondata.values
+                    }]
+                });
+            });
+
+        }
+        *@
+
+    }
+
+
+
+
+    //时间段的 onchange事件；
+    function timeIntervaFunAS() {
+        //置空时间输入框
+        document.getElementById("dateboxStartIdAS").value = "";
+        document.getElementById("dateboxEndIdAS").value = "";
+        @*
+        var timeInVal = document.getElementById("timeIntervalIdAS").value;
+        //提交查询
+        $.get("@Url.Action("CreateSector", "ApplicationInfo")", { timeValARS: timeInVal }).done(function (data) {
+            var jsondata = JSON.parse(data);
+            // 填入数据
+            myChart1.setOption({
+                series: [{
+                    // 根据名字对应到相应的系列
+                    name: 'Requirement Count',
+                    data: jsondata
+                }]
+            });
+        });
+
+
+        $.get("@Url.Action("CreateBar", "ApplicationInfo")", { timeValARS: timeInVal }).done(function (data) {
+            var jsondata = JSON.parse(data);
+            // 填入数据
+            myChart2.setOption({
+                xAxis: [
+                {
+                    type: 'category',
+                    data: jsondata.names
+                }
+                ],
+                series: [{
+                    // 根据名字对应到相应的系列
+                    name: 'Quantity',
+                    type: 'bar',
+                    data: jsondata.values
+                }]
+            });
+        });
+        *@
+    }
+
+    //Reset按钮
+    function resetBtnAFunS() {
+
+        document.getElementById("dateboxStartIdAS").value = "";
+        document.getElementById("dateboxEndIdAS").value = "";
+        document.getElementById("timeIntervalIdAS").selectedIndex = 0;
+        var tab = $('#midShowId').tabs('getSelected');  // 获取选择的面板
+        $('#midShowId').tabs('update', {
+            tab: tab,
+            options: {
+                title: "View All Requirements",
+            }
+        });
+
+    }
+
+
+
+
+
+
+
+        //切换Summary视图
+        function changeViewToSummary() {
+            var tab = $('#midShowId').tabs('getSelected');  // 获取选择的面板
+            $('#midShowId').tabs('update', {
+                tab: tab,
+                options: {
+                    href: '@Url.Action("AllRequirementsSummary","ApplicationInfo")',
+                title: "View All Requirements",
+            }
+        });
+    }
+
+    //切换Detail视图
+    function changeViewToDetail() {
+        var tab = $('#midShowId').tabs('getSelected');  // 获取选择的面板
+        $('#midShowId').tabs('update', {
+            tab: tab,
+            options: {
+                href: '@Url.Action("AllRequirements","ApplicationInfo")',
+                title: "View All Requirements",
+            }
+        });
+    }
+
+    //扇形图
+
+
+    var dom1 = document.getElementById("container1");
+    var myChart1 = echarts.init(dom1);
+    var app1 = {};
+    option1 = null;
+
+
+    $.get("@Url.Action("CreateSector","ApplicationInfo")", function (data) {
+        var jsondata = JSON.parse(data);
+
+        option1 = {
+            title: {
+                text: 'Progress Overall View',
+                subtext: 'Classified according to the approval process',
+                x: 'center'
+            },
+            tooltip: {
+                trigger: 'item',
+                formatter: "{a} <br/>{b} : {c} ({d}%)"
+            },
+            legend: {
+                orient: 'vertical',
+                left: 'left',
+                data: ['Technical Rejection', 'Commercial Rejection', 'Technical Approval', 'Commercial Approval', 'Hexagon Technical Planning', 'Completion']
+            },
+            series: [
+                {
+                    name: 'Requirement Count',
+                    type: 'pie',
+                    //圆的大小
+                    radius: '70%',
+                    //圆的位置
+                    center: ['53%', '60%'],
+
+                    data: jsondata,
+                    itemStyle: {
+                        emphasis: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        },
+                        //显示标签上的数字
+                        normal: {
+                            label: {
+                                show: true,
+                                formatter: '{b} : {c} \n ({d}%)'
+                            },
+                            labelLine: {
+                                show: true
+                            }
+                        },
+                    }
+                }
+            ],
+            //更改扇形图的颜色
+            color: ['#ff6600', '#cc0000', '#61A0A8', '#1C86EE', '#9D96F5', '#7A7A7A']
+        };
+
+        if (option1 && typeof option1 === "object") {
+            myChart1.setOption(option1, true);
+        };
+
+
+        //点击事件
+        myChart1.on('click', function (params) {
+            console.log(params.name);
+            //获取每个控件的值；
+            var productVal = $("#productSelARS").combobox("getText");
+            var projectVal = $("#projectSelARS").combobox("getText");
+            var typeVal = $("#typeSelARS").combobox("getText");
+            var itemVal = $("#itemSelARS").combobox("getText");
+            var subitemVal = $("#subitemSelARS").combobox("getText");
+            var category = productVal + ',' + projectVal + ',' + typeVal + ',' + itemVal + ',' + subitemVal;
+            var startDateARS = document.getElementById("dateboxStartIdAS").value;
+            var endDateARS = document.getElementById("dateboxEndIdAS").value;
+            var timeInValARS = document.getElementById("timeIntervalIdAS").value;
+
+            var tab = $('#midShowId').tabs('getSelected');  // 获取选择的面板
+            $('#midShowId').tabs('update', {
+                tab: tab,
+                options: {
+                    href: '@Url.Content("~/ApplicationInfo/AllRequirements")' + '?timeInValARS=' + timeInValARS + '&startDateARS=' + startDateARS + '&endDateARS=' + endDateARS + '&Progress=' + params.name + '&Category=' + category,
+                    title: "View All Requirements",
+                }
+            });
+        });
+
+    })
+
+    //柱状图
+    var dom2 = document.getElementById("container2");
+    var myChart2 = echarts.init(dom2);
+    var app2 = {};
+    option2 = null;
+    myChart2.showLoading();
+    $.get('@Url.Content("~/ApplicationInfo/CreateBar")', function (obama_budget_2012) {
+        console.log(obama_budget_2012);
+        myChart2.hideLoading();
+        var obama_budget_2012 = JSON.parse(obama_budget_2012);
+        option2 = {
+            color: ['#7289AB'],
+            title: {
+                text: 'Products Overall View ',
+                subtext: 'Classified according to the Product information',
+                x: 'center'
+            },
+            //提示框组件
+            tooltip: {
+                //触发类型
+                trigger: 'axis',
+                //坐标轴指示器配置项
+                axisPointer: {
+                    type: 'shadow',
+                    label: {
+                        show: true
+                    }
+                }
+            },
+            //下方工具栏
+            toolbox: {
+                show: true,
+                feature: {
+                    mark: { show: true },
+                    dataView: { show: true, readOnly: false },
+                    magicType: { show: true, type: ['line', 'bar'] },
+                    restore: { show: true },
+                    //saveAsImage: { show: true }
+                }
+            },
+            //是否可以拖拽
+            calculable: true,
+            //图例组件
+
+            grid: {
+                top: '12%',
+                left: '5%',
+                right: '10%',
+                //是否包含坐标轴的刻度标签；
+                containLabel: true
+            },
+            xAxis: [
+                {
+                    type: 'category',
+                    data: obama_budget_2012.names
+                }
+            ],
+            yAxis: [
+                {
+                    type: 'value',
+                    name: 'Quantity',
+                    //最小刻度为1
+                    minInterval: 1,
+                    axisLabel: {
+                        formatter: function (a) {
+                            a = +a;
+                            return isFinite(a)
+                                ? echarts.format.addCommas(+a / 1)
+                                : '';
+                        }
+                    }
+                }
+            ],
+            dataZoom: [
+
+                {
+                    type: 'slider',
+                    yAxisIndex: [0],
+                    start: 0,
+                    end: 100
+                },
+                {
+                    type: 'slider',
+                    xAxisIndex: [0],
+                    start: 0,
+                    end: 100
+                },
+                {
+                    type: 'inside',
+                    show: true,
+                    yAxisIndex: [0],
+                    filterMode: 'none',
+                    width: 30,
+                    height: '80%',
+                    showDataShadow: false,
+                    left: '93%'
+                }
+            ],
+            series: [
+                {
+                    name: 'Quantity',
+                    type: 'bar',
+                    data: obama_budget_2012.values
+                },
+                //{
+                //    name: 'Budget 2012',
+                //    type: 'bar',
+                //    data: obama_budget_2012.values
+                //}
+            ]
+        };
+
+        myChart2.setOption(option2);
+
+
+        //点击事件
+
+        myChart2.on('click', function (params) {
+            debugger;
+            var startDateARS = document.getElementById("dateboxStartIdAS").value;
+            var endDateARS = document.getElementById("dateboxEndIdAS").value;
+            var timeInValARS = document.getElementById("timeIntervalIdAS").value;
+            var tab = $('#midShowId').tabs('getSelected');  // 获取选择的面板
+            $('#midShowId').tabs('update', {
+                tab: tab,
+                options: {
+                    href: '@Url.Content("~/ApplicationInfo/AllRequirements")' + '?timeInValARS=' + timeInValARS + '&startDateARS=' + startDateARS + '&endDateARS=' + endDateARS + '&Progress=' + params.name,
+                    title: "View All Requirements",
+                }
+            });
+        });
+
+    });;
+    if (option2 && typeof option2 === "object") {
+        myChart2.setOption(option2, true);
+    }
+
+</script>

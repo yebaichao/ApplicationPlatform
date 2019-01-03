@@ -1,0 +1,164 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<email>
+  <!--发送Email信息-->
+  <register>
+    Dear Users:
+
+    The administrator has set up your account in Customer Requirement Management System. You can use 'UserName' to login and your password is 'Password'. You can access to this portal at http://10.136.6.169/CRMS/ after connecting VPN.
+    Thank you for using CRMS.
+
+    This Email is sent by system automatically and you don’t need to reply. With any question please contact your direct interface.
+
+
+
+  </register>
+  <resetpassword>
+    Dear Users:
+
+    Your password has been reset and your new password is 'Password'.
+
+    This Email is sent by system automatically and you don’t need to reply. With any question please contact your direct interface.
+
+
+
+  </resetpassword>
+  <technicalApproval>
+    Dear Users:
+    
+    Your requirement has been approved by 'UserName'.
+    Requirement: 'RequirementReplace'.
+    Stage: 'StageReplace'.
+    Quantity: 'QuantityReplace'.
+    Site For Use: 'SiteReplace'.
+    Comment:'comment'.
+
+    This Email is sent by system automatically and you don’t need to reply. With any question please contact your direct interface.
+
+
+
+  </technicalApproval>
+  <commercialApproval>
+    Dear Users:
+
+    Your requirement has been approved by 'UserName'.
+    Requirement: 'RequirementReplace'.
+    Stage: 'StageReplace'.
+    Quantity: 'QuantityReplace'.
+    Site For Use: 'SiteReplace'.
+    Comment:'comment'.
+
+    This Email is sent by system automatically and you don’t need to reply. With any question please contact your direct interface.
+
+
+
+  </commercialApproval>
+  <technicalRejection>
+    Dear Users:
+
+    Your requirement has been rejected by 'UserName'.
+    Requirement: 'RequirementReplace'.
+    Stage: 'StageReplace'.
+    Quantity: 'QuantityReplace'.
+    Site For Use: 'SiteReplace'.
+    Comment:'comment'.
+
+    This Email is sent by system automatically and you don’t need to reply. With any question please contact your direct interface.
+
+
+
+  </technicalRejection>
+  <commercialRejection>
+    Dear Users:
+
+    Your requirement has been rejected by 'UserName'.
+    Requirement: 'RequirementReplace'.
+    Stage: 'StageReplace'.
+    Quantity: 'QuantityReplace'.
+    Site For Use: 'SiteReplace'.
+    Comment:'comment'.
+
+    This Email is sent by system automatically and you don’t need to reply. With any question please contact your direct interface.
+
+
+
+  </commercialRejection>
+  <arrange>
+    Dear Users:
+
+    Your requirement has been arranged by 'UserName'.
+    Requirement: 'RequirementReplace'.
+    Stage: 'StageReplace'.
+    Quantity: 'QuantityReplace'.
+    Site For Use: 'SiteReplace'.
+    Comment:'comment'.
+
+    This Email is sent by system automatically and you don’t need to reply. With any question please contact your direct interface.
+
+
+
+  </arrange>
+  <technical>
+    Dear Users:
+
+    'UserName' has created a new requirement needs your technical approval.
+    Requirement: 'RequirementReplace'.
+    Stage: 'StageReplace'.
+    Quantity: 'QuantityReplace'.
+    Site For Use: 'SiteReplace'.
+    Comment:'comment'.
+
+    This Email is sent by system automatically and you don’t need to reply. With any question please contact your direct interface.
+
+
+
+  </technical>
+  <commercial>
+    Dear Users:
+
+    'UserName' has created a new requirement needs your commercial approval.
+    Requirement: 'RequirementReplace'.
+    Stage: 'StageReplace'.
+    Quantity: 'QuantityReplace'.
+    Site For Use: 'SiteReplace'.
+    Comment:'comment'.
+
+    This Email is sent by system automatically and you don’t need to reply. With any question please contact your direct interface.
+
+
+
+  </commercial>
+  <arranger>
+    Dear Users:
+
+    'UserName' has created a new requirement needs your arrangement.
+    Requirement: 'RequirementReplace'.
+    Stage: 'StageReplace'.
+    Quantity: 'QuantityReplace'.
+    Site For Use: 'SiteReplace'.
+    Comment:'comment'.
+
+    This Email is sent by system automatically and you don’t need to reply. With any question please contact your direct interface.
+
+
+
+  </arranger>
+  <attachment>
+    Dear Users:
+
+    Please check the attachment about all requirements.
+
+    This Email is sent by system automatically and you don’t need to reply. With any question please contact your direct interface.
+
+
+
+  </attachment>
+  <signature>
+    海克斯康测量技术（青岛）有限公司 / Hexagon Metrology (Qingdao) Co., Ltd&lt;br/&gt;
+    中国青岛市株洲路188号 (266101)  / 188 Zhuzhou Road, Qingdao China (266101)&lt;br/&gt;
+    hexagonmi.com.cn&lt;br/&gt;
+    **************************************&lt;br/&gt;
+    本邮件中的内容和信息为保密信息，仅供邮件内所注明的收件个人或团体使用。如您并非本邮件所注明的收件方，请将您收到的本邮件及其所有备份（包括所有附件）删除及销毁，并尽快通知发件方。在此特别提请您不得阅览、传播、复制或印刷本邮件所载之任何内容，并不得依据本邮件内的信息或内容而采取任何行动。通过网络传播的邮件无法完全保证其安全性。海克斯康公司在发送本邮件之前已经对其附件进行过病毒检查，但您在决定打开附件之前应该再次进行病毒检查。海克斯康公司对邮件发出后其内容在传播过程中可能发生的变化不承担任何责任。&lt;br/&gt;
+    The information contained in this email is strictly confidential and is intended for the addressee only. If you are not the intended recipient you must not copy, distribute or take any action in reliance upon it. If you have received this email in error, please delete it and notify us immediately. Internet e-mails are not necessarily secure. Hexagon has checked the attachments for viruses before sending, but you should virus-check them before opening. Hexagon does not accept responsibility for changes to any e-mail which occur after the e-mail has been sent&lt;br/&gt;
+    **************************************&lt;br/&gt;
+  </signature>
+</email>

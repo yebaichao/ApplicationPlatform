@@ -1,0 +1,435 @@
+﻿@charset "utf-8";
+
+
+@media screen and (max-width:850px){
+    .processApproveBtn,.processArrangeBtn {
+        border:0px;
+        border-radius:5px;
+        color:#fff;
+        font-size:12px;
+        font-weight:600;
+        height:26px;
+
+    }
+    .processRejectBtn {
+        border:0px;
+        border-radius:5px;
+        color:#fff;
+        font-size:12px;
+        font-weight:600;
+        height:26px;
+    }
+     #processTabBtnTec {
+        width:160px;
+        background-color:#428BCA;
+    }
+    #processTabBtnCom {
+        width:160px;
+        background-color:#428BCA;
+    }
+    #processTabBtnRj {
+        width:100px;
+        background-color:#D9534F;
+    }
+    #processTabBtnE {
+        width:100px;
+        background-color:#5CB85C;
+    }
+    #processTabBtnD {
+        width:100px;
+        background-color:#9B30FF;
+    }
+    #processTabBtnRs {
+        width:100px;
+        background-color:#636363;
+        margin-left:15px;
+    }
+    #processTabBtnS {
+        width:100px;
+        background-color:#0092A6;
+    }
+    .processTabBtnClass {
+        height:30px;
+        border:0px;
+        border-radius:5px;
+        color:#fff;
+        font-size:15px;
+        font-weight:600;
+    }
+
+    #tableToolId {
+        margin-left:80px;
+        padding-top:7px;
+    }
+    .tableToolDiv {
+        float:left;
+        height:30px;
+        margin-left:15px;
+    }
+    .tableSearDiv {
+        position:relative;
+        left:200px;
+    }
+    #tableSearchInput {
+        margin-left:200px;
+        border:0px;
+        border-radius:5px;
+        font-size:15px;
+        width:300px;
+        height:26px;
+    }
+    .processClass {
+        width:130px;
+        height:110px;
+        margin-top:15px;
+        border:3px solid #76ABCD;
+        font-size:23px;
+        font-weight:500;
+        border-radius:5px;
+        text-align:center;
+        padding-top:10px;
+    }
+    .processRejectClass {
+        text-align:center;
+        width:130px;
+        height:110px;
+        margin-top:15px;
+        font-size:23px;
+        border-radius:5px;
+        border:3px solid #76ABCD;
+        background-color:#76ABCD;
+        color:#FF3030;
+        font-weight:600;
+        padding-top:10px;
+    
+    }
+
+    .processChangeClass {
+        text-align:center;
+        width:130px;
+        height:110px;
+        margin-top:15px;
+        font-size:22px;
+        border-radius:5px;
+        border:3px solid #76ABCD;
+        background-color:#76ABCD;
+        color:#fff;
+        font-weight:600;
+        padding-top:10px;
+        line-height:40px;
+    
+    }
+    .processChangeClassHex {
+        text-align:center;
+        width:130px;
+        height:120px;
+        margin-top:15px;
+        font-size:22px;
+        border-radius:5px;
+        border:3px solid #76ABCD;
+        background-color:#76ABCD;
+        color:#fff;
+        font-weight:600;
+        padding-top:0px;
+        line-height:38px;
+    
+    }
+    #processId2, #processId3 {
+        line-height:40px;
+    }
+    #processId5 {
+        
+        line-height:110px;
+    }
+    .processChangeClass1 {
+        text-align: center;
+        width: 130px;
+        height: 80px;
+        margin-top: 15px;
+        font-size: 22px;
+        border-radius: 5px;
+        border: 3px solid #76ABCD;
+        background-color: #76ABCD;
+        color: #fff;
+        font-weight: 600;
+        padding-top: 40px;
+    }
+    
+    .processClassSub {
+        width: 130px;
+        height: 80px;
+        margin-top: 15px;
+        border: 3px solid #76ABCD;
+        font-size: 23px;
+        font-weight: 500;
+        border-radius: 5px;
+        text-align: center;
+        padding-top: 40px;
+    }
+    .processClass, .arrowsClass, .processChangeClass, .processChangeClass1, .processRejectClass, .processChangeClassHex, .processClassSub {
+        float: left;
+        margin-left: 40px;
+    }
+    .arrowsClass {
+        width:100px;
+        height:90px;
+        padding-top:60px;
+    }
+
+
+    #proFrameId {
+        width: 750%;
+        height: 200%;
+        margin-top: 0px;
+        background-image: url("../../Images/backgroundPic.jpg");
+        background-color: #E4E4E4;
+        background-repeat: repeat;
+    }
+    #tableTitleP {
+        font-size:45px;
+        font-weight:bolder;
+        color:#2887C7;
+        margin-left:400px;
+        margin-bottom:15px;
+        padding-top:5px;
+        }
+
+    #picsDiv {
+        height:150px;
+        width:1500px;
+        margin-left:80px;
+        background-color:#fff;
+        border-radius:15px;
+    }
+    #tableDataDiv {
+        height:420px;
+        width:1640px;
+        margin-top:5px;
+        margin-left:10px;
+        background-color:#fff;
+        border-radius:15px;
+        clear:both;
+    }
+
+    
+    
+   
+    
+}
+
+@media screen and (min-width:851px){
+    .processApproveBtn,.processArrangeBtn {
+        border:0px;
+        border-radius:5px;
+        color:#fff;
+        font-size:12px;
+        font-weight:600;
+        height:26px;
+    }
+    .processRejectBtn {
+        border:0px;
+        border-radius:5px;
+        color:#fff;
+        font-size:12px;
+        font-weight:600;
+        height:26px;
+    }
+    #processTabBtnTec {
+        width:160px;
+        background-color:#428BCA;
+    }
+    #processTabBtnCom {
+        width:160px;
+        background-color:#428BCA;
+    }
+    #processTabBtnRj {
+        width:100px;
+        background-color:#D9534F;
+    }
+    #processTabBtnE {
+        width:100px;
+        background-color:#5CB85C;
+    }
+    #processTabBtnD {
+        width:100px;
+        background-color:#9B30FF;
+    }
+    #processTabBtnRs {
+        width:100px;
+        background-color:#636363;
+        margin-left:15px;
+    }
+    #processTabBtnS {
+        width:100px;
+        background-color:#0092A6;
+    }
+    .processTabBtnClass {
+        height:30px;
+        border:0px;
+        border-radius:5px;
+        color:#fff;
+        font-size:15px;
+        font-weight:600;
+    }
+
+    #tableToolId {
+        margin-left:80px;
+        padding-top:7px;
+    }
+    .tableToolDiv {
+        float:left;
+        height:30px;
+        margin-left:15px;
+    }
+    .tableSearDiv {
+        position:relative;
+        left:200px;
+    }
+    #tableSearchInput {
+        margin-left:200px;
+        border:0px;
+        border-radius:5px;
+        font-size:15px;
+        width:300px;
+        height:26px;
+    }
+    .processClass {
+        width:130px;
+        height:110px;
+        margin-top:15px;
+        border:3px solid #76ABCD;
+        font-size:23px;
+        font-weight:500;
+        border-radius:5px;
+        text-align:center;
+        padding-top:10px;
+    }
+    .processRejectClass {
+        text-align:center;
+        width:130px;
+        height:110px;
+        margin-top:15px;
+        font-size:23px;
+        border-radius:5px;
+        border:3px solid #76ABCD;
+        background-color:#76ABCD;
+        color:#FF3030;
+        font-weight:600;
+        padding-top:10px;
+    
+    }
+
+    .processChangeClass {
+        text-align:center;
+        width:130px;
+        height:110px;
+        margin-top:15px;
+        font-size:22px;
+        border-radius:5px;
+        border:3px solid #76ABCD;
+        background-color:#76ABCD;
+        color:#fff;
+        font-weight:600;
+        padding-top:10px;
+        line-height:40px;
+    
+    }
+    .processChangeClassHex {
+        text-align:center;
+        width:130px;
+        height:120px;
+        margin-top:15px;
+        font-size:22px;
+        border-radius:5px;
+        border:3px solid #76ABCD;
+        background-color:#76ABCD;
+        color:#fff;
+        font-weight:600;
+        padding-top:0px;
+        line-height:38px;
+    
+    }
+    #processId2, #processId3 {
+        line-height:40px;
+    }
+    #processId5 {
+        
+        line-height:110px;
+    }
+    .processChangeClass1 {
+        text-align: center;
+        width: 130px;
+        height: 80px;
+        margin-top: 15px;
+        font-size: 22px;
+        border-radius: 5px;
+        border: 3px solid #76ABCD;
+        background-color: #76ABCD;
+        color: #fff;
+        font-weight: 600;
+        padding-top: 40px;
+    }
+    
+    .processClassSub {
+        width: 130px;
+        height: 80px;
+        margin-top: 15px;
+        border: 3px solid #76ABCD;
+        font-size: 23px;
+        font-weight: 500;
+        border-radius: 5px;
+        text-align: center;
+        padding-top: 40px;
+    }
+    .processClass, .arrowsClass, .processChangeClass, .processChangeClass1, .processRejectClass, .processChangeClassHex, .processClassSub {
+        float: left;
+        margin-left: 40px;
+    }
+    .arrowsClass {
+        width:100px;
+        height:90px;
+        padding-top:60px;
+    }
+
+
+    #proFrameId {
+        width: 100%;
+        height: 100%;
+        margin-top: 0px;
+        background-image: url("../../Images/backgroundPic.jpg");
+        background-color: #E4E4E4;
+        background-repeat: repeat;
+    }
+    #tableTitleP {
+        font-size:45px;
+        font-weight:bolder;
+        color:#2887C7;
+        margin-left:400px;
+        margin-bottom:15px;
+        padding-top:5px;
+        }
+
+    #picsDiv {
+        height:150px;
+        width:1500px;
+        margin-left:80px;
+        background-color:#fff;
+        border-radius:15px;
+    }
+    #tableDataDiv {
+        height:420px;
+        width:1640px;
+        margin-top:5px;
+        margin-left:10px;
+        background-color:#fff;
+        border-radius:15px;
+        clear:both;
+    }
+	
+    
+
+   
+}
+
+
+  

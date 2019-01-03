@@ -1,0 +1,86 @@
+﻿@{
+    Layout = null;
+}
+
+ <div id="CAdiv">
+     <div id="CAdiv1">
+        <form action='@Url.Action("RegisterView","Account")' method="post">
+            <div class="RegTitleClass">
+                UserName:
+            </div>
+            <div>
+                <input type="text" id="RegUserNameId" name="RegUserNameId" />
+            </div>
+            <div class="RegTitleClass">
+                Email Address:
+            </div>
+            <div>
+                <input type="text" id="RegEmailId" name="RegEmailId" />
+            </div>
+            <div style="text-align:right; padding-top:30px;padding-right:54px;">
+                <input type="button" style="width:100px;height:30px;background-color:#428BCA;border:0px;border-radius:5px; color:#fff;font-size:15px;font-weight:600;" value="Create" onclick="registerUserFun()" />
+            </div>
+        </form>
+
+     </div>
+      
+ </div>
+
+<style type="text/css">
+    #RegUserNameId , #RegEmailId {
+        border: 1px solid #95B8E7;
+        border-radius: 5px;
+        height: 28px;
+        width: 200px;
+    
+    }
+    
+
+    #CAdiv {
+        width:100%;
+        height:100%;
+        background-image:url("../../Images/backgroundPic.jpg");
+        background-repeat:repeat;
+    
+    }
+
+    #CAdiv1 {
+        margin-left:60px;
+        padding-top:60px;
+        border-radius:10px;
+    }
+    .RegTitleClass {
+        font-size:20px;
+        font-weight:600;
+        font-family:Myriad;
+        color:#808080;
+    }
+</style>
+
+<script type="text/javascript">
+
+    function registerUserFun() {
+		var RegUserNameVal = document.getElementById("RegUserNameId").value;
+		var RegUserEmailVal = document.getElementById("RegEmailId").value;
+	
+        $("#userListTableId").datagrid({
+            queryParams: { UserName: RegUserNameVal, Email: RegUserEmailVal},
+            url: '@Url.Action("RegisterView", "Account")',
+            onLoadSuccess: function () {
+                $("#userListTableId").datagrid('options').url = '@Url.Action("CreateUserListView", "UserInfo")';
+                $("#addUserDivId").dialog('close');
+            }
+        });
+	}
+   
+   
+   
+    $("#RegEmailId").validatebox({
+        required: true,    
+        validType: 'email' 
+    });
+
+    $("#RegUserNameId").validatebox({
+        required: true,
+    });
+</script>

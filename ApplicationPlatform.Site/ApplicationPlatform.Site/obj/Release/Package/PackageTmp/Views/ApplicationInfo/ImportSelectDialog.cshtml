@@ -1,0 +1,79 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<div id="importSelectFrameId">
+    <input id="uploadInpId" type="file" value="Upload" style="display:none;"/>
+    <div id="importDivId" style="width:60px;">
+        <input type="text" id="importTextId" />
+        <input  type="button" id="importBtnId" value="Upload"/>
+    </div>
+    
+    <input  id="importSelectConId" type="button" value="Confirm" onclick="subImportSelectValue()"/>
+    <input  id="importSelectCalId" type="button" value="Cancel" onclick="closeImportSelectDialog()"/>
+
+</div>
+
+<style type="text/css">
+    #importTextId {
+        width:200px;
+        height:25px;
+    }
+    #importBtnId {
+        width:60px;
+        height:30px;
+    }
+    #importDivId {
+        float:left;
+        width:300px;
+        height:50px;
+        margin-left:30px;
+        border-radius:2px;
+        border:1px solid #95B8E7;
+        
+    }
+    #importSelectConId {
+        float:left;
+        margin-left:10px;
+        width:100px;
+        height:30px;
+        border:0px;
+        border-radius:5px;
+        color:#fff;
+        font-size:15px;
+        background-color:#428BCA;
+    }
+    #importSelectCalId {
+        float:left;
+        margin-left:0px;
+        width:100px;
+        height:30px;
+        border:0px;
+        border-radius:5px;
+        color:#fff;
+        font-size:15px;
+        background-color:#D9534F;
+    }
+</style>
+
+<script type="text/javascript">
+   
+    $(function () {
+        
+        
+    });
+
+   
+    
+    function subEditSelectValue() {
+
+        
+    }
+    
+    function closeEditSelectDialog() {
+        //关闭窗口；
+        
+        $("#importSelectDiv").dialog('close');
+    }
+</script>

@@ -1,0 +1,86 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<div id="dateboxViewFrameId">
+    <input id="dateboxInpId" /><i class="icon-calendar"></i>
+    <input id="dateboxConId" class="easyui-linkbutton" style="background:#5CB85C;" type="button" value="Confirm" onclick="subDateBoxValue()" />
+    <input id="dateboxCalId" class="easyui-linkbutton" style="background:#D9534F;" type="button" value="Cancel" onclick="closeDateBoxDialog()" />
+
+</div>
+
+<style type="text/css">
+    #dateboxViewFrameId {
+        padding-top: 5px;
+    }
+
+    #dateboxInpId {
+        margin-left: 15px;
+        width: 150px;
+    }
+
+    #dateboxConId {
+        margin-left: 70px;
+        width: 70px;
+        height: 30px;
+        border: 0px;
+        border-radius: 5px;
+        color: #fff;
+        font-size: 1.1em;
+    }
+
+    #dateboxCalId {
+        width: 70px;
+        height: 30px;
+        border: 0px;
+        border-radius: 5px;
+        color: #fff;
+        font-size: 1.1em;
+    }
+</style>
+
+<script type="text/javascript">
+   
+   //初始化日期控件
+    document.getElementById("dateboxInpId").flatpickr({
+        //设置日期的格式；
+        dateFormat: "Y/m/d"
+
+    });
+    
+    function subDateBoxValue() {
+
+       var ETDVal = document.getElementById("dateboxInpId").value;
+
+        if (ETDVal == null | ETDVal =="") {
+            alert("Please enter a valid date");
+        } else {
+            console.log(ETDVal == "");
+            //关闭窗口；
+            $("#ETDDialog").dialog('close');
+            //提交数据给后台,刷新表格；
+            var tempNum = 0;
+            $("#orderinfoId").datagrid({
+                queryParams: { process: ETDVal, requirementId: '@ViewBag.requirementId' },
+                url: '@Url.Action("Arrange", "ApplicationInfo")',
+                onLoadSuccess: function (data) {
+                    @*if (tempNum > 0) { return; }
+                    tempNum++;
+                    $("#orderinfoId").datagrid({
+                        url: '@Url.Action("CreateProcessingView", "ApplicationInfo")',
+                    })*@
+                    $("#orderinfoId").datagrid('options').url = '@Url.Action("CreateProcessingView", "ApplicationInfo")';
+                    $("#ETDDialog").dialog('close');
+                    currentTaskFun();
+                }
+            })
+
+        }
+    }
+    
+    function closeDateBoxDialog() {
+        //关闭窗口；
+        $("#ETDDialog").dialog('close');
+    }
+</script>

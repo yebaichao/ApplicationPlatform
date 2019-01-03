@@ -1,0 +1,82 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<div id="dateboxViewFrameIdA">
+    <input id="dateboxInpIdA" /><i class="icon-calendar"></i>
+    <input  id="dateboxConIdA"  class ="easyui-linkbutton" style="background:#5CB85C;" type="button" value="Confirm" onclick="subDateBoxValueA()"/>
+    <input  id="dateboxCalIdA"  class ="easyui-linkbutton" style="background:#D9534F;" type="button" value="Cancel" onclick="closeDateBoxDialogA()"/>
+
+</div>
+
+<style type="text/css">
+    #dateboxViewFrameIdA {
+        padding-top:5px;
+    }
+    #dateboxInpIdA {
+        margin-left:15px;
+        width:150px;
+    }
+    #dateboxConIdA {
+        margin-left:70px;
+        width:70px;
+        height:30px;
+        border: 0px;
+        border-radius: 5px;
+        color: #fff;
+        font-size: 1.1em;
+    }
+    #dateboxCalIdA {
+        width:70px;
+        height:30px;
+        border: 0px;
+        border-radius: 5px;
+        color: #fff;
+        font-size: 1.1em;
+    }
+</style>
+
+<script type="text/javascript">
+    var deliveryDateObj = $("#deliveryDateDiv").dialog('options');
+    var deliveryParams = deliveryDateObj["queryParams"];
+    //获取当前选中值所组成的一个数组；
+    var deliveryArrSelect = deliveryParams["checksysno"];
+
+    
+   //初始化日期控件
+    document.getElementById("dateboxInpIdA").flatpickr({
+        //设置日期的格式；
+        dateFormat: "Y/m/d"
+
+    });
+    
+    function subDateBoxValueA() {
+
+       var deliveryDateVal = document.getElementById("dateboxInpIdA").value;
+
+       if (deliveryDateVal == null | deliveryDateVal == "") {
+            alert("Please enter a valid date");
+        } else {
+           console.log(deliveryDateVal == "");
+            //关闭窗口；
+           $("#deliveryDateDiv").dialog('close');
+            //提交数据给后台,刷新表格；
+            var tempNum = 0;
+            $("#orderinfoIdA").datagrid({
+                queryParams: { deliveryDate: deliveryDateVal, requirementIds: deliveryArrSelect },
+                url: '@Url.Action("SetDeliveryDate", "ApplicationInfo")',
+                onLoadSuccess: function (data) {
+                    $("#orderinfoIdA").datagrid('options').url = '@Url.Action("CreateAllView", "ApplicationInfo")';
+                    $("#deliveryDateDiv").dialog('close');
+                }
+            })
+
+        }
+    }
+    
+    function closeDateBoxDialogA() {
+        //关闭窗口；
+        $("#deliveryDateDiv").dialog('close');
+    }
+</script>

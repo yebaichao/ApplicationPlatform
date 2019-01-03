@@ -1,0 +1,159 @@
+﻿@charset "utf-8";
+
+
+@media screen and (max-width:850px){
+    #tableSearchInput {
+        border:0px;
+        border-radius:5px;
+        font-size:15px;
+        width:300px;
+        height:26px;
+    }
+     #userManageAddBtn {
+        width:100px;
+        background-color:#428BCA;
+    }
+    #userManageRemoveBtn {
+        width:100px;
+        background-color:#D9534F;
+    }
+    #userManageEditBtn {
+        width:100px;
+        background-color:#5CB85C;
+    }
+    #userManageSearchBtn {
+        width:100px;
+        background-color:#428BCA;
+    }
+    .userMangeBtnClass {
+        height:30px;
+        border:0px;
+        border-radius:5px;
+        color:#fff;
+        font-size:15px;
+        font-weight:600;
+    }
+    #UserManaFrameId {
+        width: 600%;
+        height: 200%;
+        margin-top: 0px;
+        background-image: url("../../Images/backgroundPic.jpg");
+        background-color: #E4E4E4;
+        background-repeat: repeat;
+    }
+    #UserManaTitleId {
+        font-size:45px;
+        font-weight:bolder;
+        color:#0092A6;
+        margin-left:520px;
+        margin-bottom:15px;
+        padding-top:5px;
+    }
+    
+    #userListToolId {
+        margin-left:20px;
+        padding-top:20px;
+    }
+    .userOperaDiv {
+        float:left;
+        height:30px;
+        margin-left:15px;
+        margin-bottom:10px;
+    }
+    #userSearTopDivId {
+        margin-left:200px;
+    }
+    #userListTableId {
+        border-collapse:collapse;
+        border-radius:15px;
+    }
+    #userListTabDiv {
+        clear:both;
+        height:420px;
+        width:1200px;
+        margin-top:5px;
+        background-color:#fff;
+        border-radius:15px;
+    }
+    
+}
+
+@media screen and (min-width:851px){
+    #tableSearchInput {
+        border:0px;
+        border-radius:5px;
+        font-size:15px;
+        width:300px;
+        height:26px;
+    }
+   #userManageAddBtn {
+        width:100px;
+        background-color:#428BCA;
+    }
+    #userManageRemoveBtn {
+        width:100px;
+        background-color:#D9534F;
+    }
+    #userManageEditBtn {
+        width:100px;
+        background-color:#5CB85C;
+    }
+    #userManageSearchBtn {
+        width:100px;
+        background-color:#428BCA;
+    }
+    .userMangeBtnClass {
+        height:30px;
+        border:0px;
+        border-radius:5px;
+        color:#fff;
+        font-size:15px;
+        font-weight:600;
+    }
+    #UserManaFrameId {
+        width: 100%;
+        height: 100%;
+        margin-top: 0px;
+        background-image: url("../../Images/backgroundPic.jpg");
+        background-color: #E4E4E4;
+        background-repeat: repeat;
+    }
+    #UserManaTitleId {
+        font-size:45px;
+        font-weight:bolder;
+        color:#0092A6;
+        margin-left:520px;
+        margin-bottom:15px;
+        padding-top:5px;
+    }
+    
+    #userListToolId {
+        margin-left:300px;
+        padding-top:20px;
+    }
+    .userOperaDiv {
+        float:left;
+        height:30px;
+        margin-left:15px;
+        margin-bottom:10px;
+    }
+    #userSearTopDivId {
+        margin-left:200px;
+    }
+    #userListTableId {
+        border-collapse:collapse;
+        border-radius:15px;
+    }
+    #userListTabDiv {
+        clear:both;
+        height:420px;
+        width:1200px;
+        margin-top:5px;
+        background-color:#fff;
+        border-radius:15px;
+    }
+   
+}
+
+
+  

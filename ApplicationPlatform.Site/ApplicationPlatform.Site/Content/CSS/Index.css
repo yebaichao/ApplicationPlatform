@@ -1,0 +1,263 @@
+﻿@charset "utf-8";
+
+
+@media screen and (max-width:850px){
+    #southDivId {
+        height:4%;background:#ccc;padding:1px
+    }
+
+    .leftFontClass {
+        font-family:Trebuchet ;
+        font-size:0.7em;
+        color: #000000;
+    }
+    .leftFontClass1 {
+        font-family:Trebuchet ;
+        font-size:0.7em;
+        color:#D15FEE;
+    }
+    
+    #btn1, #btn2, #btn3, #btn4, #btn5, #btn6, #btn7, #btn8,#btn9,#btn10 {
+            height: 8%;
+            width: 98%;
+            border: 1px;
+            text-align: left;
+            padding-top: 5.6%;
+            padding-left: 1%;
+            font-weight: 600;
+            color: #808080;
+            background-color: #76ABCD;
+        }
+
+        .titleWord {
+            color: #fff;
+            font-size: 1em;
+            margin-left: 3px;
+        }
+
+        .topImage {
+            float: left;
+            margin-right: 0px;
+            margin-bottom: 0px;
+        }
+
+        .topDiv {
+            float: right;
+            position:relative;
+            top:13%;
+            margin-right: 1%;
+            margin-top: 4.5%;
+        }
+        .topDiv:hover {
+            cursor :pointer;
+            border:5px solid #0092A6;
+            border-radius:5px;
+        }
+    .topLeft {
+            float: left;
+    }
+        #topLogo {
+            width:20%;
+            margin-top: 1%;
+            margin-left: 0.781%;
+        }
+
+        #topicWord {
+            font-family: Trebuchet;
+            font-size: 1.2em;
+            font-weight: 900;
+            color: #fff;
+            margin-left: 0%;
+            margin-top: 2.3%;
+        }
+
+        
+
+        .titleSet {
+            height: 18px;
+        }
+
+        #userInformation {
+            position: absolute;
+            left: 1600px;
+            bottom: 410px;
+        }
+
+        #userInfoId {
+            width:35%;
+            height:30%
+    
+        }
+        #logoutId {
+            width:15%;
+            height:30%
+    
+        }
+        #currentTaskId {
+            width:30%;
+            height:30%
+    
+        }
+
+        #indexWestDivId {
+            
+            width:32%
+        }
+    #adminConsoleDivId {
+        
+    }
+
+    #reLoginIndexBtn{
+        width:100px;
+        height:30px;
+        border:0px solid #0092A6;
+        border-radius:5px;
+        color:#fff;
+        font-size:15px;
+        background-color:#37A2DA;
+        font-weight:600;
+        position:relative;
+        left:25px;
+    }
+    #closeIndexBtn{
+        width:100px;
+        height:30px;
+        border:0px solid #0092A6;
+        border-radius:5px;
+        color:#fff;
+        font-size:15px;
+        background-color:#D9534F;
+        font-weight:600;
+        position:relative;
+        left:100px;
+    }
+}
+
+@media screen and (min-width:851px){
+    #reLoginIndexBtn{
+        width:100px;
+        height:30px;
+        border:0px solid #0092A6;
+        border-radius:5px;
+        color:#fff;
+        font-size:15px;
+        background-color:#37A2DA;
+        font-weight:600;
+        position:relative;
+        left:25px;
+    }
+    #closeIndexBtn{
+        width:100px;
+        height:30px;
+        border:0px solid #0092A6;
+        border-radius:5px;
+        color:#fff;
+        font-size:15px;
+        background-color:#D9534F;
+        font-weight:600;
+        position:relative;
+        left:100px;
+    }
+
+    #southDivId {
+        height:2.5%;background:#ccc;padding:1px
+    }
+
+    #indexWestDivId {
+    
+        width:13.02%
+    }
+
+    #userInfoId {
+        width:8%;
+        height:20%
+    
+    }
+    #logoutId {
+        width:3%;
+        height:20%
+    
+    }
+    #currentTaskId {
+        width:9%;
+        height:20%
+    
+    }
+    
+    .leftFontClass {
+        font-family:Trebuchet ;
+        font-size:1.4em;
+        color: #000000;
+    }
+    .leftFontClass1 {
+        font-family:Trebuchet ;
+        font-size:1.4em;
+        color:#D15FEE;
+    }
+    
+    #btn1, #btn2, #btn3, #btn4, #btn5, #btn6, #btn7, #btn8,#btn9,#btn10 {
+            height: 6%;
+            width: 98%;
+            border: 1px;
+            text-align: left;
+            padding-top: 5.8%;
+            padding-left: 5%;
+            font-weight: 600;
+            color: #808080;
+            background-color: #76ABCD;
+        }
+
+        .titleWord {
+            color: #fff;
+            font-size: 1.5em;
+            margin-left: 3px;
+        }
+
+        .topImage {
+            float: left;
+            margin-right: 0px;
+            margin-bottom: 0px;
+        }
+
+        .topDiv {
+            float: right;
+            position:relative;
+            top:10%;
+            margin-right: 1%;
+            margin-top: 4.5%;
+        }
+        .topDiv:hover {
+            cursor :pointer;
+            border:5px solid #0092A6;
+            border-radius:5px;
+        }
+    .topLeft {
+            float: left;
+    }
+        #topLogo {
+            width:20%;
+            margin-top: 1%;
+            margin-left: 0.781%;
+        }
+
+        #topicWord {
+            font-family: Trebuchet;
+            font-size: 4.4em;
+            font-weight: 900;
+            color: #fff;
+            margin-left: 0%;
+            margin-top: 2.3%;
+        }
+
+        
+
+        .titleSet {
+            height: 18px;
+        }
+
+        #userInformation {
+            position: absolute;
+            left: 1600px;
+            bottom: 410px;
+        }
+}

@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Bundle xmlns="urn:uiosp-bundle-manifest-2.0" Name="UIShell.OlsonAdminShellPlugin" SymbolicName="UIShell.OlsonAdminShellPlugin" Version="1.0.0.0" InitializedState="Active" StartLevel="6">
+  <Activator Type="UIShell.OlsonAdminShellPlugin.BundleActivator" Policy="Immediate" />
+  <Runtime>
+    <Assembly Path="bin\UIShell.OlsonAdminShellPlugin.dll" Share="false" MultipleVersions="false" />
+    <Dependency BundleSymbolicName="UIShell.NavigationService" Resolution="Mandatory" />
+    <Dependency BundleSymbolicName="UIShell.PermissionService" Resolution="Mandatory" />
+    <Dependency BundleSymbolicName="UIShell.PageFlowService" Resolution="Mandatory" />
+  </Runtime>
+  <Extension Point="PageFlowService.PageNode">
+    <PageNode Name="LayoutPage" Priority="30" Value="~/{BundleRelativePath}/Views/Shared/_Layout.cshtml" />
+    <PageNode Name="LoginPage" Priority="30" Value="~/UIShell.OlsonAdminShellPlugin/Account/Login" />
+  </Extension>
+</Bundle>

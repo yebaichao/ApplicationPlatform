@@ -1,0 +1,125 @@
+﻿@{
+    ViewBag.Title = "GetApplicationPermissions";
+}
+@using ApplicationPlatform.Models
+@model ApplicationPlatform.Site.ViewModels.ApplicationInfoViewModels.ApplicationPermissionViewModel
+
+<div class="awidget" style="background: #87CEFA; color: black; ">
+    <div class="awidget-head" style="background: #87CEFA; color: black; ">
+        <div class="row">
+            <div class="col-md-2">
+                <div class="btn-group">
+                    <button data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button">@("CurrentUser：" + Model.selectedUserInfo.UserName) <span class="caret"></span></button>
+                    <ul role="menu" class="dropdown-menu">
+                        @foreach (UserInfo userInfo in Model.userInfoes)
+                        {
+                            <li>@Html.ActionLink("Role：" + @userInfo.UserName, "GetApplications", new { userInfoId = userInfo.Id }) </li>
+                        }
+                    </ul>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="col-md-1">
+            </div>
+            <div>
+                <a class="btn btn-info" href="javascript:void(0)"
+                   title="SavePermission" onclick="Save(@Model.selectedUserInfo.Id)">
+                    <i class="glyphicon glyphicon-floppy-disk icon-white"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="~/Content/jquery-easyui-v1.5/jquery.min.js"></script>
+<script type="text/javascript" src="~/Content/jquery-easyui-v1.5/jquery.easyui.min.js"></script>
+<div class="row">
+    <div class="col-md-4">
+        <div class="awidget">
+            <ul id="treeDept" class="easyui-tree" style="overflow: hidden;"></ul>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div class="awidget">
+            <div id="filterdiv">
+            </div>
+            <div id="filterdiv1">
+            </div>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+        //树控件的Json数据绑定
+
+    $('#treeDept').tree({
+        checkbox: true,
+        cascadeCheck: false,
+        lines: true,
+        url: " @Url.Content("~/MyFilePermission/GetFileTreeJson")"+'?'+'userInfoId='+"@Model.selectedUserInfo.Id",
+        onClick: function (node) {
+            url = "@Url.Content("~/MyFilePermission/GetUsers")" + "?fileId=" + node.id;
+            $.post(url, function (data) {
+                data = JSON.parse(data);
+                if (data.code == 5) {
+                    document.getElementById('filterdiv').innerHTML = '<strong>Member:<strong/><br/>' + '<label>' + data.users + '<label/>';
+                    document.getElementById('filterdiv1').innerHTML = '<strong>Description:<strong/><br/>'+'<label>'+data.desp+ '<label/>';
+                }
+                else { alert(data.msg); };
+            });
+        },
+        onCheck: function (node, checked) {
+            //    debugger
+                var tt = $("#treeDept");
+                var childNode = $("#treeDept").tree("getChildren",node.target);
+                if (checked) {
+                    for (var i = 0; i < childNode.length; i++) {
+
+                        tt.tree("check", childNode[i].target);
+                    }
+                }
+            else{
+                    for (var i = 0; i < childNode.length; i++) {
+                        tt.tree("uncheck", childNode[i].target);
+                    }
+                }
+
+        }
+
+    });
+
+</script>
+<script type="text/javascript">
+    function Save(userId) {
+        //debugger
+        var nodes = $('#treeDept').tree('getChecked', 'indeterminate');
+        var nodes1 = $('#treeDept').tree('getChecked');
+        var ids = '';
+        for (var i = 0; i < nodes.length; i++) {
+            if (ids != '') ids += ',';
+            ids += nodes[i].id;
+            //$('#tree').tree('remove',nodes[i].target);
+        }
+        for (var i = 0; i < nodes1.length; i++) {
+            if (ids != '') ids += ',';
+            ids += nodes1[i].id;
+            //$('#tree').tree('remove',nodes[i].target);
+        }
+        url = "@Url.Content("~/MyFilePermission/Save")" + "?_userInfoId=" + userId;
+        $.post(url, { NodeId: ids }, function (data) {
+                data = JSON.parse(data);
+                if (data.code == 200) {
+                    alert(data.msg)
+                } else { alert(data.msg) };
+            }
+            );
+    }
+
+
+</script>

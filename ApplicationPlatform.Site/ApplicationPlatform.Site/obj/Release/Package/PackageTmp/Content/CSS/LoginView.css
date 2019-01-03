@@ -1,0 +1,24 @@
+﻿@charset "utf-8";
+
+
+@media screen and (max-width:550px){
+    #loginTopicDiv {
+	    font-family:Trebuchet;
+	    font-size:1.3em;
+	    font-weight:500;
+	    color:#fff;
+	    text-align:center;
+	    padding-top:6%;
+    }
+}
+
+@media screen and (min-width:551px){
+    #loginTopicDiv {
+	    font-family:Trebuchet;
+	    font-size:5.06em;
+	    font-weight:900;
+	    color:#fff;
+	    text-align:center;
+	    padding-top:4%;
+    }
+}

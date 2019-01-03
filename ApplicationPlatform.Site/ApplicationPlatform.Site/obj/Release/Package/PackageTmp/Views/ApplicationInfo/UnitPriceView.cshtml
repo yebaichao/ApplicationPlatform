@@ -1,0 +1,74 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<div id="dateboxViewFrameIdU">
+    <input  id="dateboxInpIdU" class="easyui-numberbox" type="text"/>
+    <input  id="dateboxConIdU"  class ="easyui-linkbutton" type="button"  style="background:#5CB85C;" value="Confirm" onclick="subDateBoxValueU()"/>
+    <input  id="dateboxCalIdU"  class ="easyui-linkbutton" type="button" style="background:#D9534F;" value="Cancel" onclick="closeDateBoxDialogU()"/>
+
+</div>
+
+<style type="text/css">
+    #dateboxViewFrameIdU {
+         padding-top:5px;
+    }
+    #dateboxInpIdU {
+        margin-left:15px;
+        width:150px;
+    }
+    #dateboxConIdU {
+        margin-left:70px;
+        width:70px;
+        height:30px;
+        border: 0px;
+        border-radius: 5px;
+        color: #fff;
+        font-size: 1.1em;
+    }
+    #dateboxCalIdU {
+        width:70px;
+        height:30px;
+        border: 0px;
+        border-radius: 5px;
+        color: #fff;
+        font-size: 1.1em;
+    }
+</style>
+
+<script type="text/javascript">
+    var unitePriceObj = $("#unitePriceDiv").dialog('options');
+    var unitePriceParams = unitePriceObj["queryParams"];
+    //获取当前选中值所组成的一个数组；
+    var unitePriceArrSelect = unitePriceParams["checksysno"];
+
+    
+    function subDateBoxValueU() {
+
+        var unitePriceVal = document.getElementById("dateboxInpIdU").value;
+
+        if (unitePriceVal == null | unitePriceVal == "") {
+            alert("Please enter a valid date");
+        } else {
+            
+            //关闭窗口；
+            $("#unitePriceDiv").dialog('close');
+            //提交数据给后台,刷新表格；
+            var tempNum = 0;
+            $("#orderinfoIdA").datagrid({
+                queryParams: { unitePriceVal: unitePriceVal, requirementIds: unitePriceArrSelect },
+                url: '@Url.Action("SetUnitPrice", "ApplicationInfo")',
+                onLoadSuccess: function (data) {
+                    $("#orderinfoIdA").datagrid('options').url = '@Url.Action("CreateAllView", "ApplicationInfo")';
+                }
+            })
+
+        }
+    }
+    
+    function closeDateBoxDialogU() {
+        //关闭窗口；
+        $("#unitePriceDiv").dialog('close');
+    }
+</script>

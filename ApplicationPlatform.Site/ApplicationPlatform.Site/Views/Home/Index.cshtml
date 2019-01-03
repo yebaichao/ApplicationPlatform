@@ -1,0 +1,500 @@
+﻿@{
+    
+    ViewBag.Title = "Index";
+
+}
+<div class="easyui-layout" style="height:95%;margin-bottom:0px;" id="indexLayoutDivId">
+    <!--北-->
+    <div data-options="region:'north',border:false, overflow:'hidden'" style="height:16.85%;background:#0092A6;">
+        <div id="topLogo" class="topLeft">
+            <img src="~/Images/Hexagon_logo.png" style="width:95%;padding-left:0.2625%" />
+        </div>
+        <div id="topicWord" class="topLeft">
+            Customer Requirement Management System
+        </div>
+        <div class="topDiv" id="userInfoId" style="">
+            <img class="topImage" src="~/Images/man.png"  style="width:10%;height:60%"/>
+            <span class="titleWord">User Information</span>
+
+        </div>
+        <div class="topDiv" id="logoutId" onclick="javascript:document.getElementById('logoutForm').submit()" style="">
+            <img class="topImage" src="~/Images/close.png" style="width:30%;height:60%" />
+            <span class="titleWord">Exit</span>
+        </div>
+        
+        <div class="topDiv" id="currentTaskId" style="">
+            <img class="topImage" src="~/Images/trumpet.png" style="width:10%;height:60%" />
+            <span class="titleWord">Current Task</span>
+            <font style="color:#fff;font-size: 1.5em;">(</font>
+            <font style="color:red;font-size: 1.5em;font-weight:700;" id="currentTaskNumId"></font>
+            <font style="color:#fff;font-size: 1.5em;">)</font>
+            
+        </div>
+        <div class="topDiv" style="display :none">
+            @if (Request.IsAuthenticated)
+            {
+                <text>
+                    Welcome，@Html.ActionLink(User.Identity.Name, "Manage", "Account", routeValues: null, htmlAttributes: new { @class = "username", title = "管理" })!
+                    @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <a href="javascript:document.getElementById('logoutForm').submit()">Exit</a>
+                    }
+                </text>
+            }
+        </div>
+    </div>
+
+    <!--西-->
+    <div data-options="region:'west',split:false,title:'Toolbar',collapsible:true,headerCls:'titleSet',iconCls:'icon-gear'"  id="indexWestDivId">
+          
+            <a id="btn1" class="easyui-linkbutton" data-options="iconCls:'icon-writting'" title="Application Page" onclick="changeBGC(this.id)">
+                <span id="spanAPId" class="leftFontClass1" >
+                   Application Page
+                </span>
+            </a>
+            <a id="btn9" class="easyui-linkbutton" data-options="iconCls:'icon-save'" title="Uncompleted Requirements" onclick="changeBGC(this.id)">
+                <span id="spanSRId" class="leftFontClass" >
+                   Uncompleted Requirements
+                </span>
+            </a>
+            <a id="btn2"  class="easyui-linkbutton" data-options="iconCls:'icon-tip'" title="Processing Requirements" onclick="changeBGC(this.id)">
+                <span id="spanPRId" class="leftFontClass" >
+                    Processing Requirements
+                </span>
+            </a>
+            <a id="btn3" class="easyui-linkbutton" data-options="iconCls:'icon-ok'" title="Completed Requirements" onclick="changeBGC(this.id)">
+                <span id="spanCRId" class="leftFontClass">
+                    Completed Requirements
+                </span>
+            </a>
+            <a id="btn4" class="easyui-linkbutton" data-options="iconCls:'icon-search'" title="View All Requirements" onclick="changeBGC(this.id)">
+                <span id="spanVARId" class="leftFontClass">
+                    View All Requirements
+                </span>
+            </a>
+            
+            </a>
+            <a id="btn5" class="easyui-linkbutton" data-options="iconCls:'icon-setting'" title="User Settings" onclick="changeBGC(this.id)">
+                <span id="spanUSId" class="leftFontClass">
+                    User Settings
+                </span>
+            </a> 
+        <div id="toolId" class="easyui-accordion" data-options="fit:true,border:true,selected:false">
+            <div title="Admin Console" data-options="iconCls:'icon-man',fit:true" id="adminConsoleDivId">
+                <a id="btn6" class="easyui-linkbutton" data-options="iconCls:'icon-search'" title="User Management" onclick="changeBGC(this.id)">
+                    <span id="spanCAId" class="leftFontClass">
+                        User Management
+                    </span>
+                </a>
+                <a id="btn7" class="easyui-linkbutton" data-options="iconCls:'icon-mans'" title="Role Management" onclick="changeBGC(this.id)">
+                    <span id="spanAAId" class="leftFontClass">
+                        Role Management
+                    </span>
+                </a>
+                <a id="btn8" class="easyui-linkbutton" data-options="iconCls:'icon-keyIcon'" title="Permission Management" onclick="changeBGC(this.id)">
+                    <span id="spanPAId" class="leftFontClass">
+                        Permission Management
+                    </span>
+                </a>
+                <a id="btn10" class="easyui-linkbutton" data-options="iconCls:'icon-dollar'" title="Price Management" onclick="changeBGC(this.id)">
+                    <span id="spanPriceId" class="leftFontClass">
+                        Price Management
+                    </span>
+                </a>
+            </div>      
+        </div> 
+    </div>
+
+    <!--南-->
+    <div data-options="region:'south',border:false" id="southDivId" >Current login user：'@WebSecurity.CurrentUserName'</div>
+
+
+
+    <!--中-->
+    <div data-options="region:'center',border:false,headerCls:'titleSet'">
+
+        <div id="midShowId" class="easyui-tabs" data-options="fit:true" style="margin:0px;">
+            
+        </div>
+    </div>
+    
+
+</div>
+<div id="setTimeOutDialog" style="display:none;">
+    <br />
+    <strong style="font-size:1.3em;color:#ff0000;margin-left:10px;">Dear '@WebSecurity.CurrentUserName':</strong><br /><br />
+    <span style="font-size:1.3em;font-weight:600;color:#ff0000;margin-left:30px;">
+        Page failure due to long time no operation!
+    </span>
+    <div style="margin-top:30px;">
+        <button id="reLoginIndexBtn">ReLogin</button>
+        <button id="closeIndexBtn">Close</button>
+    </div>
+</div>
+<link href="~/Content/CSS/Index.css" rel="stylesheet" />
+<script type="text/javascript">
+
+    $("#reLoginIndexBtn").click(function () {
+        document.getElementById('logoutForm').submit();
+
+    });
+
+    $("#closeIndexBtn").click(function () {
+        if (window.confirm("Are you sure to close the current page?")) {
+            window.close();
+        };
+    });
+
+    // 检测用户活跃情况
+    function isActive() {
+        var arr = ['index', 'login']
+        var result = arr.some(function(item) {
+            return window.location.href.indexOf(item) > 0
+        })
+        // result 表示当前页面可能是index或者注册页面 
+        // 不是index页面 ，不是注册页面才会去检测用户的活跃状态（鼠标移动状态）
+        if (!result) {
+            var lastTime = new Date().getTime();
+            var currentTime = new Date().getTime();
+            //设置超时时间： 5分
+            var timeOut = 5 * 60 * 1000; 
+
+            window.onload = function() {
+                /* 检测鼠标移动事件 */
+                document.addEventListener('mousemove', function() {
+                    // 更新最后的操作时间
+                    lastTime = new Date().getTime();
+                })
+            }
+
+            /* 定时器  间隔1分钟，检测是否长时间未操作页面  */
+            var quitTime = window.setInterval(testTime, 60000);
+
+            // 超时函数
+            function testTime() {
+                //更新当前时间
+                currentTime = new Date().getTime();
+                console.log('currentTime', currentTime)
+                //判断是否超时
+                if (currentTime - lastTime > timeOut) {
+                    $.get('@Url.Content("~/Account/LogOffAuto")');
+                    // 清除掉定时器
+                    window.clearInterval(quitTime);
+                    $("#setTimeOutDialog").css("display","block");
+                    $("#setTimeOutDialog").window({
+                        width: 360,
+                        height: 200,
+                        modal: true,
+                        collapsible: false,
+                        minimizable: false,
+                        maximizable: false,
+                        closable: false,
+                        title:'Warning',
+                    });
+                }
+            }
+        }
+    }
+
+    isActive();
+                                
+
+
+    //点击菜单按钮时，改变字体颜色，来高亮显示
+    function changeBGC(idValue) {
+        $("#spanAPId").removeClass("leftFontClass1");
+        $("#spanAPId").addClass("leftFontClass");
+        $("#spanPRId").removeClass("leftFontClass1");
+        $("#spanCRId").removeClass("leftFontClass1");
+        $("#spanVARId").removeClass("leftFontClass1");
+        $("#spanUSId").removeClass("leftFontClass1");
+        $("#spanCAId").removeClass("leftFontClass1");
+        $("#spanAAId").removeClass("leftFontClass1");
+        $("#spanPAId").removeClass("leftFontClass1");
+        $("#spanSRId").removeClass("leftFontClass1");
+        $("#spanPriceId").removeClass("leftFontClass1");
+
+        switch (idValue) {
+            case "btn1": $("#spanAPId").addClass("leftFontClass1");
+                break;
+            case "btn2": $("#spanPRId").addClass("leftFontClass1");
+                break;
+            case "btn3": $("#spanCRId").addClass("leftFontClass1");
+                break;
+            case "btn4": $("#spanVARId").addClass("leftFontClass1");
+                break;
+            case "btn5": $("#spanUSId").addClass("leftFontClass1");
+                break;
+            case "btn6": $("#spanCAId").addClass("leftFontClass1");
+                break;
+            case "btn7": $("#spanAAId").addClass("leftFontClass1");
+                break;
+            case "btn8": $("#spanPAId").addClass("leftFontClass1");
+                break;
+            case "btn9": $("#spanSRId").addClass("leftFontClass1");
+                break;
+            case "btn10": $("#spanPriceId").addClass("leftFontClass1");
+                break;
+        };
+    }
+
+
+    //打开tabs
+    $("a").click(function () {
+        var titleValue = $(this).text();
+        titleValue = $.trim(titleValue);
+        if ($("#midShowId").tabs("exists", titleValue)) {
+            $("#midShowId").tabs("select", titleValue);
+            var tab = $('#midShowId').tabs('getSelected');  // 获取选择的面板
+            $('#midShowId').tabs('update', {
+                tab: tab,
+                options: {
+                    title: titleValue,
+                }
+            });
+        }
+        else if (titleValue == "Application Page") {
+            $("#midShowId").tabs("add", {
+                "title": titleValue,
+                "closable": true,
+                "href": '@Url.Action("Create","ApplicationInfo")',
+                "cache": true
+            })
+        }
+        else if (titleValue == "Uncompleted Requirements") {
+            $("#midShowId").tabs("add", {
+                "title": titleValue,
+                "closable": true,
+                "href": '@Url.Action("SaveRequirements", "ApplicationInfo")',
+                "cache": true
+            })
+        }
+        else if (titleValue == "Processing Requirements") {
+            $("#midShowId").tabs("add", {
+                "title": titleValue,
+                "closable": true,
+                "href": '@Url.Action("ProcessingView","ApplicationInfo")',
+                "cache": true
+            })
+        }
+        else if (titleValue == "Completed Requirements") {
+            $("#midShowId").tabs("add", {
+                "title": titleValue,
+                "closable": true,
+                "href": '@Url.Action("CompletedView","ApplicationInfo")',
+                "cache": true
+            })
+        }
+        else if (titleValue == "View All Requirements") {
+            $("#midShowId").tabs("add", {
+                "title": titleValue,
+                "closable": true,
+                "href": '@Url.Action("AllRequirementsSummary","ApplicationInfo")',
+                "cache": true
+            })
+        }
+        
+        else if (titleValue == "User Settings") {
+            $("#midShowId").tabs("add", {
+                "title": titleValue,
+                "closable": true,
+                "href": '@Url.Action("UserSetting","UserInfo")',
+                "cache": true
+            })
+        }
+        else if (titleValue == "User Management") {
+            $("#midShowId").tabs("add", {
+                "title": titleValue,
+                "closable": true,
+                "href": '@Url.Action("UserManagement", "UserInfo")',
+                "cache": true
+            })
+        }
+        else if (titleValue == "Role Management") {
+            $("#midShowId").tabs("add", {
+                "title": titleValue,
+                "closable": true,
+                "href": '@Url.Action("RoleManagement", "RoleInfo")',
+                "cache": true
+            })
+        }
+        else if (titleValue == "Permission Management") {
+            $("#midShowId").tabs("add", {
+                "title": titleValue,
+                "closable": true,
+                "href": '@Url.Action("GetPermissions", "Permission")',
+                "cache": true
+            })
+        }
+        else if (titleValue == "Price Management") {
+            $("#midShowId").tabs("add", {
+                "title": titleValue,
+                "closable": true,
+                "href": '@Url.Action("PriceListView", "PriceInfo")',
+                "cache": true
+            })
+        }
+    });
+
+    //显示当前任务数；
+    function currentTaskFun() {
+
+        $.get('@Url.Action("GetCurrentTaskNum", "ApplicationInfo")', function (data) {
+            var currentNum = JSON.parse(data);
+            $("#currentTaskNumId").text(currentNum.currentNum);
+        });
+
+    };
+
+    $(function () {
+        //获取当前屏幕的显示宽度；
+        var deviceWidthVal = $(document).width();
+
+        if (deviceWidthVal < 850) {
+
+            //当设备为手机时，隐藏左侧导航栏的图标；
+            for (var i = 1; i < 11; i++) {
+                $("#btn" + i).linkbutton({
+                    iconCls: null
+                });
+            }
+
+            $("#indexWestDivId").panel({
+                iconCls: null
+            });
+            $("#adminConsoleDivId").panel({
+                iconCls: null
+            });
+        }
+
+        
+        currentTaskFun();
+
+        //默认打开申请页面
+        $("#midShowId").tabs("add", {
+            "title": "Application Page",
+            "closable": true,
+            "href": '@Url.Action("Create","ApplicationInfo")',
+            "cache": true
+        });
+
+        //高亮显示当前活动页面
+        $("#midShowId").tabs({
+            onSelect: function (title, index) {
+
+                $("#spanAPId").removeClass("leftFontClass1");
+                $("#spanPRId").removeClass("leftFontClass1");
+                $("#spanCRId").removeClass("leftFontClass1");
+                $("#spanVARId").removeClass("leftFontClass1");
+                $("#spanUSId").removeClass("leftFontClass1");
+                $("#spanCAId").removeClass("leftFontClass1");
+                $("#spanAAId").removeClass("leftFontClass1");
+                $("#spanSRId").removeClass("leftFontClass1");
+                $("#spanPAId").removeClass("leftFontClass1");
+                $("#spanPriceId").removeClass("leftFontClass1");
+                switch (title) {
+                    case "Application Page": $("#spanAPId").addClass("leftFontClass1");
+                        break;
+                    case "Uncompleted Requirements": $("#spanSRId").addClass("leftFontClass1");
+                        break;
+                    case "Processing Requirements": $("#spanPRId").addClass("leftFontClass1");
+                        break;
+                    case "Completed Requirements": $("#spanCRId").addClass("leftFontClass1");
+                        break;
+                    case "View All Requirements": $("#spanVARId").addClass("leftFontClass1");
+                        break;
+                    case "User Settings": $("#spanUSId").addClass("leftFontClass1");
+                        break;
+                    case "User Management": $("#spanCAId").addClass("leftFontClass1");
+                        break;
+                    case "Role Management": $("#spanAAId").addClass("leftFontClass1");
+                        break;
+                    case "Permission Management": $("#spanPAId").addClass("leftFontClass1");
+                        break;
+                    case "Price Management": $("#spanPriceId").addClass("leftFontClass1");
+                        break;
+                };
+
+            }
+        });
+
+
+
+    });
+
+    $("#userInfoId").click(function () {
+        $("#spanAPId").addClass("leftFontClass");
+        if ($("#midShowId").tabs("exists", "User Settings")) {
+            $("#midShowId").tabs("select", "User Settings");
+            var tab = $('#midShowId').tabs('getSelected');  // 获取选择的面板
+            $('#midShowId').tabs('update', {
+                tab: tab,
+                options: {
+                    title: "User Settings",
+                }
+            });
+        } else {
+            $("#midShowId").tabs("add", {
+                "title": "User Settings",
+                "closable": true,
+                "href": '@Url.Action("UserSetting","UserInfo")',
+                "cache": true
+            })
+        }
+
+
+
+
+        //点击显示或隐藏用户信息
+        /*
+        var judUser = false;
+
+        if (judUser) {
+            $("#userInformation").panel('close', true);
+            judUser = false;
+        } else {
+
+            $("#userInformation").panel('open', true);
+            judUser = true;
+        }
+        */
+    });
+
+    $("#currentTaskId").click(function () {
+        $("#spanAPId").addClass("leftFontClass");
+        if ($("#midShowId").tabs("exists", "Processing Requirements")) {
+            $("#midShowId").tabs("select", "Processing Requirements");
+            var tab = $('#midShowId').tabs('getSelected');  // 获取选择的面板
+            $('#midShowId').tabs('update', {
+                tab: tab,
+                options: {
+                    title: "Processing Requirements",
+                }
+            });
+        } else {
+            var Url = '@Url.Content("~/ApplicationInfo/ProcessingView")';
+            $("#midShowId").tabs("add", {
+                "title": "Processing Requirements",
+                "closable": true,
+                "href":Url,
+                "cache": true
+            })
+        }
+
+    });
+
+
+
+    //当按钮失去焦点时，隐藏用户信息；
+
+    @*
+    $("#userInfoId").blur(function () {
+        $("#userInformation").panel('close', true);
+        judUser = false;
+    });
+    *@
+
+
+
+</script>

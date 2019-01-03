@@ -1,0 +1,205 @@
+﻿@charset "utf-8";
+
+
+@media screen and (max-width:850px){
+     
+ 
+    #priceTabBtnRs {
+        width: 100px;
+        background-color: #636363;
+        margin-left: 15px;
+    }
+
+    #priceTabBtnS {
+        width: 100px;
+        background-color: #0092A6;
+    }
+
+    .processTabBtnClassP {
+        height: 30px;
+        border: 0px;
+        border-radius: 5px;
+        color: #fff;
+        font-size: 15px;
+        font-weight:600;
+    }
+
+    #pricetableToolId {
+        margin-left: 30px;
+        padding-top: 7px;
+    }
+
+ 
+
+
+
+    #priceTableSearchInput {
+        margin-left: 20px;
+        border:0px;
+        border-radius:5px;
+        font-size:15px;
+        width:300px;
+        height:26px;
+    }
+
+   
+
+
+
+    #priceFrameId {
+        width: 700%;
+        height: 200%;
+        margin-top: 0px;
+        background-image: url("../../Images/backgroundPic.jpg");
+        background-color: #E4E4E4;
+        background-repeat: repeat;
+    }
+
+
+    #priceDataDiv {
+        height: 420px;
+        width: 1200px;
+        margin-top: 5px;
+        margin-left: 20px;
+        background-color: #fff;
+        border-radius: 15px;
+        clear: both;
+    }
+    #tablePriceTitleP {
+        font-size: 45px;
+        font-weight: bolder;
+        color: #0092A6;
+        margin-left: 60px;
+        margin-bottom: 15px;
+        padding-top: 5px;
+    }
+    #exportPriceBtnA {
+        width: 180px;
+        height: 30px;
+        border: 0px solid #0092A6;
+        border-radius: 5px;
+        color: #fff;
+        font-size: 15px;
+        background-color: #5CB85C;
+        margin-left:20px;
+        font-weight:600;
+    }
+    #importPriceBtnA {
+        width: 180px;
+        height: 30px;
+        border: 0px solid #0092A6;
+        border-radius: 5px;
+        color: #fff;
+        font-size: 15px;
+        background-color: #428BCA;
+        font-weight:600;
+    }
+    #exportPriceDivA {
+        position: relative;
+        top: 80px;
+    }
+    
+}
+
+@media screen and (min-width:851px){
+   
+ 
+    #priceTabBtnRs {
+        width: 100px;
+        background-color: #636363;
+        margin-left: 15px;
+    }
+
+    #priceTabBtnS {
+        width: 100px;
+        background-color: #0092A6;
+    }
+
+    .processTabBtnClassP {
+        height: 30px;
+        border: 0px;
+        border-radius: 5px;
+        color: #fff;
+        font-size: 15px;
+        font-weight:600;
+    }
+
+    #pricetableToolId {
+        margin-left: 30px;
+        padding-top: 7px;
+    }
+
+ 
+
+
+
+    #priceTableSearchInput {
+        margin-left: 200px;
+        border:0px;
+        border-radius:5px;
+        font-size:15px;
+        width:300px;
+        height:26px;
+    }
+
+   
+
+
+
+    #priceFrameId {
+        width: 100%;
+        height: 100%;
+        margin-top: 0px;
+        background-image: url("../../Images/backgroundPic.jpg");
+        background-color: #E4E4E4;
+        background-repeat: repeat;
+    }
+
+
+    #priceDataDiv {
+        height: 420px;
+        width: 1200px;
+        margin-top: 5px;
+        margin-left: 230px;
+        background-color: #fff;
+        border-radius: 15px;
+        clear: both;
+    }
+    #tablePriceTitleP {
+        font-size: 45px;
+        font-weight: bolder;
+        color: #0092A6;
+        margin-left: 680px;
+        margin-bottom: 15px;
+        padding-top: 5px;
+    }
+    #exportPriceBtnA {
+        width: 180px;
+        height: 30px;
+        border: 0px solid #0092A6;
+        border-radius: 5px;
+        color: #fff;
+        font-size: 15px;
+        background-color: #5CB85C;
+        margin-left:230px;
+        font-weight:600;
+    }
+    #importPriceBtnA {
+        width: 180px;
+        height: 30px;
+        border: 0px solid #0092A6;
+        border-radius: 5px;
+        color: #fff;
+        font-size: 15px;
+        background-color: #428BCA;
+        font-weight:600;
+    }
+    #exportPriceDivA {
+        position: relative;
+        top: 80px;
+    }
+   
+}
+
+
+  

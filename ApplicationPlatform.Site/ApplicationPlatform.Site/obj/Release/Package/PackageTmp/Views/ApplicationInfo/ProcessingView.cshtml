@@ -1,0 +1,728 @@
+﻿@{
+    Layout = null;
+    ViewBag.userName = WebSecurity.CurrentUserName;
+}
+@using ApplicationPlatform.Utilities.NodeModels
+<div id="proFrameId">
+    
+    <div id="picsDiv">
+        <div class="processClassSub" id="processId1" onclick="fun1Query ()">
+            Submission
+        </div>
+       <div class="arrowsClass" id="">
+           <img src="~/Images/arrows.png" />
+       </div>
+       <div class="processClass" id="processId2" onclick="fun2Query ()">
+           Technical Approval
+       </div>
+       <div class="arrowsClass" id="">
+           <img src="~/Images/arrows.png" />
+       </div>
+       <div class="processClass" id="processId3" onclick="fun3Query ()">
+           Commercial Approval
+       </div>
+       <div class="arrowsClass" id="">
+           <img src="~/Images/arrows.png" />
+       </div>
+       <div class="processClass" id="processId4" onclick="fun4Query ()">
+           Hexagon Technical Planning
+       </div>
+       <div class="arrowsClass" id="">
+           <img src="~/Images/arrows.png" />
+       </div>
+       <div class="processClass" id="processId5" onclick="fun5Query ()">
+           Completion
+       </div>
+    </div>
+
+    <div id="tableToolId">
+        @{
+            SessionValue sessionValue = System.Web.HttpContext.Current.Session["SessionValue"] as SessionValue;
+            if (sessionValue.HasTechAppprove)
+            {
+                <div class="tableToolDiv" id="tempDiv1">
+                    <input class="processTabBtnClass" id="processTabBtnTec" type="button" value="Technical Approve" onclick="approveTechFuns()" />
+                </div>
+            }
+            if (sessionValue.HasComAppprove)
+            {
+                <div class="tableToolDiv" id="tempDiv2">
+                    <input class="processTabBtnClass" id="processTabBtnCom" type="button" value="Commercial Approve" onclick="approveComFuns()" />
+                </div>
+            }
+            if (sessionValue.HasComAppprove || sessionValue.HasTechAppprove)
+            {
+                <div class="tableToolDiv">
+                    <input class ="processTabBtnClass" id="processTabBtnRj" type="button"  value="Reject" onclick="rejectFuns()"/>
+                </div>
+            }
+        }
+
+        <div class="tableToolDiv">
+            <input class ="processTabBtnClass" id="processTabBtnE" type="button"  value="Edit" onclick="editTableInfoFun()"/>
+        </div>
+        <div class="tableToolDiv">
+            <input class ="processTabBtnClass" id="processTabBtnD" type="button"  value="Delete" onclick="deleteTableInfoFun()"/>
+        </div>
+        
+        
+        <input type="text"  id="tableSearchInput" />
+        <input class="processTabBtnClass" id="processTabBtnS" type="button" value="Search" onclick="processSearchFun('Judge')" />
+        <input class ="processTabBtnClass" id="processTabBtnRs" type="button"  value="Refresh" onclick="resetTableInfoFun()"/>
+    </div>
+    <div id="tableDataDiv">
+        <table id="orderinfoId" class="" style="height:498px;width:1640px;"> 
+            <thead> 
+              <tr>
+                <th data-options="field:'ck',checkbox:true"></th>
+                <th data-options="field:'serialNumber',align:'center',width:70,resizable:false,sortable:true"  >No.</th> 
+                <th data-options="field:'product',align:'center',width:100,resizable:false">Product
+                    <!--
+                    <select id="productQueryId" style="width:120px;height:35px;background-color:#F4F4F4;padding-left:15px;font-size:20px"  disabled="disabled">
+                        <option style="font-size:15px;font-weight:700">Product</option>
+                    </select>
+                        -->
+                </th>  
+                <th data-options="field:'project',align:'center',width:100,resizable:false">Project
+                    <!--
+                    <select id="projectQueryId" style="width:120px;height:35px;background-color:#F4F4F4;padding-left:15px;font-size:20px" disabled="disabled">
+                        <option style="font-size:15px;font-weight:700">Project</option>
+                    </select>
+                        -->
+                </th> 
+                <th data-options="field:'type',align:'center',width:120,resizable:false">Type
+                        <!--
+                    <select id="typeQueryId"  style="width:150px;height:35px;background-color:#F4F4F4;padding-left:35px;font-size:20px" disabled="disabled">
+                        <option style="font-size:15px;font-weight:700;">Type</option>
+                    </select>
+                        -->
+                </th>  
+                <th data-options="field:'item',align:'center',width:110,resizable:false">Item
+                        <!--
+                    <select id="itemQueryId"  style="width:200px;height:35px;background-color:#F4F4F4;padding-left:25px;font-size:20px" disabled="disabled">
+                        <option style="font-size:15px;font-weight:700">Item</option>
+                    </select>
+                        -->
+                 </th>      
+                <th data-options="field:'subitem',align:'center',width:110,resizable:false">Subitem
+                        <!--
+                    <select id="subitemQueryId"  style="width:200px;height:35px;background-color:#F4F4F4;padding-left:25px;font-size:20px" disabled="disabled">
+                        <option style="font-size:15px;font-weight:700">Subitem</option>
+                    </select>
+                        -->
+                 </th>   
+                <th data-options="field:'stage',align:'center',width:80,resizable:false">Stage
+                        <!--
+                    <select id="stageQueryId"  style="width:100px;height:35px;background-color:#F4F4F4;padding-left:10px;font-size:20px" disabled="disabled">
+                        <option style="font-size:15px;font-weight:700;">Stage</option>
+                    </select>
+                        -->
+                </th>   
+                <th data-options="field:'site',align:'center',width:120,resizable:false">Site
+                        <!--
+                    <select id="siteQueryId"  style="width:150px;height:35px;background-color:#F4F4F4;padding-left:40px;font-size:20px" disabled="disabled">
+                        <option style="font-size:15px;font-weight:700;">Site</option>
+                    </select>
+                        -->
+                </th>   
+                <th data-options="field:'progress',align:'center',width:160,resizable:false">Progress
+                        <!--
+                    <select id="progressQueryId"  style="width:170px;height:35px;background-color:#F4F4F4;padding-left:35px;font-size:20px" disabled="disabled">
+                        <option style="font-size:15px;font-weight:700;">Progress</option>
+                    </select>
+                        -->
+                </th>   
+                <th id="qtyId" data-options="field:'quantity',align:'center',width:70,resizable:false">
+                    Quantity
+                </th>
+                <th id="comId" data-options="field:'comment',align:'center',width:120,resizable:false">Comment</th>
+                  <th data-options="field:'postuser',align:'center',width:120,resizable:false">Applicant</th>
+                  <th data-options="field:'createtime',align:'center',width:120,resizable:false">Date</th>
+				<th id="dateId" data-options="field:'ETDValue',align:'center',width:100,resizable:false,hidden:true">ETD</th>				
+                <th id="perId" data-options="field:'operation',align:'center',width:200,resizable:false">Operation</th>
+                <th data-options="field:'approve1',hidden:true"></th>
+                <th data-options="field:'approve2',hidden:true"></th>
+                <th data-options="field:'requirementId',hidden:true"></th>
+            </tr> 
+           </thead> 
+        </table>
+    </div>
+    <div id="editDialog"></div>
+    <div id="detailDialog"></div>
+    <div id="ETDDialog"></div>
+</div>
+
+<link href="~/Content/CSS/ProcessingView.css" rel="stylesheet" />
+
+<script type="text/javascript">
+
+
+    //Technical Approve按钮
+    function approveTechFun(id) {
+        if (window.confirm("Are you sure to approve this requirement?")) {
+            $("#orderinfoId").datagrid({
+                queryParams: { RequirementId: id },
+                url: '@Url.Action("TechnicalApprove", "ApplicationInfo")',
+                onLoadSuccess: function (data) {
+                    alert("Technical Approve Successfully!");
+                    divObj2.className = "processClass";
+                    divObj3.className = "processChangeClass";
+                    $("#orderinfoId").datagrid('options').url = '@Url.Action("CreateProcessingView", "ApplicationInfo")';
+                    currentTaskFun();
+                }
+            });
+        }
+    }
+    //Commercial Approve按钮
+    function approveComFun(id) {
+        if (window.confirm("Are you sure to approve this requirement?")) {
+            $("#orderinfoId").datagrid({
+                queryParams: { RequirementId: id },
+                url: '@Url.Action("CommercialApprove", "ApplicationInfo")',
+                onLoadSuccess: function (data) {
+                    alert("Commercial Approve Successfully!");
+                    divObj3.className = "processClass";
+                    divObj4.className = "processChangeClass";
+                    $("#orderinfoId").datagrid('options').url = '@Url.Action("CreateProcessingView", "ApplicationInfo")';
+                    currentTaskFun();
+                }
+            });
+        }
+    }
+
+    //Reject按钮
+    function rejectFun(id) {
+        if (window.confirm("Are you sure to reject this requirement?")) {
+            $("#orderinfoId").datagrid({
+                queryParams: { RequirementId: id },
+                url: '@Url.Action("Reject", "ApplicationInfo")',
+                onLoadSuccess: function (data) {
+
+                    $("#orderinfoId").datagrid('options').url = '@Url.Action("CreateProcessingView", "ApplicationInfo")';
+                    currentTaskFun();
+                }
+            })
+        }
+
+    }
+
+    //批量Approve按钮
+    function approveTechFuns() {
+        if (window.confirm("Are you sure to approve this requirement?")) {
+            var approveStrIdArr = "";
+            var selectedItemArrA = $("#orderinfoId").datagrid('getChecked');
+            if (selectedItemArrA.length == 0) {
+                alert("Please select one row that you want to approve");
+            } else if (selectedItemArrA.length == 1) {
+                approveStrIdArr = selectedItemArrA[0].requirementId;
+            } else {
+                for (ele in selectedItemArrA) {
+
+                    if (ele < selectedItemArrA.length - 1) {
+                        approveStrIdArr = approveStrIdArr + selectedItemArrA[ele].requirementId + ",";
+                    } else {
+                        approveStrIdArr = approveStrIdArr + selectedItemArrA[ele].requirementId;
+                    }
+                }
+            }
+            $("#orderinfoId").datagrid({
+                queryParams: { RequirementIds: approveStrIdArr },
+                url: '@Url.Action("TechnicalApproves", "ApplicationInfo")',
+                onLoadSuccess: function (data) {
+                    $("#orderinfoId").datagrid('options').url = '@Url.Action("CreateProcessingView", "ApplicationInfo")';
+                    currentTaskFun();
+                }
+            })
+        }
+    }
+    function approveComFuns() {
+        if (window.confirm("Are you sure to approve this requirement?")) {
+            var approveStrIdArr = "";
+            var selectedItemArrA = $("#orderinfoId").datagrid('getChecked');
+            if (selectedItemArrA.length == 0) {
+                alert("Please select one row that you want to approve");
+            } else if (selectedItemArrA.length == 1) {
+                approveStrIdArr = selectedItemArrA[0].requirementId;
+            } else {
+                for (ele in selectedItemArrA) {
+
+                    if (ele < selectedItemArrA.length - 1) {
+                        approveStrIdArr = approveStrIdArr + selectedItemArrA[ele].requirementId + ",";
+                    } else {
+                        approveStrIdArr = approveStrIdArr + selectedItemArrA[ele].requirementId;
+                    }
+                }
+            }
+            $("#orderinfoId").datagrid({
+                queryParams: { RequirementIds: approveStrIdArr },
+                url: '@Url.Action("CommercialApproves", "ApplicationInfo")',
+                onLoadSuccess: function (data) {
+                    $("#orderinfoId").datagrid('options').url = '@Url.Action("CreateProcessingView", "ApplicationInfo")';
+                    currentTaskFun();
+                }
+            })
+        }
+    }
+
+    //批量Reject按钮
+    function rejectFuns() {
+        if (window.confirm("Are you sure to reject this requirement?")) {
+            var rejectStrIdArr = "";
+            var selectedItemArrR = $("#orderinfoId").datagrid('getChecked');
+            if (selectedItemArrR.length == 0) {
+                alert("Please select one row that you want to approve");
+            } else if (selectedItemArrR.length == 1) {
+                rejectStrIdArr = selectedItemArrR[0].requirementId;
+            } else {
+                for (ele in selectedItemArrR) {
+
+                    if (ele < selectedItemArrR.length - 1) {
+                        rejectStrIdArr = rejectStrIdArr + selectedItemArrR[ele].requirementId + ",";
+                    } else {
+                        rejectStrIdArr = rejectStrIdArr + selectedItemArrR[ele].requirementId;
+                    }
+                }
+            }
+            $("#orderinfoId").datagrid({
+                queryParams: { RequirementIds: rejectStrIdArr },
+                url: '@Url.Action("Rejects", "ApplicationInfo")',
+                onLoadSuccess: function (data) {
+                    $("#orderinfoId").datagrid('options').url = '@Url.Action("CreateProcessingView", "ApplicationInfo")';
+                    currentTaskFun();
+                }
+            })
+        }
+    }
+
+    //日期控件；
+    function arrangeFun(Id) {
+
+
+        if (window.confirm("Are you sure to arrange this requirement?")) {
+            var arrangeStageValue = document.getElementById("arrangeSelect" + Id).value;
+            if (arrangeStageValue == "Waiting for CAD") {
+                $("#orderinfoId").datagrid({
+                    queryParams: { arrangeStage: arrangeStageValue },
+                    url: '@Url.Content("~/ApplicationInfo/Arrange")' + '?requirementId=' + Id + '&process=' + arrangeStageValue,
+                    onLoadSuccess: function (data) {
+                        $("#orderinfoId").datagrid('options').url = '@Url.Action("CreateProcessingView", "ApplicationInfo")';
+                        currentTaskFun();
+                    }
+                })
+            } else if (arrangeStageValue == "DFM") {
+                $("#orderinfoId").datagrid({
+                    queryParams: { arrangeStage: arrangeStageValue },
+                    url: '@Url.Content("~/ApplicationInfo/Arrange")' + '?requirementId=' + Id + '&process=' + arrangeStageValue,
+                    onLoadSuccess: function (data) {
+                        $("#orderinfoId").datagrid('options').url = '@Url.Action("CreateProcessingView", "ApplicationInfo")';
+                        currentTaskFun();
+                    }
+                })
+            } else if (arrangeStageValue == "Inventory") {
+                $("#orderinfoId").datagrid({
+                    queryParams: { arrangeStage: arrangeStageValue },
+                    url: '@Url.Content("~/ApplicationInfo/Arrange")' + '?requirementId=' + Id + '&process=' + arrangeStageValue,
+                    onLoadSuccess: function (data) {
+                        $("#orderinfoId").datagrid('options').url = '@Url.Action("CreateProcessingView", "ApplicationInfo")';
+                        currentTaskFun();
+                    }
+                })
+            }
+            else if (arrangeStageValue == "Production") {
+                $("#ETDDialog").dialog({
+                    title: 'Set ETD',
+                    width: 450,
+                    height: 80,
+                    href: '@Url.Content("~/ApplicationInfo/DateBoxView")' + '?requirementId=' + Id,
+                    cache: true,
+                    modal: true,
+                    
+                });
+            }
+        }
+
+
+
+
+
+
+
+    }
+
+
+
+    //Edit按钮
+    function editTableInfoFun() {
+        //获取当前屏幕的宽度；
+        var processDeviceWidthVal = $(document).width();
+        var index = $("#orderinfoId").datagrid('getChecked');
+        if (index.length == 1) {
+            if (index[0].progress == "Technical Approval" || index[0].progress == "Technical Rejection" || index[0].progress == "Commercial Rejection") {
+                if (window.confirm("Are you sure to edit this requirement?")) {
+                    if (processDeviceWidthVal >= 851) {
+                        $("#editDialog").dialog({
+                            title: 'Edit Application Information',
+                            width: 700,
+                            height: 700,
+                            href: '@Url.Action("EditView", "ApplicationInfo")',
+                            cache: true,
+                            modal: true,
+                            queryParams: { checksysno: index },
+                            onClose: function () {
+                                $("#editDialog").dialog('destroy', false);
+                                var tab = $('#midShowId').tabs('getSelected');
+                                $('#midShowId').tabs('update', {
+                                    tab: tab,
+                                    options: {
+                                        title: "Processing Requirements",
+                                    }
+                                });
+
+                                currentTaskFun();
+                            }
+
+                        });
+                    } else {
+
+                        $("#editDialog").dialog({
+                            title: 'Edit Application Information',
+                            width: 300,
+                            height: 300,
+                            href: '@Url.Action("EditView", "ApplicationInfo")',
+                            cache: true,
+                            modal: true,
+                            queryParams: { checksysno: index },
+                            onClose: function () {
+                                $("#editDialog").dialog('destroy', false);
+                                var tab = $('#midShowId').tabs('getSelected');
+                                $('#midShowId').tabs('update', {
+                                    tab: tab,
+                                    options: {
+                                        title: "Processing Requirements",
+                                    }
+                                });
+
+                                currentTaskFun();
+                            }
+
+                        });
+                    }
+
+                }
+            } else {
+                alert("Can't be edited in this progress!");
+            }
+
+        } else if (index.length == 0) {
+            alert("Please select one row that you want to edit");
+        } else {
+            alert("Only can select one row for editing!");
+        }
+
+
+    }
+    function editTableInfoFun1() {
+        var index = [];
+        $("#orderinfoId").datagrid({
+            onClickRow: function (rowIndex, rowData) {
+                index[0] = rowData;
+                //获取当前屏幕的宽度；
+                var processDeviceWidthVal = $(document).width();
+                if (index[0].progress == "Technical Approval" || index[0].progress == "Technical Rejection" || index[0].progress == "Commercial Rejection") {
+                    if (window.confirm("Are you sure to edit this requirement?")) {
+                        if (processDeviceWidthVal >= 851) {
+                            $("#editDialog").dialog({
+                                title: 'Edit Application Information',
+                                width: 700,
+                                height: 700,
+                                href: '@Url.Action("EditView", "ApplicationInfo")',
+                                cache: true,
+                                modal: true,
+                                queryParams: { checksysno: index },
+                                onClose: function () {
+                                    $("#editDialog").dialog('destroy', false);
+                                    var tab = $('#midShowId').tabs('getSelected');
+                                    $('#midShowId').tabs('update', {
+                                        tab: tab,
+                                        options: {
+                                            title: "Processing Requirements",
+                                        }
+                                    });
+
+                                    currentTaskFun();
+                                }
+
+                            });
+                        } else {
+
+                            $("#editDialog").dialog({
+                                title: 'Edit Application Information',
+                                width: 300,
+                                height: 300,
+                                href: '@Url.Action("EditView", "ApplicationInfo")',
+                                cache: true,
+                                modal: true,
+                                queryParams: { checksysno: index },
+                                onClose: function () {
+                                    $("#editDialog").dialog('destroy', false);
+                                    var tab = $('#midShowId').tabs('getSelected');
+                                    $('#midShowId').tabs('update', {
+                                        tab: tab,
+                                        options: {
+                                            title: "Processing Requirements",
+                                        }
+                                    });
+
+                                    currentTaskFun();
+                                }
+
+                            });
+                        }
+
+                    }
+                } else {
+                    alert("Can't be edited in this progress!");
+                }
+            }
+        });
+
+
+       
+
+       
+
+
+    }
+
+    //Reset按钮
+    function resetTableInfoFun() {
+        /*
+        $("#projectQueryId").val("Project");
+        $("#itemQueryId").val("Item");
+        $("#typeQueryId").val("Type");
+        $("#stageQueryId").val("Stage");
+        $("#siteQueryId").val("Site");
+        $("#progressQueryId").val("Progress");
+        */
+        document.getElementById("tableSearchInput").value = "";
+        //重新载入Processing页面
+        var tab = $('#midShowId').tabs('getSelected');
+        //刷新选择的面板；
+        $('#midShowId').tabs('update', {
+            tab: tab,
+            options: {
+                title: "Processing Requirements",
+            }
+        });
+    }
+
+    //Delete按钮
+
+    function deleteTableInfoFun() {
+        //获取当前登录人的姓名；
+        var personCurrent = "@ViewBag.userName";
+
+        if (window.confirm("Are you sure to delete the selected requirement?")) {
+            var deleteStrIdArr = "";
+            var selectedItemArr = $("#orderinfoId").datagrid('getChecked');
+            if (selectedItemArr.length == 0) {
+                alert("Please select one row that you want to delete");
+                return;
+            } else if (selectedItemArr.length == 1) {
+                if (selectedItemArr[0].postuser == personCurrent) {
+                    if (selectedItemArr[0].progress == "Technical Approval" || selectedItemArr[0].progress == "Technical Rejection" || selectedItemArr[0].progress == "Commercial Rejection") {
+                        deleteStrIdArr = selectedItemArr[0].requirementId;
+                    } else {
+                        alert("Can't delete your on this progress!");
+                        return;
+                    }
+                } else {
+                    alert("You can only delete your own application!");
+                    return;
+                }
+            } else {
+                for (ele in selectedItemArr) {
+                    if (selectedItemArr[ele].postuser == personCurrent) {
+                        if (selectedItemArr[ele].progress == "Technical Approval" || selectedItemArr[ele].progress == "Technical Rejection" || selectedItemArr[ele].progress == "Commercial Rejection") {
+                            if (ele < selectedItemArr.length - 1) {
+                                deleteStrIdArr = deleteStrIdArr + selectedItemArr[ele].requirementId + ",";
+                            } else {
+                                deleteStrIdArr = deleteStrIdArr + selectedItemArr[ele].requirementId;
+                            }
+                        } else {
+                            alert("Can't delete your on this progress!");
+                            return;
+                        }
+                    } else {
+                        alert("You can only delete your own application!");
+                        return;
+                    }
+                }
+            }
+            //deleteStrIdArr为选中的UserId数组；
+            $("#orderinfoId").datagrid({
+                queryParams: { RequirementIds: deleteStrIdArr },
+                url: '@Url.Action("Delete", "ApplicationInfo")',
+                onLoadSuccess: function (data) {
+                    alert("Requirement deleted successfully!");
+                    //删除完成后，取消勾选
+                    $("#orderinfoId").datagrid('uncheckAll');
+                    $("#orderinfoId").datagrid('options').url = '@Url.Action("CreateProcessingView", "ApplicationInfo")';
+                    currentTaskFun();
+                }
+            })
+        }
+    }
+        var divObj1 = document.getElementById("processId1");
+        var divObj2 = document.getElementById("processId2");
+        var divObj3 = document.getElementById("processId3");
+        var divObj4 = document.getElementById("processId4");
+        var divObj5 = document.getElementById("processId5");
+
+    $(function () {
+
+        //加载表格
+        $("#orderinfoId").datagrid({
+            striped: true,
+            pageNumber: 1,
+            pageList: [10],
+            pageSize: 10,
+            queryParams: { CurrentTask: '@ViewBag.CurrentTask' },
+            url: '@Url.Action("CreateProcessingView", "ApplicationInfo")',
+            striped: true,
+            idField: 'requirementId',
+            pagination: true,
+            autoRowHeight: true,
+            onClickRow: function (rowIndex, rowData) {
+            },
+            rowStyler: function (index, row) {
+                if (row.progress == "Technical Rejection") {
+                    return 'background-color:#FFFF00;';
+                } else if (row.progress == "Commercial Rejection") {
+                    return 'background-color:#EE655F;';
+                }
+            },
+            //点击行，显示进程状态
+            onClickRow: function (rowIndex, rowData) {
+
+
+                divObj1.textContent = "Submission";
+                divObj1.className = "processClassSub";
+                divObj2.className = "processClass";
+                divObj3.className = "processClass";
+                divObj4.className = "processClass";
+                divObj5.className = "processClass";
+
+
+                switch (rowData.progress) {
+                    case 'Technical Rejection': divObj1.className = "processRejectClass"; divObj1.textContent = "Technical Rejection"; break;
+                    case 'Commercial Rejection': divObj1.className = "processRejectClass"; divObj1.textContent = "Commercial Rejection"; break;
+                    case "Technical Approval": divObj2.className = "processChangeClass"; break;
+                    case "Commercial Approval": divObj3.className = "processChangeClass"; break;
+                    case "Hexagon Technical Planning": divObj4.className = "processChangeClassHex"; break;
+                    case "Waiting for CAD": divObj4.className = "processChangeClassHex"; break;
+                    case "DFM": divObj4.className = "processChangeClassHex"; break;
+                    case "Production": divObj4.className = "processChangeClassHex"; break;
+                    case "Inventory": divObj4.className = "processChangeClassHex"; break;
+                    case "Completion": divObj5.className = "processChangeClass"; break;
+                };
+
+
+            }
+            //双击行，显示Detail信息
+            @*
+            onDblClickRow: function (rowIndex, rowData) {
+                //console.log(rowIndex);
+                $("#detailDialog").dialog({
+                    title: 'View Order Information',
+                    width: 700,
+                    height: 750,
+                    href: '@Url.Action("DetailView", "ApplicationInfo")',
+                    cache: true,
+                    modal: true,
+                    queryParams: { checksysno: rowData }
+                });
+            }
+            *@
+        });
+    });
+
+    //模糊搜索
+    function processSearchFun(progressP) {
+        if (progressP == "Judge") {
+            var Project = document.getElementById('tableSearchInput').value;
+            $("#orderinfoId").datagrid({
+                queryParams: { project: Project },
+                url: '@Url.Action("CreateProcessingViewSearch", "ApplicationInfo")',
+                onLoadSuccess: function (data) {
+                    $("#orderinfoId").datagrid('options').url = '@Url.Action("CreateProcessingView", "ApplicationInfo")';
+                }
+            })
+        } else {
+            $("#orderinfoId").datagrid({
+                queryParams: { progress: progressP },
+                url: '@Url.Action("CreateProcessingView", "ApplicationInfo")',
+                onLoadSuccess: function (data) {
+                    $("#orderinfoId").datagrid('options').url = '@Url.Action("CreateProcessingView", "ApplicationInfo")';
+                }
+            })
+
+        }
+
+    }
+
+    //点击状态,刷新table
+    function fun1Query() {
+        divObj1.className = "processChangeClass1";
+        divObj2.className = "processClass";
+        divObj3.className = "processClass";
+        divObj4.className = "processClass";
+        divObj5.className = "processClass";
+        processSearchFun("Submission");
+    };
+    function fun2Query() {
+        divObj1.className = "processClassSub";
+        divObj2.className = "processChangeClass";
+        divObj3.className = "processClass";
+        divObj4.className = "processClass";
+        divObj5.className = "processClass";
+        processSearchFun("Technical Approval");
+    };
+    function fun3Query() {
+        divObj1.className = "processClassSub";
+        divObj2.className = "processClass";
+        divObj3.className = "processChangeClass";
+        divObj4.className = "processClass";
+        divObj5.className = "processClass";
+        processSearchFun("Commercial Approval");
+    };
+    function fun4Query() {
+        divObj1.className = "processClassSub";
+        divObj2.className = "processClass";
+        divObj3.className = "processClass";
+        divObj4.className = "processChangeClassHex";
+        divObj5.className = "processClass";
+        processSearchFun("Hexagon Technical Planning");
+    };
+    function fun5Query() {
+        divObj1.className = "processClassSub";
+        divObj2.className = "processClass";
+        divObj3.className = "processClass";
+        divObj4.className = "processClass";
+        divObj5.className = "processChangeClass";
+
+        //点击Completion,跳转到Completed Requirements页面；
+        if ($("#midShowId").tabs("exists", 'Completed Requirements')) {
+            $("#midShowId").tabs("select", 'Completed Requirements')
+        } else {
+            $("#midShowId").tabs("add", {
+                "title": 'Completed Requirements',
+                "closable": true,
+                "href": '@Url.Action("CompletedView","ApplicationInfo")',
+                "cache": true
+            })
+        }
+    };
+
+
+</script>

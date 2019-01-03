@@ -1,0 +1,484 @@
+﻿@{
+    Layout = null;
+}
+<script src="~/Scripts/jquery.form.js"></script>
+<div id="proFrameIdA" >
+    
+    <div id="tableTitleA">
+        <button id="changeViewBtnA1" onclick="changeViewToSummaryA()">Summary</button>
+        <button id="changeViewBtnA2" onclick="changeViewToDetailA()">Detail</button>
+
+        View All Requirements
+    </div>
+	
+    <hr style="color:#0092A6;border:0.5px solid #0092A6;margin-left:3%;margin-right:3%;" />
+    <div id="tableAToolId">
+
+        <span class="tableAToolTitleClass" >
+            Search Criteria:
+        </span>
+        <select id="criteriaSelIdA" style="height:26px;">
+            <option>Create Date</option>
+            <option>ETD</option>
+            <option>ATD</option>
+        </select>
+
+        <span class="tableAToolTitleClass"  style="margin-left:40px;">
+            Time Interval:
+        </span>
+        <select id="timeIntervalIdA" style="height:26px;" onchange="timeIntervaFunA()">
+            <option>/</option>
+            <option>1 Month</option>
+            <option>3 Months</option>
+            <option>6 Months</option>
+            <option>1 Year</option>
+        </select>
+        <span style="padding-left:50px;" class="tableAToolTitleClass">From:</span>
+        <input id="dateboxStartIdA" style="width:100px;height:20px;"/><button class="clearDateboxClassA" onclick="clearDateboxFun1A()">Clear</button>
+        <span class="tableAToolTitleClass">To:</span>
+        <input id="dateboxEndIdA"  style="width:100px;height:20px;"/><button class="clearDateboxClassA" onclick="clearDateboxFun2A()">Clear</button>
+        <span style="padding-left:50px;" class="tableAToolTitleClass">Key Words:</span>
+        <input type="text"  id="tableSearchInputA" />
+        <input type="button"  value="Search" id="allReTabSearBtn" onclick="searchBtnAFun()"/>
+        <input type="button"  value="Refresh" id="allReTabResBtn" onclick="resetBtnAFun()"/>
+    </div>
+	
+	
+    <div id="tableDataDivA">
+        <table id="orderinfoIdA" class=""  style="height:515px;width:1640px;"> 
+            <thead> 
+              <tr>
+                <th data-options="field:'ck',checkbox:true"></th>
+                <th data-options="field:'serialNumber',align:'center',width:80,resizable:false,sortable:true" >No.</th>
+                <th data-options="field:'product',align:'center',width:100,resizable:false">Product</th> 
+                <th data-options="field:'project',align:'center',width:100,resizable:false">Project
+                    <!--
+                    <select id="projectQueryIdA" style="width:180px;height:35px;background-color:#F4F4F4;padding-left:24px" >
+                        <option style="font-size:15px;font-weight:700">Project</option>
+                    </select>
+                    -->
+                </th>
+                <th data-options="field:'type',align:'center',width:80,resizable:false">Type
+                    <!--
+                    <select id="typeQueryIdA"  style="width:220px;height:35px;background-color:#F4F4F4;padding-left:75px">
+                        <option style="font-size:15px;font-weight:700;">Type</option>
+                    </select>
+                    -->
+                </th>   
+                <th data-options="field:'item',align:'center',width:100,resizable:false">Item
+                    <!--
+                    <select id="itemQueryIdA"  style="width:200px;height:35px;background-color:#F4F4F4;padding-left:50px">
+                        <option style="font-size:15px;font-weight:700">Item</option>
+                    </select>
+                    -->
+                 </th>      
+                <th data-options="field:'subitem',align:'center',width:100,resizable:false">Subitem</th>
+                <th data-options="field:'progress',align:'center',width:160,resizable:false">Progress</th>
+                <th data-options="field:'stage',align:'center',width:60,resizable:false">Stage
+                    <!--
+                    <select id="stageQueryIdA"  style="width:100px;height:35px;background-color:#F4F4F4;padding-left:10px">
+                        <option style="font-size:15px;font-weight:700;">Stage</option>
+                    </select>
+                    -->
+                </th>   
+                <th data-options="field:'site',align:'center',width:100,resizable:false">Site
+                    <!--
+                    <select id="siteQueryIdA"  style="width:150px;height:35px;background-color:#F4F4F4;padding-left:40px">
+                        <option style="font-size:15px;font-weight:700;">Site</option>
+                    </select>
+                    -->
+                </th>
+				<th id="qtyIdA" data-options="field:'quantity',align:'center',width:75,resizable:false">
+                    Quantity
+                </th>
+				<th id="approver1IdC" data-options="field:'approver1',align:'center',width:170,resizable:false">
+                    Technical Approval
+                </th>
+                 <th id="approver2IdC" data-options="field:'approver2',align:'center',width:185,resizable:false">
+                    Commercial Approval
+                </th>
+                  <th id="arrangeIdC" data-options="field:'arrangeUser',align:'center',width:120,resizable:false">
+                      Arrange DRI
+                  </th>
+                
+                <th id="ETDIdA" data-options="field:'ETD',align:'center',width:80,resizable:false">
+                    ETD
+                </th>  
+                  <th id="deliveryIdA" data-options="field:'ATD',align:'center',width:110,resizable:false">ATD</th>
+                <th id="unitpriceIdA" data-options="field:'unitprice',align:'center',width:110,resizable:false">Unit Price</th>
+                <th id="totalpriceIdA" data-options="field:'totalprice',align:'center',width:110,resizable:false">Total Price</th>
+                <th data-options="field:'postuser',align:'center',width:100,resizable:false">Applicant</th>
+                <th data-options="field:'createtime',align:'center',width:80,resizable:false">Date</th>    
+                <th id="comIdA" data-options="field:'comment',align:'center',width:110,resizable:false">Comment</th>
+                <th data-options="field:'requirementId',hidden:true"></th>
+
+            </tr> 
+           </thead> 
+        </table>
+    </div>
+    <div id="exportDivA">
+        <input id="exportBtnA" type="button" value="Export data to Excel" onclick="exportAllInfoA()" />
+        <input id="deliveryBtnA" type="button" value="Set ATD" onclick="setDeliveryDateFun()" />
+        <input id="priceBtnA" type="button" value="Set Unite Price" onclick="setUnitePriceFun()" />
+        <input id="getEmialUsersBtnA" type="button" value="Get Email Users" onclick="getEmailUsersFun()" />
+        <input id="setEmialUsersBtnA" type="button" value="Set Email Users" onclick="setEmailUsersFun()" />
+    </div>
+    <form enctype="multipart/form-data" method="post" id="upload" hidden="hidden" >
+        <div>
+            <input type="file" name="fileToUpload" id="fileToUpload" onchange="SubmitEmailUsersFile()" />
+        </div>
+    </form>
+    <div id="deliveryDateDiv"></div>
+    <div id="unitePriceDiv"></div>
+</div>
+
+<link href="~/Content/CSS/AllRequirements.css" rel="stylesheet" />
+
+<script type="text/javascript">
+    function clearDateboxFun1A() {
+        document.getElementById("dateboxStartIdA").value = "";
+    }
+    function clearDateboxFun2A() {
+        document.getElementById("dateboxEndIdA").value = "";
+    }
+
+
+    //切换Summary视图
+    function changeViewToSummaryA() {
+        var tab = $('#midShowId').tabs('getSelected');  // 获取选择的面板
+        $('#midShowId').tabs('update', {
+            tab: tab,
+            options: {
+                href: '@Url.Action("AllRequirementsSummary","ApplicationInfo")',
+                title: "View All Requirements",
+            }
+        });
+    }
+
+    //切换Detail视图
+    function changeViewToDetailA() {
+        var tab = $('#midShowId').tabs('getSelected');  // 获取选择的面板
+        $('#midShowId').tabs('update', {
+            tab: tab,
+            options: {
+                href: '@Url.Action("AllRequirements","ApplicationInfo")',
+                title: "View All Requirements",
+            }
+        });
+    }
+
+
+
+    //设置单价；
+    function setUnitePriceFun() {
+        var unitePriceObjA = $("#orderinfoIdA").datagrid('getChecked');
+        var unitePriceIds = '';
+        if (unitePriceObjA.length == 0) {
+            alert("Please select at least one row to edit!");
+            return;
+        } else if (unitePriceObjA.length == 1) {
+            unitePriceIds = unitePriceObjA[0].requirementId;
+        } else {
+            for (ele in unitePriceObjA) {
+
+                if (ele < unitePriceObjA.length - 1) {
+                    unitePriceIds = unitePriceIds + unitePriceObjA[ele].requirementId + ",";
+                } else {
+                    unitePriceIds = unitePriceIds + unitePriceObjA[ele].requirementId;
+                }
+            }
+        }
+
+
+        if (window.confirm("Are you sure to add the unite price?")) {
+
+            $("#unitePriceDiv").dialog({
+                title: 'Set Unit Price',
+                width: 450,
+                height: 80,
+                href: '@Url.Action("UnitPriceView", "ApplicationInfo")',
+                cache: true,
+                modal: true,
+                queryParams: { checksysno: unitePriceIds }
+
+            });
+        }
+
+
+    }
+
+    //设置实际发货时间；
+    function setDeliveryDateFun() {
+        var deliverySelectObjA = $("#orderinfoIdA").datagrid('getChecked');
+        var deliveryIds = '';
+        if (deliverySelectObjA.length == 0) {
+            alert("Please select at least one row to edit!");
+            return;
+        } else if (deliverySelectObjA.length == 1) {
+            deliveryIds = deliverySelectObjA[0].requirementId;
+        } else {
+            for (ele in deliverySelectObjA) {
+
+                if (ele < deliverySelectObjA.length - 1) {
+                    deliveryIds = deliveryIds + deliverySelectObjA[ele].requirementId + ",";
+                } else {
+                    deliveryIds = deliveryIds + deliverySelectObjA[ele].requirementId;
+                }
+            }
+        }
+
+
+        if (window.confirm("Are you sure to set the delivery date?")) {
+
+            $("#deliveryDateDiv").dialog({
+                title: 'Set Delivery Date',
+                width: 450,
+                height: 80,
+                href: '@Url.Action("DeliveryDateView", "ApplicationInfo")',
+                cache: true,
+                modal: true,
+                queryParams: { checksysno: deliveryIds }
+
+            });
+        }
+
+    }
+
+    //时间段查询
+    function timeIntervaFunA() {
+        var searchCriteria = document.getElementById("criteriaSelIdA").value;
+        var timeInVal = document.getElementById("timeIntervalIdA").value;
+        $("#orderinfoIdA").datagrid({
+            queryParams: { timeInValA: timeInVal, searchCriteria: searchCriteria },
+            url: '@Url.Action("CreateAllIntervalViewSearch", "ApplicationInfo")',
+        });
+
+    }
+
+
+
+    //搜索按钮
+    function searchBtnAFun() {
+
+        var searchCriteria = document.getElementById("criteriaSelIdA").value;
+
+        var startDateA = document.getElementById("dateboxStartIdA").value;
+        var endDateA = document.getElementById("dateboxEndIdA").value;
+        var searchInputValA = document.getElementById("tableSearchInputA").value;
+
+
+        if (startDateA == "" & endDateA == "" & searchInputValA == "") {
+            alert("Please enter search criteria.");
+        } else if (startDateA != "" & endDateA == "") {
+            alert("Please enter the search end time.");
+        } else if (startDateA == "" & endDateA != "") {
+            alert("Please enter the search start time.");
+        } else {
+            $("#orderinfoIdA").datagrid({
+                queryParams: { startDateA: startDateA, endDateA: endDateA, searchInputValA: searchInputValA, searchCriteria: searchCriteria },
+                url: '@Url.Action("CreateAllIntervalViewSearch", "ApplicationInfo")',
+            });
+        }
+
+    };
+
+    //Reset按钮
+    function resetBtnAFun() {
+        /*
+        $("#projectQueryIdA").val("Project");
+        $("#itemQueryIdA").val("Item");
+        $("#typeQueryIdA").val("Type");
+        $("#stageQueryIdA").val("Stage");
+        $("#siteQueryIdA").val("Site");
+        $("#progressQueryIdA").val("Progress");
+        */
+        document.getElementById("tableSearchInputA").value = "";
+
+        var tab = $('#midShowId').tabs('getSelected');  // 获取选择的面板
+        $('#midShowId').tabs('update', {
+            tab: tab,
+            options: {
+                title: "View All Requirements",
+            }
+        });
+
+    }
+
+
+    //导出Excel
+    function exportAllInfoA() {
+        var startDateA = document.getElementById("dateboxStartIdA").value;
+        var endDateA = document.getElementById("dateboxEndIdA").value;
+        var searchInputValA = document.getElementById("tableSearchInputA").value;
+
+        @*$("#orderinfoIdA").datagrid({
+            method: 'get',
+            queryParams: { startDateA: startDateA, endDateA: endDateA, searchInputValA: searchInputValA },
+            url: '@Url.Content("~/ApplicationInfo/DownloadAllIntervalViewSearch")' + '?StartDateA=' + startDateA + '&EndDateA=' + endDateA + '&searchInputValA=' + searchInputValA,
+	        onLoadSuccess: function () {
+	            alert("Data export successfully");
+	        }
+        });*@
+        @*$.ajax({
+            type: "get",//方法类型
+            dataType: "json",//预期服务器返回的数据类型
+            url: '@Url.Content("~/ApplicationInfo/DownloadAllIntervalViewSearch")' + '?StartDateA=' + startDateA + '&EndDateA=' + endDateA + '&searchInputValA=' + searchInputValA,
+            success: function (result) {
+                alert("Data export successfully");
+            },
+        });*@
+        window.location.href = '@Url.Content("~/ApplicationInfo/DownloadAllIntervalViewSearch")' + '?StartDateA=' + startDateA + '&EndDateA=' + endDateA + '&searchInputValA=' + searchInputValA
+
+
+    }
+
+    //初始化日期控件
+    document.getElementById("dateboxStartIdA").flatpickr({
+        //设置日期的格式；
+        dateFormat: "Y/m/d",
+        onChange: function (dateObject, dateString) {
+            //获取时间日期输入框的值
+        var startDateA = document.getElementById("dateboxStartIdA").value;
+        var endDateA = document.getElementById("dateboxEndIdA").value;
+        if (startDateA != "") {
+            var begin = new Date($("#dateboxStartIdA").val().replace(/-/g, "/"));
+            var end = new Date($("#dateboxEndIdA").val().replace(/-/g, "/"));
+            //js判断日期
+            if (begin - end > 0) {
+                alert("Please enter the correct end date!");
+                document.getElementById("dateboxStartIdA").value = "";
+            }
+
+        }
+    }
+    });
+    document.getElementById("dateboxEndIdA").flatpickr({
+        //设置日期的格式；
+        dateFormat: "Y/m/d",
+        onChange: function (dateObject, dateString) {
+            //获取时间日期输入框的值
+            var startDateA = document.getElementById("dateboxStartIdA").value;
+            var endDateA = document.getElementById("dateboxEndIdA").value;
+            if (startDateA != "") {
+                var begin = new Date($("#dateboxStartIdA").val().replace(/-/g, "/"));
+                var end = new Date($("#dateboxEndIdA").val().replace(/-/g, "/"));
+                //js判断日期
+                if (begin - end > 0) {
+                    alert("Please enter the correct end date!");
+                    document.getElementById("dateboxEndIdA").value = "";
+                }
+
+            }
+        }
+
+    });
+    @*
+    var projectListArrA = ["D42", "D43", "N104", "N144"];
+    var itemListArrA = ["Housing", "Glass", "Frame", "RCAM", "SIM-Tray", "Bracket", "Small", "Large"];
+
+    var typeListArrA = ["Band 00D", "Band 90D", "Band Prism X", "Band Prism Y", "ASSY 00D", "ASSY 90D", "ASSY Prism", "Band Prism YB", "Band Prism YT",
+                        "BG", "CG", "CG Display",
+                        "CG Frame", "Top Module", "2N Force", "Cosmetic",
+                        "Frame Only Upward", "Frame Only Downward",
+                        "RCAM Trim Inner", "RCAM Trim Outer", "RCAM ASSY", "RCAM Brace", "RCAM Strobe Trim",
+                        "SIM-Tray Upward", "SIM-Tray Downward", "SIM-Tray Dual-Card", "SIM-Tray Bin",
+                        "Top Bracket",
+                        "Iceman Housing", "Metal Housing", "Window", "Frame", "Window + Frame"
+                       ];
+    var stageListArrA = ["Drop1", "Drop2", "P1", "P2", "EVT", "DVT", "CB", "MP"];
+    var siteListArrA = ["IPEG-GL", "IPEG-LH", "LF-DG", "BIEL-HZ", "LENS-LY"];
+    var progressListArrA = ["Being-Submitted", "Approve-Technique", "Approve-Business", "Hallmark-Arrange", "Completion"];
+
+
+    //加载搜索下拉菜单
+
+    var proListObjA = document.querySelector("#projectQueryIdA");
+    for (ele in projectListArrA) {
+        var op = new Option(projectListArrA[ele], projectListArrA[ele], false, false);
+        proListObjA[proListObjA.length] = op;
+    };
+
+    var itemListObjA = document.querySelector("#itemQueryIdA");
+    for (ele in itemListArrA) {
+        var op = new Option(itemListArrA[ele], itemListArrA[ele], false, false);
+        itemListObjA[itemListObjA.length] = op;
+    };
+
+    var typeListObjA = document.querySelector("#typeQueryIdA");
+    for (ele in typeListArrA) {
+        var op = new Option(typeListArrA[ele], typeListArrA[ele], false, false);
+        typeListObjA[typeListObjA.length] = op;
+    };
+
+    var stageListObjA = document.querySelector("#stageQueryIdA");
+    for (ele in stageListArrA) {
+        var op = new Option(stageListArrA[ele], stageListArrA[ele], false, false);
+        stageListObjA[stageListObjA.length] = op;
+    };
+
+    var siteListObjA = document.querySelector("#siteQueryIdA");
+    for (ele in siteListArrA) {
+        var op = new Option(siteListArrA[ele], siteListArrA[ele], false, false);
+        siteListObjA[siteListObjA.length] = op;
+    };
+    *@
+    $("#orderinfoIdA").datagrid({
+
+        pageNumber: 1,
+        pageList: [10],
+        pageSize: 10,
+        //data: [
+        //        { serialNumber: '1', project: 'D42', item: 'Housing', type: 'Band 00D', stage: 'P1', site: 'IPEG-GL', progress: 'Approve-Technique', quantity: '1',ETD:'2018/10/25', comment: '<span class="easyui-tooltip" title="The fixture is already shipped">The fixture is already shipped</span>', operation: '<input value="Approve" type="button"/><input value="Disapprove" type="button"/>', approver1: 'Julius', approver2: 'Tim',arranger:'arranger1' },
+        //        { serialNumber: '2', project: 'D43', item: 'Housing', type: 'ASSY 00D', stage: 'Drop1', site: 'IPEG-LH', progress: 'Hallmark-Arrange', quantity: '2', ETD: '2018/10/25', comment: '<span class="easyui-tooltip" title="The fixture is already shipped,The fixture is already shipped,The fixture is already shipped">The fixture is already shipped，The fixture is already shipped，The fixture is already shipped</span>', operation: '<input value="Approve" type="button"/><input value="Disapprove" type="button"/>', approver1: 'Julius', approver2: 'Tim' ,arranger:'arranger1'},
+        //        { serialNumber: '3', project: 'D42', item: 'Frame', type: 'Frame Only Downward', stage: 'MP', site: 'IPEG-GL', progress: 'Completion', quantity: '2', ETD: '2018/10/25', comment: '<span class="easyui-tooltip" title="The fixture is already shipped">The fixture is already shipped</span>', operation: '<input value="Approve" type="button"/><input value="Disapprove" type="button"/>', approver1: 'Julius', approver2: 'Tim',arranger:'arranger1' },
+        //        { serialNumber: '4', project: 'N104', item: 'SIM-Tray', type: 'SIM-Tray Upward', stage: 'EVT', site: 'IPEG-GL', progress: 'Hallmark-Arrange', quantity: '10', ETD: '2018/10/25', comment: '<span class="easyui-tooltip" title="The fixture is already shipped">The fixture is already shipped</span>', operation: '<input value="Approve" type="button"/><input value="Disapprove" type="button"/>', approver1: 'Julius', approver2: 'Tim' ,arranger:'arranger1'},
+        //        { serialNumber: '5', project: 'N144', item: 'Small', type: 'Iceman Housing', stage: 'P2', site: 'IPEG-GL', progress: 'Approve-Business', quantity: '4', ETD: '2018/10/25', comment: '<span class="easyui-tooltip" title="The fixture is already shipped">The fixture is already shipped</span>', operation: '<input value="Approve" type="button"/><input value="Disapprove" type="button"/>', approver1: 'Julius', approver2: 'Tim',arranger:'arranger1' },
+        //        { serialNumber: '6', project: 'N104', item: 'SIM-Tray', type: 'SIM-Tray Upward', stage: 'EVT', site: 'IPEG-GL', progress: 'Hallmark-Arrange', quantity: '2', ETD: '2018/10/25', comment: '<span class="easyui-tooltip" title="The fixture is already shipped">The fixture is already shipped</span>', operation: '<input value="Approve" type="button"/><input value="Disapprove" type="button"/>', approver1: 'Julius', approver2: 'Tim',arranger:'arranger1' },
+        //        { serialNumber: '7', project: 'N144', item: 'Small', type: 'Iceman Housing', stage: 'P2', site: 'IPEG-GL', progress: 'Being-Submitted', quantity: '1', ETD: '2018/10/25', comment: '<span class="easyui-tooltip" title="The fixture is already shipped">The fixture is already shipped</span>', operation: '<input value="Approve" type="button"/><input value="Disapprove" type="button"/>', approver1: 'Julius', approver2: 'Tim',arranger:'arranger1' },
+        //        { serialNumber: '8', project: 'D42', item: 'Frame', type: 'Frame Only Downward', stage: 'MP', site: 'IPEG-GL', progress: 'Completion', quantity: '2', ETD: '2018/10/25', comment: '<span class="easyui-tooltip" title="The fixture is already shipped">The fixture is already shipped</span>', operation: '<input value="Approve" type="button"/><input value="Disapprove" type="button"/>', approver1: 'Julius', approver2: 'Tim',arranger:'arranger1' },
+        //        { serialNumber: '9', project: 'N104', item: 'SIM-Tray', type: 'SIM-Tray Upward', stage: 'EVT', site: 'IPEG-GL', progress: 'Hallmark-Arrange', quantity: '1', ETD: '2018/10/25', comment: '<span class="easyui-tooltip" title="The fixture is already shipped">The fixture is already shipped</span>', operation: '<input value="Approve" type="button"/><input value="Disapprove" type="button"/>', approver1: 'Julius', approver2: 'Tim',arranger:'arranger1' },
+        //        { serialNumber: '10', project: 'N144', item: 'Small', type: 'Iceman Housing', stage: 'P2', site: 'IPEG-GL', progress: 'Approve-Technique', quantity: '2', ETD: '2018/10/25', comment: '<span class="easyui-tooltip" title="The fixture is already shipped">The fixture is already shipped</span>', operation: '<input value="Approve" type="button"/><input value="Disapprove" type="button"/>', approver1: 'Julius', approver2: 'Tim',arranger:'arranger1' },
+        //      ],
+        url: ('@ViewBag.Progress' != '') ? '@Url.Content("~/ApplicationInfo/CreateProgressViewSearch")' + '?timeInValARS=' + '@ViewBag.timeInValARS' + '&startDateARS=' + '@ViewBag.startDateARS' + '&endDateARS=' + '@ViewBag.endDateARS' + '&Progress=' + '@ViewBag.Progress' + '&Category=' + '@ViewBag.Category' : '@Url.Action("CreateAllView", "ApplicationInfo")',
+        @*url: ('@ViewBag.Progress' != '') ? '@Url.Action("CreateProgressViewSearch", "ApplicationInfo", new { timeInValARS = ViewBag.timeInValARS, startDateARS = ViewBag.startDateARS, endDateARS = ViewBag.endDateARS, Progress = ViewBag.Progress })': '@Url.Action("CreateAllView", "ApplicationInfo")',*@
+        singleSelect: false,
+        @*
+            singleSelect: false,
+            selectOnCheck: false,
+            checkOnSelect: false,
+            onSelect: function (rowData) {
+                $("#orderinfoIdA").datagrid("unselectAll");
+            },
+          *@
+        idField: 'requirementId',
+        pagination: true,
+        autoRowHeight: true,
+        striped: true,
+        fitColumns: false,
+    })
+    //
+    function SubmitEmailUsersFile() {
+        $("#upload").ajaxSubmit
+        ({
+            url: '@Url.Action("SubmitEmailUsers", "ApplicationInfo")',
+            type: "post",
+            success: function (data) {
+                alert("Update successfully!");
+                $("#priceinfoId").datagrid("reload");
+            },
+            error: function (data) {
+                alert("Update failed!");
+            }
+        });
+    }
+    //导出Excel
+    function getEmailUsersFun() {
+        window.location.href = '@Url.Content("~/ApplicationInfo/DownloadEmailUsers")';
+    }
+    //导入Excel
+    function setEmailUsersFun() {
+        $('#fileToUpload').click();
+    }
+
+
+</script>

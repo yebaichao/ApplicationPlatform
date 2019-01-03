@@ -1,0 +1,126 @@
+﻿@{
+    Layout = null;
+}
+@using ApplicationPlatform.Utilities.NodeModels
+<script src="~/Scripts/jquery.form.js"></script>
+<div id="priceFrameId">
+    <div id="tablePriceTitleP">
+        Price Management
+    </div>
+    <div id="pricetableToolId">
+        <input type="text" id="priceTableSearchInput" />
+        <input class="processTabBtnClassP" id="priceTabBtnS" type="button" value="Search" onclick="priceSearchFun()" />
+        <input class="processTabBtnClassP" id="priceTabBtnRs" type="button" value="Refresh" onclick="resetPriceTableInfoFun()" />
+    </div>
+    <div id="priceDataDiv">
+        <table id="priceinfoId" class="" style="height:498px;width:1200px">
+            <thead>
+                <tr>
+                    <th data-options="field:'ck',checkbox:true"></th>
+                    <th data-options="field:'serialNumber',align:'center',width:70,resizable:false,sortable:true">No.</th>
+                    <th data-options="field:'product',align:'center',width:170,resizable:false">
+                        Product
+                        
+                    </th>
+                    <th data-options="field:'project',align:'center',width:170,resizable:false">
+                        Project
+
+                    </th>
+                    <th data-options="field:'type',align:'center',width:170,resizable:false">
+                        Type
+                        
+                    </th>
+                    <th data-options="field:'item',align:'center',width:170,resizable:false">
+                        Item
+                        
+                    </th>
+                    <th data-options="field:'subitem',align:'center',width:200,resizable:false">
+                        Subitem
+                        
+                    </th>
+                    <th data-options="field:'unitprice',align:'center',width:200,resizable:false">
+                        UnitPrice
+                        
+                    </th>
+                    <th data-options="field:'requirementId',hidden:true"></th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+    <div id="exportPriceDivA">
+        <input id="exportPriceBtnA" type="button" value="Export price to Excel" onclick="exportAllInfoPrice()" />
+        <input id="importPriceBtnA" type="button" value="Import price to update" onclick="importAllInfoPrice()" />
+
+    </div>
+    <form enctype="multipart/form-data" method="post" id="upload" hidden ="hidden">
+        <div>
+            <input type="file" name="fileToUpload" id="fileToUpload" onchange="SubmitFile()"/>
+        </div>
+    </form>
+
+</div>
+<link href="~/Content/CSS/PriceListView.css" rel="stylesheet" />
+<script type="text/javascript">
+    $(function () {
+        //加载表格
+        $("#priceinfoId").datagrid({
+            striped: true,
+            pageNumber: 1,
+            pageList: [10],
+            pageSize: 10,
+            url: '@Url.Action("CreatePriceListView", "PriceInfo")',
+            striped: true,
+            idField: 'requirementId',
+            pagination: true,
+            autoRowHeight: true,
+            onClickRow: function (rowIndex, rowData) {
+            }
+        });
+
+    });
+    function SubmitFile() {
+        $("#upload").ajaxSubmit
+        ({
+            url: '@Url.Action("SubmitPrice", "PriceInfo")',
+            type: "post",
+            success: function (data) {
+                alert("Update successfully!");
+                $("#priceinfoId").datagrid("reload");
+            },
+            error: function (data) {
+                alert("Update failed!");
+            }
+        });
+    }
+    //模糊搜索
+    function priceSearchFun() {
+        var searchText = document.getElementById("priceTableSearchInput").value;
+        $("#priceinfoId").datagrid({
+                queryParams: { searchText: searchText },
+                url: '@Url.Action("CreatePriceListSearchView", "PriceInfo")',
+            })
+    }
+    //导出Excel
+    function exportAllInfoPrice() {
+        window.location.href = '@Url.Content("~/PriceInfo/DownloadPrice")';
+    }
+    //导入Excel
+    function importAllInfoPrice() {
+        $('#fileToUpload').click();
+    }
+
+    //Reset按钮
+    function resetPriceTableInfoFun() {
+        document.getElementById("priceTableSearchInput").value = "";
+        //重新载入Processing页面
+        var tab = $('#midShowId').tabs('getSelected');
+        //刷新选择的面板；
+        $('#midShowId').tabs('update', {
+            tab: tab,
+            options: {
+                title: "Price Management",
+            }
+        });
+    }
+
+</script>

@@ -1,0 +1,221 @@
+﻿@{
+    Layout = null;
+}
+
+<div id="UserManaFrameId">
+    <div id="UserManaTitleId">
+        User Management
+    </div>
+    <div id="userListToolId">
+        <div class="userOperaDiv">
+            <input class="userMangeBtnClass" id="userManageAddBtn" type="button" value="Add" onclick="addUserFun()" />
+        </div>
+        <div class="userOperaDiv">
+            <input class="userMangeBtnClass" id="userManageRemoveBtn" type="button" value="Remove" onclick="removeUserFun()" />
+        </div>
+        <div class="userOperaDiv">
+            <input class="userMangeBtnClass" id="userManageEditBtn" type="button" value="Edit" onclick="editUserFun()" />
+        </div>
+        <div class="userOperaDiv" id="userSearTopDivId">
+            <input type="text"  id="tableSearchInput" />
+            
+        </div>
+        <div class="userOperaDiv">
+            <input class="userMangeBtnClass" id="userManageSearchBtn" type="button" value="Search" onclick="userManSearchFun()" />
+        </div>
+    <div id="userListTabDiv">
+        <table id="userListTableId" class="" style="height:500px;width:1200px;" >
+            <thead>
+                <tr>
+                    <th data-options="field:'ck',checkbox:true"></th>
+                    <th data-options="field:'SerialNumber',align:'center',width:110,resizable:false">
+                        SerialNumber
+                    </th>
+                    <th data-options="field:'UserName',align:'center',width:200,resizable:false">
+                        UserName
+                    </th>
+                    <th data-options="field:'Sex',align:'center',width:110,resizable:false">
+                        UserSex
+                    </th>
+                    <th data-options="field:'Email',align:'center',width:250,resizable:false">
+                        UserEmail
+                    </th>
+                    <th data-options="field:'Phone',align:'center',width:150,resizable:false">
+                        UserPhone
+                    </th>
+                    <th data-options="field:'WeChat',align:'center',width:150,resizable:false">
+                        UserWeChat
+                    </th>
+                    <th data-options="field:'UserRole',align:'center',width:200,resizable:false">
+                        UserRole
+                    </th>
+                    <th data-options="field:'UserId',hidden:'true'">
+                        UserId
+                    </th>
+                </tr>
+            
+            </thead>
+        </table>
+    </div>
+    
+    <div id="addUserDivId"></div>
+    <div id="editUserDivId"></div>
+</div>
+
+<link href="~/Content/CSS/UserManagement.css" rel="stylesheet" />
+
+<script type="text/javascript">
+
+    //搜索框
+    function userManSearchFun() {
+        var userSearchVal = document.getElementById("tableSearchInput").value;
+        $("#userListTableId").datagrid({
+            queryParams: { userSearchValue: userSearchVal },
+            url: '@Url.Action("UserSearch", "UserInfo")',
+            onLoadSuccess: function () {
+                $("#userListTableId").datagrid('options').url = '@Url.Action("CreateUserListView", "UserInfo")';
+            }
+        });
+
+    }
+
+
+    //用户列表加载
+    $("#userListTableId").datagrid({
+        pageNumber: 1,
+        pageList: [10],
+        pageSize: 10,
+        url: '@Url.Action("CreateUserListView", "UserInfo")',
+        
+        idField: 'UserId',
+        pagination: true,
+        autoRowHeight: true,
+        striped: true,
+    });
+    //获取当前屏幕的宽度；
+    var userMDeviceWidthVal = $(document).width();
+    //点击Add按钮，新增用户
+    function addUserFun() {
+        if (userMDeviceWidthVal >= 851) {
+            $("#addUserDivId").dialog({
+                title: 'Create User',
+                width: 450,
+                height: 350,
+                closed: false,
+                cache: false,
+                href: '@Url.Action("RegisterView","Account")',
+                modal: true,
+            });
+        } else {
+            $("#addUserDivId").dialog({
+                title: 'Create User',
+                width: 300,
+                height: 300,
+                closed: false,
+                cache: false,
+                href: '@Url.Action("RegisterView","Account")',
+                modal: true,
+            });
+        }
+        
+    };
+
+    //点击Remove按钮，删除指定用户
+    function removeUserFun() {
+        if(window.confirm("Are you sure to delete the selected user ?")){
+            var removeStrId = "";
+            var selectedItem = $("#userListTableId").datagrid('getChecked');
+            if (selectedItem.length == 0) {
+                alert("Please select one row that you want to remove");
+                return;
+            } else if (selectedItem.length == 1) {
+                removeStrId = selectedItem[0].UserId;
+            } else {
+                for (ele in selectedItem) {
+
+                    if (ele < selectedItem.length - 1) {
+                        removeStrId = removeStrId + selectedItem[ele].UserId + ",";
+                    } else {
+                        removeStrId = removeStrId + selectedItem[ele].UserId;
+                    }
+                }
+            };
+
+            $("#userListTableId").datagrid({
+                queryParams: { removeStrId: removeStrId },
+                url: '@Url.Action("DeleteUser", "UserInfo")',
+                onLoadSuccess: function(){
+                    $("#userListTableId").datagrid('options').url = '@Url.Action("CreateUserListView", "UserInfo")';
+                }
+            });
+        }
+
+    };
+
+    //点击Edit按钮，编辑指定user信息；
+    function editUserFun() {
+        var selectedUserItem = $("#userListTableId").datagrid('getChecked');
+        
+        var userId = selectedUserItem[0].UserId;
+        //获取当前屏幕的宽度；
+        var saveDeviceWidthVal = $(document).width();
+        if (selectedUserItem.length == 1) {
+            if (saveDeviceWidthVal >= 851) {
+                $("#editUserDivId").dialog({
+                    title: 'Edit User Information',
+                    width: 700,
+                    height: 430,
+                    href: '@Url.Content("~/UserInfo/EditUser")' + '?UserId=' + userId,
+                    cache: true,
+                    modal: true,
+                    queryParams: { checksysno: selectedUserItem },
+                    onClose: function () {
+                        $("#editUserDivId").dialog('destroy', false);
+                        if ($("#midShowId").tabs("exists", 'User Management')) {
+                            $("#midShowId").tabs("select", 'User Management')
+                          
+                            var tab = $('#midShowId').tabs('getSelected');
+                            $('#midShowId').tabs('update', {
+                                tab: tab,
+                                options: {
+                                    title: "User Management",
+                                }
+                            }); 
+                        }
+
+                    }
+
+                });
+            } else {
+                $("#editUserDivId").dialog({
+                    title: 'Edit User Information',
+                    width: 300,
+                    height: 300,
+                    href: '@Url.Content("~/UserInfo/EditUser")' + '?UserId=' + userId,
+                    cache: true,
+                    modal: true,
+                    queryParams: { checksysno: selectedUserItem },
+                    onClose: function () {
+                        $("#editUserDivId").dialog('destroy', false);
+                        var tab = $('#midShowId').tabs('getSelected');
+                        $('#midShowId').tabs('update', {
+                            tab: tab,
+                            options: {
+                                title: "User Management",
+                            }
+                        });
+
+                    }
+
+                });
+            }
+           
+        } else if (selectedUserItem.length == 0) {
+            alert("Please select one row that you want to edit");
+        } else {
+            alert("Only can select one row for editing");
+        }
+    }
+
+
+</script>

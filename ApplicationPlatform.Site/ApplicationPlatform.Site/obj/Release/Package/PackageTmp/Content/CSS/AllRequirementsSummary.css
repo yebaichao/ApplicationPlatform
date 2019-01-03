@@ -1,0 +1,192 @@
+﻿@charset "utf-8";
+
+
+@media screen and (max-width:850px){
+    #frameARS {
+        width: 750%;
+        height: 20%;
+        margin-top: 0px;
+        
+    }
+     .clearDateboxClass {
+        height:20px;
+        width:40px;
+        color:#fff;
+        font-size:1.0em;
+        font-weight:700;
+        background:#FFDB5C;
+        border:0px;
+        border-radius:4px;
+        margin-left:4px;
+        position:relative;
+        top:6px;
+        cursor:pointer;
+        padding-top:3px;
+    }
+    #tableAToolIdS {
+         width: 750%;
+        height: 20%;
+        margin-left:10px;
+        padding-top:0px;
+    }
+    .hrDivClass {
+        width:400%
+    }
+    #ARSToolIdTem {
+        margin-left:2%;
+    }
+     .tableAToolTitleClassS {
+        font-size:15px;
+        font-weight:700;
+        font-family:Trebuchet;
+    }
+     
+    #allReTabResBtnS{
+        width:100px;
+        height:30px;
+        border:0px solid #0092A6;
+        border-radius:5px;
+        color:#fff;
+        font-size:15px;
+        background-color:#37A2DA;
+        font-weight:600;
+        margin-left:20px;
+    }
+    #allReTabSearBtnS{
+        width:100px;
+        height:30px;
+        border:0px solid #0092A6;
+        border-radius:5px;
+        color:#fff;
+        font-size:15px;
+        background-color:#0092A6;
+        font-weight:600;
+    }
+
+    #container1, #container2 {
+        float:left;
+    }
+    #changeViewBtnARS1 {
+        width:150px;
+        height:30px;
+        border:2px solid #0092A6;
+        background:#0092A6;
+        color:#ffffff;
+        font-size:16px;
+        font-weight:600;
+        border-radius:5px;
+    }
+    #changeViewBtnARS2 {
+        width:150px;
+        height:30px;
+        border:2px solid #0092A6;
+        color:#ffffff;
+        background:#D3DCE0;
+        font-size:16px;
+        font-weight:600;
+        border-radius:5px;
+        margin-right:260px;
+    }
+    #titleARS {
+        font-size:45px;
+        font-weight:bolder;
+        color:#0092A6;
+        margin-left:50px;
+        margin-bottom:3px;
+        padding-top:3px;
+        }
+   
+}
+
+
+
+@media screen and (min-width:851px){
+    
+     .clearDateboxClass {
+        height:20px;
+        width:40px;
+        color:#fff;
+        font-size:1.0em;
+        font-weight:700;
+        background:#FFDB5C;
+        border:0px;
+        border-radius:4px;
+        margin-left:4px;
+        position:relative;
+        top:6px;
+        cursor:pointer;
+        padding-top:3px;
+    }
+    #tableAToolIdS {
+        margin-left:100px;
+        padding-top:0px;
+    }
+    #ARSToolIdTem {
+        margin-left:0%;
+    }
+     .tableAToolTitleClassS {
+        font-size:15px;
+        font-weight:700;
+        font-family:Trebuchet;
+    }
+     
+    #allReTabResBtnS{
+        width:100px;
+        height:30px;
+        border:0px solid #0092A6;
+        border-radius:5px;
+        color:#fff;
+        font-size:15px;
+        background-color:#37A2DA;
+        font-weight:600;
+        margin-left:20px;
+    }
+    #allReTabSearBtnS{
+        width:100px;
+        height:30px;
+        border:0px solid #0092A6;
+        border-radius:5px;
+        color:#fff;
+        font-size:15px;
+        background-color:#66CD00;
+        font-weight:600;
+        margin-left:30px;
+    }
+
+    #container1, #container2 {
+        float:left;
+    }
+    #changeViewBtnARS1 {
+        width:150px;
+        height:30px;
+        border:2px solid #0092A6;
+        background:#0092A6;
+        color:#ffffff;
+        font-size:16px;
+        font-weight:600;
+        border-radius:5px;
+    }
+    #changeViewBtnARS2 {
+        width:150px;
+        height:30px;
+        border:2px solid #0092A6;
+        color:#ffffff;
+        background:#D3DCE0;
+        font-size:16px;
+        font-weight:600;
+        border-radius:5px;
+        margin-right:260px;
+    }
+    #titleARS {
+        font-size:45px;
+        font-weight:bolder;
+        color:#0092A6;
+        margin-left:50px;
+        margin-bottom:3px;
+        padding-top:3px;
+        }
+   
+}
+
+
+  
