@@ -248,6 +248,8 @@
     function timeIntervaFunA() {
         var searchCriteria = document.getElementById("criteriaSelIdA").value;
         var timeInVal = document.getElementById("timeIntervalIdA").value;
+        document.getElementById("dateboxStartIdA").value = "";
+        document.getElementById("dateboxEndIdA").value = "";
         $("#orderinfoIdA").datagrid({
             queryParams: { timeInValA: timeInVal, searchCriteria: searchCriteria },
             url: '@Url.Action("CreateAllIntervalViewSearch", "ApplicationInfo")',
@@ -338,19 +340,22 @@
         dateFormat: "Y/m/d",
         onChange: function (dateObject, dateString) {
             //获取时间日期输入框的值
-        var startDateA = document.getElementById("dateboxStartIdA").value;
-        var endDateA = document.getElementById("dateboxEndIdA").value;
-        if (startDateA != "") {
-            var begin = new Date($("#dateboxStartIdA").val().replace(/-/g, "/"));
-            var end = new Date($("#dateboxEndIdA").val().replace(/-/g, "/"));
-            //js判断日期
-            if (begin - end > 0) {
-                alert("Please enter the correct end date!");
-                document.getElementById("dateboxStartIdA").value = "";
-            }
+            var startDateA = document.getElementById("dateboxStartIdA").value;
+            var endDateA = document.getElementById("dateboxEndIdA").value;
+            if (startDateA != "") {
+                var begin = new Date($("#dateboxStartIdA").val().replace(/-/g, "/"));
+                var end = new Date($("#dateboxEndIdA").val().replace(/-/g, "/"));
+                //js判断日期
+                if (begin - end > 0) {
+                    alert("Please enter the correct end date!");
+                    document.getElementById("dateboxStartIdA").value = "";
+                }
 
+            }
+        },
+        onClose: function () {
+            document.getElementById("timeIntervalIdA").selectedIndex = 0;
         }
-    }
     });
     document.getElementById("dateboxEndIdA").flatpickr({
         //设置日期的格式；
@@ -369,8 +374,10 @@
                 }
 
             }
-        }
-
+        },
+        onClose: function () {
+        document.getElementById("timeIntervalIdA").selectedIndex = 0;
+    }
     });
     @*
     var projectListArrA = ["D42", "D43", "N104", "N144"];

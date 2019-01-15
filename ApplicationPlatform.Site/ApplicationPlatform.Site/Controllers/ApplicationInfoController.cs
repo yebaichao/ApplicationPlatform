@@ -2420,19 +2420,19 @@ namespace ApplicationPlatform.Site.Controllers
             Expression<Func<ApplicationInfo, bool>> where = null;
             Expression<Func<ApplicationInfo, DateTime>> whereDateTime = null;
             // where = x => x.Id != null && x.IsDelete == false && x.Project.Contains(project);
-            if (span1 == null && span2 == null)
+            if (string.IsNullOrEmpty(startDateA) && string.IsNullOrEmpty(endDateA) && string.IsNullOrEmpty(interval))
             {
-                where = x => x.Id != null && x.IsDelete == false && (x.Project.Contains(searchInputValA) || x.Product.Contains(searchInputValA) || x.Site.Contains(searchInputValA) || x.Stage.Contains(searchInputValA) || x.Subitem.Contains(searchInputValA) || x.Type.Contains(searchInputValA) || x.UserName.Contains(searchInputValA) || x.TechApprovedUser.Contains(searchInputValA) || x.ComApprovedUser.Contains(searchInputValA));
+                where = x => x.Id != null && x.IsDelete == false && x.IsSaved==false && (x.Project.Contains(searchInputValA) || x.Product.Contains(searchInputValA) || x.Site.Contains(searchInputValA) || x.Stage.Contains(searchInputValA) || x.Subitem.Contains(searchInputValA) || x.Type.Contains(searchInputValA) || x.UserName.Contains(searchInputValA) || x.TechApprovedUser.Contains(searchInputValA) || x.ComApprovedUser.Contains(searchInputValA));
             }
             else
             {
                 if (searchCriteria != "ETD")
                 {
-                    where = x => x.Id != null && x.IsDelete == false && (x.Project.Contains(searchInputValA) || x.Product.Contains(searchInputValA) || x.Site.Contains(searchInputValA) || x.Stage.Contains(searchInputValA) || x.Subitem.Contains(searchInputValA) || x.Type.Contains(searchInputValA) || x.UserName.Contains(searchInputValA) || x.TechApprovedUser.Contains(searchInputValA) || x.ComApprovedUser.Contains(searchInputValA)) && x.CreateTime >= span1 && x.CreateTime <= span2;
+                    where = x => x.Id != null && x.IsDelete == false && x.IsSaved == false && (x.Project.Contains(searchInputValA) || x.Product.Contains(searchInputValA) || x.Site.Contains(searchInputValA) || x.Stage.Contains(searchInputValA) || x.Subitem.Contains(searchInputValA) || x.Type.Contains(searchInputValA) || x.UserName.Contains(searchInputValA) || x.TechApprovedUser.Contains(searchInputValA) || x.ComApprovedUser.Contains(searchInputValA)) && x.CreateTime >= span1 && x.CreateTime <= span2;
                 }
                 else
                 {
-                    where = x => x.Id != null && x.IsDelete == false && (x.Project.Contains(searchInputValA) || x.Product.Contains(searchInputValA) || x.Site.Contains(searchInputValA) || x.Stage.Contains(searchInputValA) || x.Subitem.Contains(searchInputValA) || x.Type.Contains(searchInputValA) || x.UserName.Contains(searchInputValA) || x.TechApprovedUser.Contains(searchInputValA) || x.ComApprovedUser.Contains(searchInputValA)) && x.EndTime >= span1 && x.EndTime <= span2;
+                    where = x => x.Id != null && x.IsDelete == false && x.IsSaved == false && (x.Project.Contains(searchInputValA) || x.Product.Contains(searchInputValA) || x.Site.Contains(searchInputValA) || x.Stage.Contains(searchInputValA) || x.Subitem.Contains(searchInputValA) || x.Type.Contains(searchInputValA) || x.UserName.Contains(searchInputValA) || x.TechApprovedUser.Contains(searchInputValA) || x.ComApprovedUser.Contains(searchInputValA)) && x.EndTime >= span1 && x.EndTime <= span2;
                 }
             }
             whereDateTime = x => x.CreateTime;

@@ -19,22 +19,22 @@
       <publishTime>10/10/2018 16:40:37</publishTime>
     </File>
     <File Include="bin/ApplicationPlatform.BLL.dll">
-      <publishTime>01/03/2019 09:31:53</publishTime>
+      <publishTime>01/04/2019 09:52:17</publishTime>
     </File>
     <File Include="bin/ApplicationPlatform.DAL.dll">
-      <publishTime>01/03/2019 09:31:52</publishTime>
+      <publishTime>01/04/2019 09:52:17</publishTime>
     </File>
     <File Include="bin/ApplicationPlatform.IBLL.dll">
-      <publishTime>01/03/2019 09:31:51</publishTime>
+      <publishTime>01/04/2019 09:28:18</publishTime>
     </File>
     <File Include="bin/ApplicationPlatform.IDAL.dll">
-      <publishTime>01/03/2019 09:31:51</publishTime>
+      <publishTime>01/04/2019 09:28:18</publishTime>
     </File>
     <File Include="bin/ApplicationPlatform.Models.dll">
       <publishTime>01/03/2019 09:31:51</publishTime>
     </File>
     <File Include="bin/ApplicationPlatform.Site.dll">
-      <publishTime>01/03/2019 09:31:54</publishTime>
+      <publishTime>01/04/2019 09:52:19</publishTime>
     </File>
     <File Include="bin/ApplicationPlatform.Utilities.dll">
       <publishTime>01/03/2019 09:31:51</publishTime>
@@ -3067,7 +3067,7 @@
       <publishTime>12/13/2018 08:49:19</publishTime>
     </File>
     <File Include="Views/ApplicationInfo/AllRequirements.cshtml">
-      <publishTime>01/03/2019 08:38:23</publishTime>
+      <publishTime>01/04/2019 08:56:45</publishTime>
     </File>
     <File Include="Views/ApplicationInfo/AllRequirementsSummary.cshtml">
       <publishTime>01/02/2019 11:21:35</publishTime>
